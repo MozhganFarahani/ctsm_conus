@@ -17,7 +17,7 @@ the true alignment.
 import sys, glob, os
 import numpy as np, pandas as pd, xarray as xr
 
-sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "config"))
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "config"))
 import paths  # analysis/config/paths.py
 
 GAUGE = sys.argv[1]

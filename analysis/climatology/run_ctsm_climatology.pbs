@@ -9,7 +9,7 @@
 
 set -euo pipefail
 
-# submit from this folder (cd analysis/climatology_maps && qsub run_ctsm_climatology.pbs);
+# submit from this folder (cd analysis/climatology && qsub run_ctsm_climatology.pbs);
 # input, output and cache paths come from analysis/config/paths.py
 cd "$PBS_O_WORKDIR"
 

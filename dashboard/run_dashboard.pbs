@@ -9,7 +9,7 @@
 #
 # Build the multi-configuration dashboard for ALL gauges.
 #
-#   cd analysis/dashboard_all && qsub run_dashboard.pbs   (submit from this folder)
+#   cd dashboard && qsub run_dashboard.pbs   (submit from this folder)
 #   qsub -v CONFIGS=control,irrigation_on run_dashboard.pbs
 #
 # This is ONE job producing ONE file containing every configuration -- not

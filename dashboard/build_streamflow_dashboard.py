@@ -62,7 +62,7 @@ import warnings
 import numpy as np
 import pandas as pd
 
-sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "config"))
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "analysis", "config"))
 import paths  # analysis/config/paths.py
 
 import upstream_basin as ub

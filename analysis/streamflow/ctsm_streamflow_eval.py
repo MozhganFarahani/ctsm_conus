@@ -38,7 +38,7 @@ import warnings
 import numpy as np
 import pandas as pd
 
-sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "config"))
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "config"))
 import paths  # analysis/config/paths.py
 
 warnings.filterwarnings("ignore", category=FutureWarning, module="xarray")
