@@ -48,20 +48,19 @@ length, so the unweighted across-year mean is exact — no day weighting needed.
 
 ## Setup
 
-### 1. Point the script at your paths
+### 1. Paths
 
-Edit `DEFAULT_PATHS` at the top of `ctsm_climatology_maps.py`:
+`DEFAULT_PATHS` at the top of `ctsm_climatology_maps.py` takes its paths from
+`analysis/config/paths.py`; change them there, not in the script:
 
-```python
-DEFAULT_PATHS = {
-    "ctsm_hist_dir": "/glade/derecho/scratch/mozhgana/archive/control/lnd/hist/",
-    "fields_csv": "/glade/u/home/mozhgana/mywork/ctsm_conus_analysis/climatology_maps/ctsm_control_history_fields.csv",
-    "out_dir": "/glade/u/home/mozhgana/mywork/ctsm_conus_analysis/climatology_maps/maps",
-    "cache_nc": "/glade/u/home/mozhgana/mywork/ctsm_conus_analysis/climatology_maps/ctsm_monthly_climatology.nc",
-}
-```
+| Key | Default |
+|---|---|
+| `ctsm_hist_dir` | `paths.lnd_hist("control")`: `/glade/derecho/scratch/mozhgana/archive/control/lnd/hist/` |
+| `fields_csv` | `ctsm_control_history_fields.csv` next to the script |
+| `out_dir` | `paths.CLIM_OUT`: `/glade/work/mozhgana/ctsm_conus_output/climatology/maps` |
+| `cache_nc` | `paths.CLIM_CACHE`: `/glade/work/mozhgana/ctsm_conus_output/climatology/ctsm_monthly_climatology.nc` |
 
-Put the output on scratch, not home — three figure sets for 44 variables is a
+The output sits outside the repository: three figure sets for 44 variables is a
 few hundred MB of PNGs.
 
 ### 2. Warm the cartopy cache (do this once, on a login node)
@@ -83,9 +82,9 @@ print('cartopy data cached')
 ### 3. Smoke-test two variables before committing to all 44
 
 ```bash
-qsub -I -A <YOUR_PROJECT> -q casper -l select=1:ncpus=4:mem=20GB -l walltime=01:00:00
+qsub -I -A P93300041 -q casper -l select=1:ncpus=4:mem=20GB -l walltime=01:00:00
 module load conda && conda activate npl-2026a
-cd /glade/work/mozhgana/ctsm_conus_analysis
+cd <repo>/analysis/climatology
 
 python ctsm_climatology_maps.py --rebuild --vars QRUNOFF TSA --monthly
 ```
@@ -97,10 +96,12 @@ two variables, and `--rebuild` overwrites rather than merges.
 ### 4. Full run as a batch job
 
 ```bash
-qsub run_ctsm_climatology.pbs
+cd <repo>/analysis/climatology && qsub run_ctsm_climatology.pbs
 ```
 
-Set your project code and `WORKDIR` in the `.pbs` file first. It requests
+Submit from this folder: the job runs the script from the folder it was
+submitted from, and writes its log to `ctsm_conus_output/climatology/ctsm_clim.log`.
+From a Derecho login node use `qsub -q casper@casper-pbs`. It requests
 8 cpus / 80 GB / 3 h, which is deliberately generous — the level-collapse has to
 materialise each file's soil levels before reducing them, and a three-hour job
 dying at the write step is worse than over-requesting. Cut to 40 GB once you
@@ -177,16 +178,18 @@ python ctsm_climatology_maps.py --monthly --vars SOILLIQ SOILICE TSOI ZWT
 ## Output layout
 
 ```
-climatology_maps/
+/glade/work/mozhgana/ctsm_conus_output/climatology/
 ├── ctsm_monthly_climatology.nc      # stage-1 cache: 12 x lat x lon per variable
-├── monthly/
-│   ├── QRUNOFF.png                  # 12 panels, shared colour scale
-│   ├── TSA.png
-│   └── ...
-├── seasonal/
-│   ├── QRUNOFF.png                  # 4 panels, day-weighted seasonal means
-│   └── ...
-└── seasonal_cycle_summary.png       # all variables, area-weighted domain means
+├── ctsm_clim.log                    # batch log
+└── maps/
+    ├── monthly/
+    │   ├── QRUNOFF.png              # 12 panels, shared colour scale
+    │   ├── TSA.png
+    │   └── ...
+    ├── seasonal/
+    │   ├── QRUNOFF.png              # 4 panels, day-weighted seasonal means
+    │   └── ...
+    └── seasonal_cycle_summary.png   # all variables, area-weighted domain means
 ```
 
 Multi-level fields get a suffix, set by `LEVELS`:

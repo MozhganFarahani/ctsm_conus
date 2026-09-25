@@ -36,7 +36,7 @@ What it does
 
 Usage
 -----
-    module load conda && conda activate npl
+    module load conda && conda activate npl-2026a
     python ctsm_spatial_water_balance.py \\
         --h0 "/glade/derecho/scratch/mozhgana/archive/control/lnd/hist/*.h0a.*.nc" \\
         --outdir ./control_qc/spatial \\
@@ -240,7 +240,7 @@ def main():
     ap.add_argument("--outdir", default="./control_qc/spatial")
     ap.add_argument("--label", default="control",
                      help="Run label, used as output filename prefix — "
-                          "use the config name (e.g. 'control', 'irrig_on') "
+                          "use the config name (e.g. 'control', 'irrigation_on') "
                           "so maps from different runs don't overwrite each other")
     ap.add_argument("--chunk-time", type=int, default=60)
     args = ap.parse_args()

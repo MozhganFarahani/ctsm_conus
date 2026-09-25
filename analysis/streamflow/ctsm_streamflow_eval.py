@@ -9,8 +9,7 @@ One bulk, vectorized read of all needed reaches (mizuRoute) and gauges
 numpy -- no per-gauge Python loop, no per-gauge file I/O. This is what
 actually makes it fast; multiprocessing over individual gauges was tried
 and benchmarked slower (fixed per-worker file-open cost dominates when the
-per-gauge work is this cheap -- see ctsm_streamflow_eval_multiconfig.py's
-docstring for the numbers).
+per-gauge work is this cheap).
 
 --parallel controls dask's multi-threaded reading of the mizuRoute file set
 (xr.open_mfdataset(parallel=...)) -- meaningful when you have hundreds of
@@ -18,15 +17,13 @@ files, since it reads them concurrently rather than one at a time.
 
 Usage
 -----
-    module load conda && conda activate npl
+    module load conda && conda activate npl-2026a
 
-    python ctsm_streamflow_eval.py \\
-        --archive-root /glade/derecho/scratch/mozhgana/archive \\
-        --config control \\
-        --outdir ./control_qc/streamflow
+    # --archive-root defaults to paths.ARCHIVE (analysis/config/paths.py)
+    python ctsm_streamflow_eval.py --config control --outdir ./streamflow_eval
 
-    python ctsm_streamflow_eval.py --archive-root ... --config irrig_on \\
-        --outdir ./irrig_on_qc/streamflow --parallel --limit 100
+    python ctsm_streamflow_eval.py --config irrigation_on \\
+        --outdir ./streamflow_eval --parallel --limit 100
 """
 
 import argparse
@@ -152,7 +149,7 @@ def main():
     ap.add_argument("--archive-root", default=paths.ARCHIVE,
                      help="Directory containing {config}/rof/hist/*.nc")
     ap.add_argument("--config", required=True,
-                     help="Config (subdirectory) name to evaluate, e.g. control, irrig_on")
+                     help="Config (subdirectory) name to evaluate, e.g. control, irrigation_on")
     ap.add_argument("--crosswalk", default=DEFAULT_CROSSWALK)
     ap.add_argument("--obs-daily", default=DEFAULT_OBS_DAILY)
     ap.add_argument("--outdir", default="./streamflow_eval")

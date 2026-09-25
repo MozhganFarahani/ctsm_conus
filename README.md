@@ -7,7 +7,7 @@ This repository archives the setup scripts, the complete CIME case folders, and 
 Project: CGD SIF-T FY26, NSF NCAR Terrestrial Sciences Section.
 Dashboard: <https://project.cgd.ucar.edu/projects/ctsm-conus/>
 
-> **Status:** work in progress. The analysis code is archived as it was used and will be reorganized. A tool to list every input file and path each case needs is planned (see [Planned work](#planned-work)).
+> **Status:** work in progress. The analysis code has been reorganized and all GLADE paths are collected in `analysis/config/paths.py`; methods and results are unchanged.
 
 ## Model versions
 
@@ -67,10 +67,17 @@ Notes on the configurations:
 ## Repository layout
 
 ```
-setup/      case-creation scripts, one per config, each with spinup and eval modes
-cases/      the six CIME case folders, complete
-analysis/   QC, streamflow evaluation, spinup checks, climatology maps, and the dashboard builder
-tools/      scripts that maintain this repository
+setup/                  case-creation scripts, one per config, each with spinup and eval modes
+cases/                  the six CIME case folders, complete (archive; never edited by hand)
+analysis/config/        paths.py: every GLADE path the analysis code uses
+analysis/qc/            control QC and water-balance checks
+analysis/spinup/        spinup drift and restart-boundary checks
+analysis/streamflow/    streamflow evaluation against observed flow
+analysis/climatology/   monthly climatology maps
+analysis/diagnostics/   time-alignment check and input-data reference
+analysis/animation/     CONUS discharge animation
+dashboard/              multi-config streamflow dashboard: builder, template, PBS job, web/ landing page
+tools/                  scripts that maintain this repository
 ```
 
 ### `setup/`
@@ -107,24 +114,45 @@ Case files contain absolute GLADE paths. Symlinks such as `xmlchange` and `case.
 
 ### `analysis/`
 
-The scripts use hard-coded GLADE paths and the `npl-2026a` conda environment on Casper (`module load conda && conda activate npl-2026a`).
+Run everything with the `npl-2026a` conda environment on Casper (`module load conda && conda activate npl-2026a`). Light checks can run on a login node; full builds and all-gauge runs go to PBS (`-q casper -A P93300041`; from a Derecho login node, `qsub -q casper@casper-pbs`).
 
-| File or folder | Purpose |
+Every GLADE path (model output, observations, routing network, CESM input data, output folder) is defined once in `analysis/config/paths.py`. Scripts, notebooks and the dashboard import it; edit paths there, nowhere else. Notebooks expect to be run from their own folder.
+
+Outputs that are not part of the repository (climatology maps and cache, the dashboard build and its weight cache, `case_inputs.csv`) are written to `/glade/work/mozhgana/ctsm_conus_output/`. Scripts with an `--outdir` option write to the current folder by default.
+
+| File | Purpose |
 |---|---|
-| `ctsm_control_explore.py` | file inventory, time gaps, domain water balance, mizuRoute screen |
-| `ctsm_spatial_water_balance.py` | per-cell water-balance residual maps |
-| `ctsm_streamflow_hydrographs.py` | hydrographs for the largest distinct reaches |
-| `ctsm_streamflow_eval.py` | NSE, KGE and PBIAS against observed monthly flow for all gauges |
-| `streamflow_eval_vs_observed.ipynb` | gauge-by-gauge streamflow comparison notebook |
-| `check_hillslope_spinup.py`, `check_restart_discontinuity.py`, `check_spinup_v2.ipynb` | spinup drift and restart-boundary checks |
-| `check_time_align.py` | tests month offsets between land output and mizuRoute records |
-| `climatology_maps/` | monthly climatology maps (see its own README) |
-| `control_qc/` | control file inventories and the daily water-balance figure |
-| `discharge_map_animation_conus.ipynb` | CONUS discharge animation |
-| `dashboard_all/` | multi-config streamflow dashboard: `upstream_basin.py` (basin averaging), `build_streamflow_dashboard.py`, `dashboard_template.py`, `run_dashboard.pbs`, and the landing page in `dashboard/` |
-| `upstream_hru_test.ipynb` | Naoki Mizukami's reference notebook for upstream-area mapping |
-| `input_data_reference.ipynb` | TODO: describe |
-| `setup.toml`, `usgs_areas.csv` | TODO: describe or remove |
+| `config/paths.py` | every GLADE path used by the analysis code |
+| `qc/ctsm_control_explore.py` | file inventory, time gaps, domain water balance, mizuRoute screen |
+| `qc/ctsm_spatial_water_balance.py` | per-cell water-balance residual maps |
+| `spinup/check_hillslope_spinup.py` | yearly domain-mean drift vs interannual noise for a spinup |
+| `spinup/check_restart_discontinuity.py` | tests for a jump in a domain mean at a restart date |
+| `spinup/check_spinup_v2.ipynb` | spinup drift: domain water-year means and daily checks at three sites |
+| `streamflow/ctsm_streamflow_eval.py` | NSE, KGE, PBIAS and correlation against observed monthly flow, all gauges, one config (`--config`) |
+| `streamflow/streamflow_eval_vs_observed.ipynb` | gauge-by-gauge streamflow comparison notebook |
+| `climatology/` | monthly climatology maps (see its own README); `run_ctsm_climatology.pbs` rebuilds the cache on Casper |
+| `diagnostics/check_time_align.py` | tests month offsets between land output and mizuRoute records for one gauge |
+| `diagnostics/input_data_reference.ipynb` | prints the contents of representative input files (forcing, meshes, maps, topology, surface data, initial condition) |
+| `animation/discharge_map_animation_conus.ipynb` | CONUS maps of `QRUNOFF`, `basRunoff` and `RoutedRunoff`, and an animation |
+
+### `dashboard/`
+
+| File | Purpose |
+|---|---|
+| `upstream_basin.py` | gauge-to-grid upstream weights and basin averaging (Naoki Mizukami's mapping; within 0.000% of `totalArea` for all 2,311 gauges) |
+| `build_streamflow_dashboard.py` | builds one self-contained HTML dashboard for several configs |
+| `dashboard_template.py` | the HTML/CSS/JS template the builder fills in |
+| `run_dashboard.pbs` | Casper job that builds the dashboard for all five configs; submit from this folder |
+| `web/index.html`, `web/assets/hero.png` | the landing page |
+
+`run_dashboard.pbs` writes `<name>_dashboard.html` to `ctsm_conus_output/dashboard/` (run by hand, the builder writes to `--outdir`, default `./dashboard`). To deploy, copy it as `dashboard.html`, together with `web/index.html` and `web/assets/`, with `scp` from `data-access.ucar.edu` to goldhill, `/project/webshare/projects/ctsm-conus`.
+
+### `tools/`
+
+| File | Purpose |
+|---|---|
+| `capture_cases.sh` | copies each CIME case folder into `cases/` and saves its per-case git log |
+| `list_case_inputs.py` | lists every input file each case needs (from `Buildconf/*.input_data_list`, `CaseDocs/lnd_in`, `CaseDocs/mizuRoute.control` and `user_nl_*`), reports whether it exists, flags files on `/glade/derecho/scratch` (purge risk), and points to archived copies of missing restarts |
 
 ## Input data (not in this repository)
 
@@ -138,7 +166,7 @@ The scripts use hard-coded GLADE paths and the `npl-2026a` conda environment on 
 | Gauge crosswalk | `flow_multi_agency_all_meta.csv` (USGS/USACE, naturalized and observed) |
 | Model output | `/glade/derecho/scratch/mozhgana/archive/<case>/` |
 
-The full list of inputs for each case is in `cases/<case>/Buildconf/*.input_data_list`.
+The full list of inputs for each case is in `cases/<case>/Buildconf/*.input_data_list`. `python tools/list_case_inputs.py` collects these with the namelist and `user_nl_*` references, and checks each file.
 
 ## Known caveats
 
@@ -149,8 +177,6 @@ The full list of inputs for each case is in `cases/<case>/Buildconf/*.input_data
 
 ## Planned work
 
-- Reorganize the analysis code into a clearer structure and remove hard-coded paths.
-- Add a tool that reads each case folder and lists every input file and path it needs (from `Buildconf/*.input_data_list`, `CaseDocs/`, and the `user_nl_*` files).
 - Add a license before the repository is made public.
 
 ## Contributors

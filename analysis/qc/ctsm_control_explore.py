@@ -28,7 +28,7 @@ What it does
 
 Usage
 -----
-    module load conda && conda activate npl   # or your CTSM postprocessing env
+    module load conda && conda activate npl-2026a
     python ctsm_control_explore.py \\
         --h0 "/glade/derecho/scratch/mozhgana/archive/control/lnd/hist/*.h0a.*.nc" \\
         --h1 "/glade/derecho/scratch/mozhgana/archive/control/lnd/hist/*.h1a.*.nc" \\
