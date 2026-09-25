@@ -5,11 +5,11 @@
 #PBS -l select=1:ncpus=10:mem=100GB
 #PBS -l walltime=06:00:00
 #PBS -j oe
-#PBS -o /glade/work/mozhgana/ctsm_conus_analysis/dashboard_all/logs/
+#PBS -o /glade/work/mozhgana/ctsm_conus_output/dashboard/logs/
 #
 # Build the multi-configuration dashboard for ALL gauges.
 #
-#   qsub run_dashboard.pbs
+#   cd analysis/dashboard_all && qsub run_dashboard.pbs   (submit from this folder)
 #   qsub -v CONFIGS=control,irrigation_on run_dashboard.pbs
 #
 # This is ONE job producing ONE file containing every configuration -- not
@@ -24,26 +24,23 @@
 set -euo pipefail
 
 CONFIGS=${CONFIGS:-control,irrigation_on,evolving_landcover,prog_phenology,hillslope_eval}
-WORKDIR=/glade/work/mozhgana/ctsm_conus_analysis/dashboard_all
-ARCHIVE=/glade/derecho/scratch/mozhgana/archive
-RUNROOT=/glade/derecho/scratch/mozhgana      # for each config's finidat
-
-export CACHE_DIR=$WORKDIR/cache
-mkdir -p "$WORKDIR/logs" "$WORKDIR/dashboard" "$CACHE_DIR"
+# Archive, run root, weight cache and output folder come from
+# analysis/config/paths.py. The -o log folder above must be a literal path:
+# keep it in sync with paths.DASHBOARD_OUT.
+OUTDIR=/glade/work/mozhgana/ctsm_conus_output/dashboard
+mkdir -p "$OUTDIR/logs"
 
 module load conda
 conda activate npl-2026a
-cd "$WORKDIR"
+cd "$PBS_O_WORKDIR"
 
 echo "=== $CONFIGS === $(date)"
 echo "host: $(hostname)"
 
 python build_streamflow_dashboard.py \
-    --archive-root "$ARCHIVE" \
     --configs "$CONFIGS" \
-    --run-root "$RUNROOT" \
-    --outdir "$WORKDIR/dashboard" \
+    --outdir "$OUTDIR" \
     --parallel
 
 echo "=== done $(date) ==="
-ls -lh "$WORKDIR/dashboard/"*_dashboard.html
+ls -lh "$OUTDIR/"*_dashboard.html

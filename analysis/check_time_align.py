@@ -14,14 +14,17 @@ Builds both monthly series from their own timestamps and reports agreement
 at lags -2..+2 months. The lag with ratio ~1 and the highest correlation is
 the true alignment.
 """
-import sys, glob
+import sys, glob, os
 import numpy as np, pandas as pd, xarray as xr
 
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "config"))
+import paths  # analysis/config/paths.py
+
 GAUGE = sys.argv[1]
-NTOPO   = "/glade/work/mizukami/test_mizuRoute/MERIT_basin_nldas/ancillary_data/ntopo_MERIT_Hydro_v1_aug.nc"
-WEIGHTS = "/glade/work/mizukami/py_mapping/MERIT_Hydro/mapping_v1/spatialweights_nldas0.125_to_merit_nldas.nc"
-XW      = "<path_to_gauge_metadata>/route/extract_seg/ancillary_data/flow_multi_agency_all_meta.csv"
-ARCH    = "/glade/derecho/scratch/mozhgana/archive"
+NTOPO   = paths.NTOPO
+WEIGHTS = paths.WEIGHTS
+XW      = paths.CROSSWALK
+ARCH    = paths.ARCHIVE
 CONFIG  = "control"
 
 

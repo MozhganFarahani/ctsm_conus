@@ -19,6 +19,7 @@ import argparse
 import glob
 import os
 import re
+import sys
 import warnings
 
 import matplotlib as mpl
@@ -30,16 +31,21 @@ import numpy as np
 import pandas as pd
 import xarray as xr
 
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "config"))
+import paths  # analysis/config/paths.py
+
 warnings.filterwarnings("ignore", category=RuntimeWarning)
 
 # ----------------------------------------------------------------------------
 # paths / run configuration
 # ----------------------------------------------------------------------------
 DEFAULT_PATHS = {
-    "ctsm_hist_dir": "/glade/derecho/scratch/mozhgana/archive/control/lnd/hist/",
-    "fields_csv": "/glade/u/home/mozhgana/mywork/ctsm_conus_analysis/climatology_maps/ctsm_control_history_fields.csv",
-    "out_dir": "/glade/u/home/mozhgana/mywork/ctsm_conus_analysis/climatology_maps/maps",
-    "cache_nc": "/glade/u/home/mozhgana/mywork/ctsm_conus_analysis/climatology_maps/ctsm_monthly_climatology.nc",
+    "ctsm_hist_dir": paths.lnd_hist("control") + "/",
+    # the field list sits next to this script
+    "fields_csv": os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                               "ctsm_control_history_fields.csv"),
+    "out_dir": paths.CLIM_OUT,
+    "cache_nc": paths.CLIM_CACHE,
 }
 
 # analysis window, inclusive, YYYY-MM. First spin-up year already excluded.

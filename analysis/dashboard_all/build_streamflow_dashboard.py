@@ -62,6 +62,9 @@ import warnings
 import numpy as np
 import pandas as pd
 
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "config"))
+import paths  # analysis/config/paths.py
+
 import upstream_basin as ub
 from dashboard_template import TEMPLATE
 
@@ -70,9 +73,9 @@ warnings.filterwarnings("ignore", category=FutureWarning, module="xarray")
 MODEL_START, MODEL_END = "1980-10-01", "2018-09-30"
 MIN_MONTHS = 12
 STABLE_MIN_MONTHS = 60
-DEFAULT_CROSSWALK = "<path_to_gauge_metadata>/route/extract_seg/ancillary_data/flow_multi_agency_all_meta.csv"
-DEFAULT_OBS_DAILY = "<path_to_streamflow_tseries>/flow_multi_agency_1965-10-01_2024-09-30.nc"
-DEFAULT_RUN_ROOT = "/glade/derecho/scratch/mozhgana"
+DEFAULT_CROSSWALK = paths.CROSSWALK
+DEFAULT_OBS_DAILY = paths.OBS_DAILY
+DEFAULT_RUN_ROOT = paths.RUN_ROOT
 
 CONFIG_COLORS = ["#4c78a8", "#f58518", "#54a24b", "#b279a2", "#e45756",
                  "#72b7b2", "#ff9da6", "#9d755d"]
@@ -190,7 +193,7 @@ def build_html(payload, out_path):
 def main():
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--archive-root", required=True)
+    ap.add_argument("--archive-root", default=paths.ARCHIVE)
     ap.add_argument("--configs", required=True,
                     help="Comma-separated config names; the first is the "
                          "default baseline for differences")

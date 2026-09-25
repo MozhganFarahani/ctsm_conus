@@ -1,16 +1,17 @@
 #!/bin/bash
 #PBS -N ctsm_clim
-#PBS -A UCUB0000                      # <-- your project code
+#PBS -A P93300041
 #PBS -q casper
 #PBS -l select=1:ncpus=8:mem=80GB
 #PBS -l walltime=03:00:00
 #PBS -j oe
-#PBS -o ctsm_clim.log
+#PBS -o /glade/work/mozhgana/ctsm_conus_output/climatology/ctsm_clim.log
 
 set -euo pipefail
 
-WORKDIR=/glade/work/mozhgana/sift    # <-- where the script and CSV live
-cd "$WORKDIR"
+# submit from this folder (cd analysis/climatology_maps && qsub run_ctsm_climatology.pbs);
+# input, output and cache paths come from analysis/config/paths.py
+cd "$PBS_O_WORKDIR"
 
 module load conda
 conda activate npl-2026a

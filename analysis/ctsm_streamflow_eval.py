@@ -31,18 +31,22 @@ Usage
 
 import argparse
 import glob
+import os
 import sys
 import warnings
 
 import numpy as np
 import pandas as pd
 
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "config"))
+import paths  # analysis/config/paths.py
+
 warnings.filterwarnings("ignore", category=FutureWarning, module="xarray")
 
 MODEL_START, MODEL_END = "1980-10-01", "2018-09-30"
 MIN_MONTHS = 12
-DEFAULT_CROSSWALK = "<path_to_gauge_metadata>/route/extract_seg/ancillary_data/flow_multi_agency_all_meta.csv"
-DEFAULT_OBS_DAILY = "<path_to_streamflow_tseries>/flow_multi_agency_1965-10-01_2024-09-30.nc"
+DEFAULT_CROSSWALK = paths.CROSSWALK
+DEFAULT_OBS_DAILY = paths.OBS_DAILY
 
 
 def load_mizuroute(pattern, parallel):
@@ -145,7 +149,7 @@ def vectorized_metrics(df_gauges, modeled_df, observed_df):
 def main():
     ap = argparse.ArgumentParser(description=__doc__,
                                   formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--archive-root", required=True,
+    ap.add_argument("--archive-root", default=paths.ARCHIVE,
                      help="Directory containing {config}/rof/hist/*.nc")
     ap.add_argument("--config", required=True,
                      help="Config (subdirectory) name to evaluate, e.g. control, irrig_on")

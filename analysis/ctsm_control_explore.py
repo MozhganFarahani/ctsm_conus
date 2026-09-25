@@ -63,15 +63,18 @@ import warnings
 
 import numpy as np
 
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "config"))
+import paths  # analysis/config/paths.py
+
 warnings.filterwarnings("ignore")
 
 # ---------------------------------------------------------------------------
 # EDIT THESE if you'd rather not pass --h0/--h1/--mizuroute every time
 # ---------------------------------------------------------------------------
 DEFAULT_PATHS = {
-    "h0": "/glade/derecho/scratch/mozhgana/archive/control/lnd/hist/*.h0a.*.nc",
-    "h1": "/glade/derecho/scratch/mozhgana/archive/control/lnd/hist/*.h1a.*.nc",
-    "mizuroute": "/glade/derecho/scratch/mozhgana/archive/control/rof/hist/*.nc",
+    "h0": paths.lnd_hist("control") + "/*.h0a.*.nc",
+    "h1": paths.lnd_hist("control") + "/*.h1a.*.nc",
+    "mizuroute": paths.rof_hist("control") + "/*.nc",
 }
 
 # Water-balance terms, matched to the actual control-run hist_fincl1/2 list:

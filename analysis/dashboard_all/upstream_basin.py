@@ -34,21 +34,20 @@ dashboard's variable picker automatically.
 
 import hashlib
 import os
+import sys
 from pathlib import Path
 
 import numpy as np
 import scipy.sparse as sp
 import xarray as xr
 
-CACHE_DIR = Path(os.environ.get(
-    "CACHE_DIR", "/glade/work/mozhgana/ctsm_conus_analysis/dashboard_all/cache"))
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "config"))
+import paths  # analysis/config/paths.py
 
-NTOPO = os.environ.get("NTOPO",
-    "/glade/work/mizukami/test_mizuRoute/MERIT_basin_nldas/ancillary_data/"
-    "ntopo_MERIT_Hydro_v1_aug.nc")
-WEIGHTS = os.environ.get("WEIGHTS",
-    "/glade/work/mizukami/py_mapping/MERIT_Hydro/mapping_v1/"
-    "spatialweights_nldas0.125_to_merit_nldas.nc")
+# Each can be overridden with an environment variable of the same name.
+CACHE_DIR = Path(os.environ.get("CACHE_DIR", paths.UPSTREAM_CACHE))
+NTOPO = os.environ.get("NTOPO", paths.NTOPO)
+WEIGHTS = os.environ.get("WEIGHTS", paths.WEIGHTS)
 
 AREA_TOL = 0.02          # traversed vs totalArea agreement required
 
