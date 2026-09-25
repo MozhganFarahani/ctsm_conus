@@ -1,0 +1,27 @@
+#!/bin/bash
+#PBS -N ctsm_clim
+#PBS -A UCUB0000                      # <-- your project code
+#PBS -q casper
+#PBS -l select=1:ncpus=8:mem=80GB
+#PBS -l walltime=03:00:00
+#PBS -j oe
+#PBS -o ctsm_clim.log
+
+set -euo pipefail
+
+WORKDIR=/glade/work/mozhgana/sift    # <-- where the script and CSV live
+cd "$WORKDIR"
+
+module load conda
+conda activate npl-2026a
+
+# keep BLAS/OpenMP from oversubscribing the 8 cpus dask is already using
+export OMP_NUM_THREADS=1
+export OPENBLAS_NUM_THREADS=1
+export MKL_NUM_THREADS=1
+
+# stage 1 is the expensive part: 445 files x ~44 fields, then one cache write.
+# stage 2 replots from the cache and is cheap.
+python -u ctsm_climatology_maps.py --rebuild
+
+echo "done: $(date)"

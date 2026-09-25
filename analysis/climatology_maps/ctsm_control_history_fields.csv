@@ -1,0 +1,45 @@
+Field,Definition,Units,Status
+BTRANMN,Daily minimum of transpiration beta factor,unitless,Current
+H2OSFC,Surface water depth,mm,Current
+H2OSNO,Snow depth (liquid water),mm,Current
+SNOWDP,Gridcell mean snow height,m,Current
+ZWT,Water table depth (natural vegetated and crop landunits only),m,Current
+ZWT_PERCH,Perched water table depth (natural vegetated and crop landunits only),m,Current
+FROST_TABLE,Frost table depth (natural vegetated and crop landunits only),m,Current
+TWS,Total water storage,mm,Current
+QDRAI,Sub-surface drainage,mm/s,Current
+QOVER,Total surface runoff (includes QH2OSFC),mm/s,Current
+QH2OSFC,Surface water runoff,mm/s,Current
+QDRAI_PERCH,Perched water table drainage,mm/s,Current
+QVEGT,Canopy transpiration,mm/s,Current
+QVEGE,Canopy evaporation,mm/s,Current
+QSOIL,Ground evaporation (soil/snow evaporation + sublimation - dew),mm/s,Current
+QOUT,Flux of water out of soil layer,mm/s,Current
+QIN,Water flux from soil to root in each soil layer,mm/s,Current
+QFLX_SNOW_DRAIN,Drainage from snowpack,mm/s,Current
+SOILLIQ,Soil liquid water (natural vegetated and crop landunits only),kg/m^2,Current
+SOILICE,Soil ice (natural vegetated and crop landunits only),kg/m^2,Current
+TLAI,Total projected leaf area index,m^2/m^2,Current
+TBOT,Atmospheric air temperature (downscaled for glacier/hillslope),K,Current
+TSA,2m air temperature,K,Current
+TG,Ground temperature,K,Current
+TV,Vegetation temperature,K,Current
+TSKIN,Skin temperature,K,Current
+FPSN,Photosynthesis,umol m-2 s-1,Current
+FSH,Sensible heat (excl. land-use/rain-snow conversion correction),W/m^2,Current
+EFLX_LH_TOT,Total latent heat flux [+ to atm],W/m^2,Current
+EFLX_SOIL_GRND,Soil heat flux [+ into soil],W/m^2,Current
+FGR12,Heat flux between soil layers 1 and 2,W/m^2,Current
+FIRA,Net infrared (longwave) radiation,W/m^2,Current
+FIRE,Emitted infrared (longwave) radiation,W/m^2,Current
+FSNO,Fraction of ground covered by snow,unitless,Current
+FH2OSFC,Fraction of ground covered by surface water,unitless,Current
+FSDS,Atmospheric incident solar radiation (downscaled),W/m^2,Current
+RAIN,"Atmospheric rain, after rain/snow repartitioning",mm/s,Current
+SNOW,"Atmospheric snow, after rain/snow repartitioning",mm/s,Current
+TSOI,Soil temperature (natural vegetated and crop landunits only),K,Current
+ALT,Current active layer thickness,m,Current
+QRUNOFF,"Total liquid runoff, not including land-use-change correction",mm/s,To add
+TOTSOILLIQ,Vertically summed soil liquid water (veg landunits only),kg/m^2,To add
+TOTSOILICE,Vertically summed soil ice (veg landunits only),kg/m^2,To add
+QFLX_EVAP_TOT,Total ET = QSOIL + QVEGE + QVEGT (soil evap + canopy evap + transpiration),mm/s,To add

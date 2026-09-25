@@ -1,0 +1,46 @@
+&comp_inparm 
+
+finidat = 'evolving_landcover.clm2.r.2002-10-01-00000.nc'
+
+
+hist_empty_htapes = .true.
+
+hist_mfilt = 1,365
+
+hist_nhtfrq = 0,-24
+
+hist_fincl1 = 'BTRANMN','H2OSFC','H2OSNO','SNOWDP','ZWT','ZWT_PERCH','FROST_TABLE',
+
+              'TWS','QDRAI','QOVER','QH2OSFC','QDRAI_PERCH','QVEGT','QVEGE','QSOIL',
+
+              'QFLX_SNOW_DRAIN','SOILLIQ','SOILICE','TLAI','TBOT','TSA',
+
+              'TG','TV','TSKIN','FPSN','FSH','EFLX_LH_TOT','EFLX_SOIL_GRND','FGR12',
+
+              'FIRA','FIRE','FSNO','FH2OSFC','FSDS','RAIN','SNOW','TSOI','ALT',
+
+              'QRUNOFF','TOTSOILLIQ','TOTSOILICE','QFLX_EVAP_TOT'
+
+hist_fincl2 = 'BTRANMN','H2OSFC','H2OSNO','SNOWDP','ZWT','ZWT_PERCH','FROST_TABLE',
+
+              'TWS','QDRAI','QOVER','QH2OSFC','QDRAI_PERCH','QVEGT','QVEGE','QSOIL',
+
+              'QFLX_SNOW_DRAIN','SOILLIQ','SOILICE','TLAI','TBOT','TSA',
+
+              'TG','TV','TSKIN','FPSN','FSH','EFLX_LH_TOT','EFLX_SOIL_GRND','FGR12',
+
+              'FIRA','FIRE','FSNO','FH2OSFC','FSDS','RAIN','SNOW','TSOI','ALT',
+
+              'QRUNOFF','TOTSOILLIQ','TOTSOILICE','QFLX_EVAP_TOT'
+
+
+
+flanduse_timeseries = '/glade/derecho/scratch/swensosc/for_mozhgan/landuse.timeseries_0.125nldas2_hist_1850-2023_78pfts_c260813.nc'
+
+fsurdat = '/glade/derecho/scratch/swensosc/for_mozhgan/surfdata_0.125nldas2_hist_1850_78pfts_c260813.nc'
+
+
+
+check_finidat_year_consistency = .false.
+
+/ 

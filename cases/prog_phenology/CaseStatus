@@ -1,0 +1,104 @@
+2026-09-18 09:53:40: xmlchange success <command> ./xmlchange DATM_YR_START=1980  </command>
+ ---------------------------------------------------
+2026-09-18 09:53:41: xmlchange success <command> ./xmlchange DATM_YR_END=2018  </command>
+ ---------------------------------------------------
+2026-09-18 09:53:41: xmlchange success <command> ./xmlchange DATM_YR_ALIGN=1980  </command>
+ ---------------------------------------------------
+2026-09-18 09:53:41: xmlchange success <command> ./xmlchange RUN_TYPE=startup  </command>
+ ---------------------------------------------------
+2026-09-18 09:53:41: xmlchange success <command> ./xmlchange RUN_STARTDATE=1980-10-01  </command>
+ ---------------------------------------------------
+2026-09-18 09:53:42: xmlchange success <command> ./xmlchange CONTINUE_RUN=FALSE  </command>
+ ---------------------------------------------------
+2026-09-18 09:53:42: xmlchange success <command> ./xmlchange STOP_OPTION=nyears  </command>
+ ---------------------------------------------------
+2026-09-18 09:53:42: xmlchange success <command> ./xmlchange STOP_N=22  </command>
+ ---------------------------------------------------
+2026-09-18 09:53:42: xmlchange success <command> ./xmlchange REST_OPTION=nyears  </command>
+ ---------------------------------------------------
+2026-09-18 09:53:43: xmlchange success <command> ./xmlchange REST_N=6  </command>
+ ---------------------------------------------------
+2026-09-18 09:53:43: xmlchange success <command> ./xmlchange RESUBMIT=0  </command>
+ ---------------------------------------------------
+2026-09-18 09:53:43: xmlchange success <command> ./xmlchange JOB_QUEUE=main --subgroup case.run  </command>
+ ---------------------------------------------------
+2026-09-18 09:53:43: xmlchange success <command> ./xmlchange JOB_PRIORITY=premium  </command>
+ ---------------------------------------------------
+2026-09-18 09:53:44: xmlchange success <command> ./xmlchange JOB_WALLCLOCK_TIME=12:00:00 --subgroup case.run  </command>
+ ---------------------------------------------------
+2026-09-18 09:53:44: xmlchange success <command> ./xmlchange NTASKS_ROF=-5  </command>
+ ---------------------------------------------------
+2026-09-18 09:53:44: case.setup starting 
+ ---------------------------------------------------
+2026-09-18 09:53:46: case.setup success 
+ ---------------------------------------------------
+2026-09-18 09:53:46:   local git repository created
+ ---------------------------------------------------
+2026-09-18 09:54:18: case.build starting 
+ ---------------------------------------------------
+2026-09-18 09:58:30: case.build success 
+ ---------------------------------------------------
+2026-09-18 10:05:30: case.submit starting case.run:7525282.desched1, case.st_archive:7525283.desched1
+ ---------------------------------------------------
+2026-09-18 10:05:30: case.submit success case.run:7525282.desched1, case.st_archive:7525283.desched1
+ ---------------------------------------------------
+2026-09-18 14:04:22: case.run starting 7525282.desched1
+ ---------------------------------------------------
+2026-09-18 14:04:27: model execution starting 7525282.desched1
+ ---------------------------------------------------
+2026-09-18 19:37:14: model execution success 7525282.desched1
+ ---------------------------------------------------
+2026-09-18 19:37:15: case.run success 7525282.desched1
+ ---------------------------------------------------
+2026-09-18 19:37:15:   Timing files created for run 7525282.desched1.260918-140422
+ ---------------------------------------------------
+2026-09-18 19:37:30: st_archive starting 7525283.desched1
+ ---------------------------------------------------
+2026-09-18 19:39:43: st_archive success 7525283.desched1
+ ---------------------------------------------------
+2026-09-20 11:46:12: xmlchange success <command> ./xmlchange RUN_TYPE=hybrid  </command>
+ ---------------------------------------------------
+2026-09-20 11:46:13: xmlchange success <command> ./xmlchange RUN_REFCASE=prog_phenology  </command>
+ ---------------------------------------------------
+2026-09-20 11:46:13: xmlchange success <command> ./xmlchange RUN_REFDATE=2002-10-01  </command>
+ ---------------------------------------------------
+2026-09-20 11:46:14: xmlchange success <command> ./xmlchange GET_REFCASE=FALSE  </command>
+ ---------------------------------------------------
+2026-09-20 11:46:14: xmlchange success <command> ./xmlchange RUN_STARTDATE=1980-10-01  </command>
+ ---------------------------------------------------
+2026-09-20 11:46:15: xmlchange success <command> ./xmlchange CONTINUE_RUN=FALSE  </command>
+ ---------------------------------------------------
+2026-09-20 11:46:15: xmlchange success <command> ./xmlchange STOP_OPTION=nyears  </command>
+ ---------------------------------------------------
+2026-09-20 11:46:15: xmlchange success <command> ./xmlchange STOP_N=38  </command>
+ ---------------------------------------------------
+2026-09-20 11:46:16: xmlchange success <command> ./xmlchange RESUBMIT=0  </command>
+ ---------------------------------------------------
+2026-09-20 11:46:16: xmlchange success <command> ./xmlchange JOB_WALLCLOCK_TIME=12:00:00 --subgroup case.run  </command>
+ ---------------------------------------------------
+2026-09-20 11:46:17: case.setup starting 
+ ---------------------------------------------------
+2026-09-20 11:46:19: case.setup success 
+ ---------------------------------------------------
+2026-09-20 11:47:45: case.build starting 
+ ---------------------------------------------------
+2026-09-20 11:48:20: case.build success 
+ ---------------------------------------------------
+2026-09-20 11:51:12: case.submit starting case.run:7548264.desched1, case.st_archive:7548265.desched1
+ ---------------------------------------------------
+2026-09-20 11:51:12: case.submit success case.run:7548264.desched1, case.st_archive:7548265.desched1
+ ---------------------------------------------------
+2026-09-20 12:00:30: case.run starting 7548264.desched1
+ ---------------------------------------------------
+2026-09-20 12:00:35: model execution starting 7548264.desched1
+ ---------------------------------------------------
+2026-09-20 21:35:30: model execution success 7548264.desched1
+ ---------------------------------------------------
+2026-09-20 21:35:33: case.run success 7548264.desched1
+ ---------------------------------------------------
+2026-09-20 21:35:34:   Timing files created for run 7548264.desched1.260920-120030
+ ---------------------------------------------------
+2026-09-20 21:35:49: st_archive starting 7548265.desched1
+ ---------------------------------------------------
+2026-09-20 21:38:12: st_archive success 7548265.desched1
+ ---------------------------------------------------

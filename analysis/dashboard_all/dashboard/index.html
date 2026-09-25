@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- css -->
+    <!--#include virtual="/styles/unity/css/css-include.html" -->
+
+    <title>CTSM-CONUS | High-resolution CONUS-wide CTSM implementation, evaluation, and community baseline datasets</title>
+    <meta name="description" content="High-resolution CTSM and mizuRoute simulations over the contiguous United States: five model configurations evaluated against about 2,300 stream gauges, 1980-2018." />
+
+    <style>
+      /* Brand tokens: same subset Ryan uses on the dashboard page
+         (the Unity theme loaded by css-include.html styles everything else). */
+      :root {
+        --ncar-blue:     #0057C2;
+        --dark-blue:     #00357A;
+        --space:         #011837;
+        --space-33:      #556379;
+        --light-blue:    #42C0FF;
+        --white:         #FFFFFF;
+        --gray-lightest: #F6F7F6;
+        --gray-light:    #BBBCBC;
+        --font-family:   'Poppins', Helvetica, Arial, sans-serif;
+      }
+      .ncar {
+        --brand-primary:   var(--ncar-blue);
+        --brand-secondary: var(--light-blue);
+        --text-on-primary: var(--white);
+      }
+
+      /* Landing-page additions only, scoped to .cc */
+      .cc .cc-lead { font-size: 1.15rem; color: var(--space-33); margin: -0.25rem 0 1.5rem; }
+
+      /* Hero: clickable map screenshot linking to the dashboard */
+      .cc .cc-hero {
+        display: block; max-width: 46rem; margin: 0 auto;
+        border: 1px solid var(--gray-light); border-top: 0.375rem solid var(--brand-primary);
+        background-color: var(--white); text-decoration: none;
+      }
+      .cc .cc-hero img, .cc .cc-hero video { display: block; width: 100%; height: auto; }
+      .cc .cc-hero-caption {
+        padding: .8rem 1.25rem; background-color: var(--brand-primary); color: var(--white);
+        font-size: clamp(1.05rem, 2.2vw, 1.3rem); font-weight: 600;
+      }
+      .cc .cc-hero:hover .cc-hero-caption,
+      .cc .cc-hero:focus-visible .cc-hero-caption { background-color: var(--dark-blue); }
+      .cc .cc-hero:focus-visible { outline: 3px solid var(--light-blue); outline-offset: 3px; }
+
+      .cc section { margin-top: 2.5rem; }
+      .cc h2 { color: var(--dark-blue); }
+      .cc .table-responsive { margin-bottom: 1rem; }
+      .cc table { font-size: .95rem; }
+      .cc thead th { border-bottom: 2px solid var(--brand-primary); white-space: nowrap; }
+      .cc tbody th { white-space: nowrap; color: var(--dark-blue); font-weight: 600; }
+      .cc table.cc-kv th { width: 12rem; }
+      .cc li { margin-bottom: .45rem; }
+      .cc .cc-question { border-left: 0.3rem solid var(--brand-primary); padding: .4rem 0 .4rem 1rem;
+                         font-style: italic; font-size: 1.1rem; color: var(--dark-blue); }
+      .cc .cc-mono { font-family: Menlo, Consolas, 'Liberation Mono', monospace; font-size: .88em; }
+      .cc td.cc-mono { white-space: nowrap; width: 1%; }   /* compset on one line; description column takes the rest */
+      .cc .cc-updated { margin-top: 2.5rem; color: var(--space-33); font-size: .9rem; }
+
+      @media (max-width: 40rem) {
+        .cc table.cc-kv th { width: auto; }
+      }
+    </style>
+</head>
+
+<body class="ncar">
+    <!-- navbar include -->
+    <!--#include virtual="/styles/unity/includes/header/header.html" -->
+
+    <main class="container-lg py-2 pt-md-3">
+        <div class="d-grid d-print-flex">
+            <nav aria-label="breadcrumb" class="breadcrumb-wrapper mb-2 d-print-none">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="https://www.cesm.ucar.edu">CESM Home</a></li>
+                    <li class="breadcrumb-item"><a href="https://www.cgd.ucar.edu">CGD Home</a></li>
+                    <li class="breadcrumb-item"><a href="/">CGD Project Space</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">CTSM-CONUS</li>
+                </ol>
+            </nav>
+
+            <article class="main-content-wrapper">
+                <h1>CTSM-CONUS</h1>
+
+                <div class="main-content clearfix cc">
+                    <!-- main content area start -->
+                    <p class="cc-lead">High-resolution CONUS-wide CTSM implementation, evaluation, and community baseline datasets</p>
+
+                    <!-- Hero: map screenshot in assets/hero.png.
+                         For an animation later, replace the <img> with:
+                         <video autoplay muted loop playsinline poster="assets/hero.png">
+                           <source src="assets/hero.mp4" type="video/mp4">
+                         </video> -->
+                    <a class="cc-hero" href="dashboard.html" target="_blank" rel="noopener">
+                        <img src="assets/hero.png" width="592" height="322"
+                             alt="Map of about 2,300 stream gauges across CONUS coloured by streamflow skill (KGE)">
+                        <div class="cc-hero-caption">Explore the streamflow evaluation dashboard</div>
+                    </a>
+
+                    <section>
+                        <h2>About</h2>
+                        <p>The Community Terrestrial Systems Model (CTSM) offers several process options, including satellite vs. prognostic phenology, static vs. evolving land cover, irrigation, and hillslope hydrology. How these choices affect simulated snow, soil moisture, runoff, evapotranspiration and streamflow at fine scale over the contiguous United States (CONUS) has not been systematically evaluated.</p>
+                        <p class="cc-question">Which CTSM configuration choices most influence fine-scale CONUS land and hydrology simulation performance, and how do the resulting simulations compare with observations?</p>
+                        <p>This project runs CTSM coupled to the mizuRoute river routing model at ~12&nbsp;km (0.125°) resolution over CONUS. Starting from a control configuration, each experiment changes one process option: irrigation, evolving land cover, hillslope hydrology, or prognostic phenology. Simulated streamflow is evaluated against about 2,300 stream gauges from 1980 to 2018.</p>
+                        <p>The simulations are intended as a reusable baseline for the CTSM community, for choosing configurations in hydrologic applications, and as a foundation for follow-on work such as machine-learning emulators.</p>
+                    </section>
+
+                    <section>
+                        <h2>Simulation setup</h2>
+                        <div class="table-responsive">
+                            <table class="table cc-kv">
+                                <tbody>
+                                    <tr><th scope="row">Model</th><td>CTSM (CLM6.0), release tag <a href="https://github.com/ESCOMP/CTSM/tree/ctsm5.4.049">ctsm5.4.049</a> cloned from ESCOMP/CTSM, coupled to mizuRoute</td></tr>
+                                    <tr><th scope="row">Grid</th><td>NLDAS2 0.125° (224 × 464), 25–53°N, 125–67°W</td></tr>
+                                    <tr><th scope="row">River network</th><td>MERIT-Hydro v1, 227,247 reaches</td></tr>
+                                    <tr><th scope="row">Forcing</th><td>NLDAS2, 1980–2018</td></tr>
+                                    <tr><th scope="row">Evaluation period</th><td>Oct 1980 – Sep 2018</td></tr>
+                                    <tr><th scope="row">Soil</th><td>20 layers to 8.5&nbsp;m</td></tr>
+                                    <tr><th scope="row">Spinup</th><td>Transient NLDAS2 forcing from 1980, 22–24 years</td></tr>
+                                    <tr><th scope="row">Output used here</th><td>Monthly land fields and monthly routed streamflow</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h2>Configurations</h2>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr><th scope="col">Configuration</th><th scope="col">Change from control</th><th scope="col">Compset</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><th scope="row">Control</th><td>Satellite phenology (SP), static year-2000 land cover, irrigation off, no hillslope hydrology</td><td class="cc-mono">2000_DATM%NLDAS2_CLM60%SP_SICE_SOCN_MIZUROUTE_SGLC_SWAV</td></tr>
+                                    <tr><th scope="row">Irrigation</th><td>Irrigation on</td><td class="cc-mono">2000_DATM%NLDAS2_CLM60%SP_SICE_SOCN_MIZUROUTE_SGLC_SWAV</td></tr>
+                                    <tr><th scope="row">Evolving land cover</th><td>Transient land use and land cover (1850–2023 dataset); irrigation on</td><td class="cc-mono">HIST_DATM%NLDAS2_CLM60%SP_SICE_SOCN_MIZUROUTE_SGLC_SWAV</td></tr>
+                                    <tr><th scope="row">Hillslope</th><td>Hillslope hydrology with lateral flow and hillslope routing</td><td class="cc-mono">2000_DATM%NLDAS2_CLM60%SP_SICE_SOCN_MIZUROUTE_SGLC_SWAV</td></tr>
+                                    <tr><th scope="row">Prognostic phenology</th><td>Prognostic (BGC) phenology in place of SP</td><td class="cc-mono">2000_DATM%NLDAS2_CLM60%BGC_SICE_SOCN_MIZUROUTE_SGLC_SWAV</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </section>
+
+                    <section>
+                        <h2>Using the dashboard</h2>
+                        <ul>
+                            <li><strong>Pick a gauge</strong> by clicking it on the map or by searching by name or ID. Map colours show skill for the chosen metric (NSE, KGE, or PBIAS); blue is always better.</li>
+                            <li><strong>Time series:</strong> the wide panel shows monthly streamflow for every configuration against observations (black). The first three years are shaded as spin-up.</li>
+                            <li><strong>Seasonal panels:</strong> six water-year climatologies of basin-averaged fields over the gauge's upstream area. Streamflow is fixed; the other five panels can show any variable.</li>
+                            <li><strong>Difference mode</strong> subtracts a chosen reference configuration from every panel; control is the default. Each configuration minus control shows the effect of its one change, except Evolving land cover, which also has irrigation on (CTSM's default with the transient land-use dataset). To see the land-cover effect alone, choose Irrigation as the reference.</li>
+                            <li><strong>Link</strong> copies a permalink to the current view, and <strong>CSV</strong> downloads the plotted data.</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>Evaluation data and methods</h2>
+                        <p>Observed monthly streamflow comes from a multi-agency gauge dataset compiled by N. Mizukami. Some gauges report naturalized flows (for example, USACE on the Missouri). Basin averages use area-weighted mapping from the model grid to each gauge's upstream MERIT catchments, and upstream areas match reported basin areas for all gauges. Skill metrics use only months with observations and output from every configuration. Records shorter than 60 months are flagged.</p>
+                    </section>
+
+                    <section>
+                        <h2>Notes and caveats</h2>
+                        <ul>
+                            <li>No CTSM parameter tuning exists for NLDAS2 forcing, so all runs use the default GSWP3 tuning.</li>
+                            <li>Irrigation withdrawals are not limited by available river water. Where river storage is low, irrigation can add water to the system and raise downstream flow.</li>
+                            <li>The Prognostic phenology configuration starts from a global restart interpolated to this grid. Soil carbon is not in equilibrium, so this configuration is intended for evaluating water and energy fluxes, not carbon.</li>
+                            <li>Monthly metrics at gauges with near-zero flow, mostly in the arid West, can be extreme and should be read with care.</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>Team</h2>
+                        <p>Mozhgan Farahani, Andy Wood, Sean Swenson, Naoki Mizukami: Terrestrial Sciences Section, Climate and Global Dynamics Laboratory, NSF NCAR. Dr. Farahani conducted all the modeling, analysis and website development work for this effort, with feedback and suggestions from the other team members.</p>
+
+                        <h2>Acknowledgments</h2>
+                        <p>Mozhgan Farahani was supported by the CGD Science Innovation Fund (SIF-T) during August–September of FY26 to undertake this CTSM intercomparison project. Computing was provided on NCAR's Derecho and Casper systems. We thank NRIT for help setting up this website.</p>
+
+                        <h2>Links</h2>
+                        <ul>
+                            <li>Technical note (coming soon)</li>
+                            <li>GitHub configuration archive (coming soon)</li>
+                            <li>Contact: <a href="mailto:mozhgana@ucar.edu">mozhgana@ucar.edu</a></li>
+                        </ul>
+                    </section>
+
+                    <p class="cc-updated">Last updated: September 2026</p>
+                    <!-- main content area end -->
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <!-- footer & javascript includes -->
+    <!--#include virtual="/styles/unity/includes/footer/footer.html" -->
+    <!--#include virtual="/styles/unity/js/js-include.html" -->
+</body>
+</html>

@@ -1,0 +1,50 @@
+&comp_inparm 
+
+finidat = 'irrigation_on.clm2.r.2002-01-01-00000.nc'
+
+
+hist_empty_htapes = .true.
+
+hist_mfilt = 1,365
+
+hist_nhtfrq = 0,-24
+
+irrigate = .true.
+
+
+
+hist_fincl1 = 'BTRANMN','H2OSFC','H2OSNO','SNOWDP','ZWT','ZWT_PERCH','FROST_TABLE',
+
+              'TWS','QDRAI','QOVER','QH2OSFC','QDRAI_PERCH','QVEGT','QVEGE','QSOIL',
+
+              'QOUT','QIN','QFLX_SNOW_DRAIN','SOILLIQ','SOILICE','TLAI','TBOT','TSA',
+
+              'TG','TV','TSKIN','FPSN','FSH','EFLX_LH_TOT','EFLX_SOIL_GRND','FGR12',
+
+              'FIRA','FIRE','FSNO','FH2OSFC','FSDS','RAIN','SNOW','TSOI','ALT',
+
+              'QRUNOFF','TOTSOILLIQ','TOTSOILICE','QFLX_EVAP_TOT',
+
+              'QIRRIG_FROM_SURFACE','QIRRIG_FROM_GW_UNCONFINED','QIRRIG_FROM_GW_CONFINED',
+
+              'QIRRIG_DRIP','QIRRIG_SPRINKLER','QIRRIG_DEMAND'
+
+
+
+hist_fincl2 = 'BTRANMN','H2OSFC','H2OSNO','SNOWDP','ZWT','ZWT_PERCH','FROST_TABLE',
+
+              'TWS','QDRAI','QOVER','QH2OSFC','QDRAI_PERCH','QVEGT','QVEGE','QSOIL',
+
+              'QOUT','QIN','QFLX_SNOW_DRAIN','SOILLIQ','SOILICE','TLAI','TBOT','TSA',
+
+              'TG','TV','TSKIN','FPSN','FSH','EFLX_LH_TOT','EFLX_SOIL_GRND','FGR12',
+
+              'FIRA','FIRE','FSNO','FH2OSFC','FSDS','RAIN','SNOW','TSOI','ALT',
+
+              'QRUNOFF','TOTSOILLIQ','TOTSOILICE','QFLX_EVAP_TOT',
+
+              'QIRRIG_FROM_SURFACE','QIRRIG_FROM_GW_UNCONFINED','QIRRIG_FROM_GW_CONFINED',
+
+              'QIRRIG_DRIP','QIRRIG_SPRINKLER','QIRRIG_DEMAND'
+
+/ 

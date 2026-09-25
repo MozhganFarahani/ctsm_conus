@@ -1,0 +1,118 @@
+2026-09-10 11:19:38: xmlchange success <command> ./xmlchange DATM_YR_START=1980  </command>
+ ---------------------------------------------------
+2026-09-10 11:19:38: xmlchange success <command> ./xmlchange DATM_YR_END=2018  </command>
+ ---------------------------------------------------
+2026-09-10 11:19:39: xmlchange success <command> ./xmlchange DATM_YR_ALIGN=1980  </command>
+ ---------------------------------------------------
+2026-09-10 11:19:39: xmlchange success <command> ./xmlchange RUN_TYPE=startup  </command>
+ ---------------------------------------------------
+2026-09-10 11:19:39: xmlchange success <command> ./xmlchange RUN_STARTDATE=1980-10-01  </command>
+ ---------------------------------------------------
+2026-09-10 11:19:39: xmlchange success <command> ./xmlchange CONTINUE_RUN=FALSE  </command>
+ ---------------------------------------------------
+2026-09-10 11:19:40: xmlchange success <command> ./xmlchange STOP_OPTION=nyears  </command>
+ ---------------------------------------------------
+2026-09-10 11:19:40: xmlchange success <command> ./xmlchange STOP_N=22  </command>
+ ---------------------------------------------------
+2026-09-10 11:19:40: xmlchange success <command> ./xmlchange REST_OPTION=nyears  </command>
+ ---------------------------------------------------
+2026-09-10 11:19:40: xmlchange success <command> ./xmlchange REST_N=2  </command>
+ ---------------------------------------------------
+2026-09-10 11:19:41: xmlchange success <command> ./xmlchange RESUBMIT=5  </command>
+ ---------------------------------------------------
+2026-09-10 11:19:41: xmlchange success <command> ./xmlchange JOB_QUEUE=main --subgroup case.run  </command>
+ ---------------------------------------------------
+2026-09-10 11:19:41: xmlchange success <command> ./xmlchange JOB_WALLCLOCK_TIME=08:00:00 --subgroup case.run  </command>
+ ---------------------------------------------------
+2026-09-10 11:19:41: case.setup starting 
+ ---------------------------------------------------
+2026-09-10 11:19:43: case.setup success 
+ ---------------------------------------------------
+2026-09-10 11:19:43:   local git repository created
+ ---------------------------------------------------
+2026-09-10 11:24:47: case.build starting 
+ ---------------------------------------------------
+2026-09-10 11:24:50: case.build error 
+ERROR: Command /glade/work/mozhgana/ctsm_conus/bld/build-namelist failed rc=255
+out=
+err=Attempt to call undefined import method with arguments ("main") via package "CLMBuildNamelist" (Perhaps you forgot to load the package?) at /glade/work/mozhgana/ctsm_conus/bld/build-namelist line 21.
+Warning : CLM build-namelist::CLMBuildNamelist::setup_logic_initial_conditions() : WARNING: You have set use_hillslope while use_init_interp is TRUE.
+ This means all hillslope columns in a gridcell will read identical values from initial conditions, even if the initial conditions (finidat) file has hillslope information. If you are sure you want this behaviour, add -ignore_warnings to CLM_BLDNML_OPTS.
+ -- Add -ignore_warnings option to CLM_BLDNML_OPTS to ignore this warning
+ ---------------------------------------------------
+2026-09-10 11:25:35: xmlchange success <command> ./xmlchange --append CLM_BLDNML_OPTS=-ignore_warnings  </command>
+ ---------------------------------------------------
+2026-09-10 11:25:37: case.build starting 
+ ---------------------------------------------------
+2026-09-10 11:29:49: case.build success 
+ ---------------------------------------------------
+2026-09-10 11:33:35: case.submit starting case.run:7383319.desched1, case.st_archive:7383320.desched1
+ ---------------------------------------------------
+2026-09-10 11:33:35: case.submit success case.run:7383319.desched1, case.st_archive:7383320.desched1
+ ---------------------------------------------------
+2026-09-11 03:15:41: case.run starting 7383319.desched1
+ ---------------------------------------------------
+2026-09-11 03:15:46: model execution starting 7383319.desched1
+ ---------------------------------------------------
+2026-09-14 12:23:55: xmlchange success <command> ./xmlchange CONTINUE_RUN=TRUE  </command>
+ ---------------------------------------------------
+2026-09-14 12:24:22: xmlchange success <command> ./xmlchange STOP_N=6  </command>
+ ---------------------------------------------------
+2026-09-14 12:24:40: xmlchange success <command> ./xmlchange RESUBMIT=2  </command>
+ ---------------------------------------------------
+2026-09-14 12:45:36: xmlchange success <command> ./xmlchange DRV_RESTART_POINTER=rpointer.cpl.1986-10-01-00000  </command>
+ ---------------------------------------------------
+2026-09-14 12:55:57: case.submit starting case.run:7453839.desched1, case.st_archive:7453840.desched1
+ ---------------------------------------------------
+2026-09-14 12:55:58: case.submit success case.run:7453839.desched1, case.st_archive:7453840.desched1
+ ---------------------------------------------------
+2026-09-14 15:47:59: case.run starting 7453839.desched1
+ ---------------------------------------------------
+2026-09-14 15:48:04: model execution starting 7453839.desched1
+ ---------------------------------------------------
+2026-09-14 22:59:20: model execution success 7453839.desched1
+ ---------------------------------------------------
+2026-09-14 22:59:20: case.run success 7453839.desched1
+ ---------------------------------------------------
+2026-09-14 22:59:20:   Timing files created for run 7453839.desched1.260914-154759
+ ---------------------------------------------------
+2026-09-14 22:59:34: st_archive starting 7453840.desched1
+ ---------------------------------------------------
+2026-09-14 23:02:12: st_archive success 7453840.desched1
+ ---------------------------------------------------
+2026-09-14 23:02:12: case.submit starting case.run:7462968.desched1, case.st_archive:7462969.desched1
+ ---------------------------------------------------
+2026-09-14 23:02:12: case.submit success case.run:7462968.desched1, case.st_archive:7462969.desched1
+ ---------------------------------------------------
+2026-09-14 23:19:25: case.run starting 7462968.desched1
+ ---------------------------------------------------
+2026-09-14 23:19:30: model execution starting 7462968.desched1
+ ---------------------------------------------------
+2026-09-15 06:26:55: model execution success 7462968.desched1
+ ---------------------------------------------------
+2026-09-15 06:26:56: case.run success 7462968.desched1
+ ---------------------------------------------------
+2026-09-15 06:26:56:   Timing files created for run 7462968.desched1.260914-231925
+ ---------------------------------------------------
+2026-09-15 06:27:08: st_archive starting 7462969.desched1
+ ---------------------------------------------------
+2026-09-15 06:29:37: st_archive success 7462969.desched1
+ ---------------------------------------------------
+2026-09-15 06:29:37: case.submit starting case.run:7468821.desched1, case.st_archive:7468822.desched1
+ ---------------------------------------------------
+2026-09-15 06:29:37: case.submit success case.run:7468821.desched1, case.st_archive:7468822.desched1
+ ---------------------------------------------------
+2026-09-15 06:31:07: case.run starting 7468821.desched1
+ ---------------------------------------------------
+2026-09-15 06:31:13: model execution starting 7468821.desched1
+ ---------------------------------------------------
+2026-09-15 13:46:43: model execution success 7468821.desched1
+ ---------------------------------------------------
+2026-09-15 13:46:44: case.run success 7468821.desched1
+ ---------------------------------------------------
+2026-09-15 13:46:44:   Timing files created for run 7468821.desched1.260915-063107
+ ---------------------------------------------------
+2026-09-15 13:46:59: st_archive starting 7468822.desched1
+ ---------------------------------------------------
+2026-09-15 13:49:40: st_archive success 7468822.desched1
+ ---------------------------------------------------

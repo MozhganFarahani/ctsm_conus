@@ -1,0 +1,6 @@
+mesh_mask = /glade/campaign/cesm/cesmdata/inputdata/share/meshes/0.125nldas2_ESMFmesh_cd5_241220.nc
+mesh_atm = /glade/campaign/cesm/cesmdata/inputdata/share/meshes/0.125nldas2_ESMFmesh_cd5_241220.nc
+mesh_lnd = /glade/campaign/cesm/cesmdata/inputdata/share/meshes/0.125nldas2_ESMFmesh_cd5_241220.nc
+lnd2rof_map = /glade/campaign/cesm/cesmdata/inputdata/rof/mizuRoute/gridmaps/map_0.125nldas2_TO_MERITmz_CONUS_aave.210609.nc
+rof2lnd_map = /glade/campaign/cesm/cesmdata/inputdata/rof/mizuRoute/gridmaps/map_MERITmz_CONUS_TO_0.125nldas2_aave.210609.nc
+mesh_rof = /glade/campaign/cesm/cesmdata/inputdata/rof/mizuRoute/meshes/polygon_centroid/MERITmz_0.125nldas2_ctrcrd_sqr_cdf5_ESMFmesh_c20210113.nc

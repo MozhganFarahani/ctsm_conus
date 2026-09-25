@@ -1,0 +1,209 @@
+st_archive starting
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/cesm.log.7558140.desched1.260922-012901.gz to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/logs/cesm.log.7558140.desched1.260922-012901.gz
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/lnd.log.7558140.desched1.260922-012901.gz to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/logs/lnd.log.7558140.desched1.260922-012901.gz
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/rof.log.7558140.desched1.260922-012901.gz to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/logs/rof.log.7558140.desched1.260922-012901.gz
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/med.log.7558140.desched1.260922-012901.gz to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/logs/med.log.7558140.desched1.260922-012901.gz
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/atm.log.7558140.desched1.260922-012901.gz to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/logs/atm.log.7558140.desched1.260922-012901.gz
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/drv.log.7558140.desched1.260922-012901.gz to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/logs/drv.log.7558140.desched1.260922-012901.gz
+-------------------------------------------
+Archiving restarts for date date(2016, 10, 1, 0, 0, 0)
+-------------------------------------------
+Archiving restarts for datm (atm)
+removing interim restart file /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.datm.r.2016-10-01-00000.nc
+Archiving restarts for clm (lnd)
+removing interim restart file /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.r.2016-10-01-00000.nc
+ WARNING: /glade/u/apps/derecho/25.10/spack/opt/spack/netcdf/4.9.3/cray-mpich/8.1.32/intel-oneapi-compilers/2025.3.2/yqys/bin/ncdump -v locfnh /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.rh0a.2016-10-01-00000.nc  failed rc=1
+    out=
+    err=/glade/u/apps/derecho/25.10/spack/opt/spack/netcdf/4.9.3/cray-mpich/8.1.32/intel-oneapi-compilers/2025.3.2/yqys/bin/ncdump: locfnh: No such variable
+removing interim restart file /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.rh0a.2016-10-01-00000.nc
+ WARNING: /glade/u/apps/derecho/25.10/spack/opt/spack/netcdf/4.9.3/cray-mpich/8.1.32/intel-oneapi-compilers/2025.3.2/yqys/bin/ncdump -v locfnh /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.rh1a.2016-10-01-00000.nc  failed rc=1
+    out=
+    err=/glade/u/apps/derecho/25.10/spack/opt/spack/netcdf/4.9.3/cray-mpich/8.1.32/intel-oneapi-compilers/2025.3.2/yqys/bin/ncdump: locfnh: No such variable
+removing interim restart file /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.rh1a.2016-10-01-00000.nc
+Archiving restarts for mizuroute (rof)
+removing interim restart file /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.mizuroute.r.2016-10-01-00000.nc
+Archiving restarts for drv (cpl)
+removing interim restart file /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.cpl.r.2016-10-01-00000.nc
+Archiving restarts for dart (esp)
+-------------------------------------------
+Archiving restarts for date date(2022, 10, 1, 0, 0, 0)
+-------------------------------------------
+Archiving restarts for datm (atm)
+copying file /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.datm.r.2022-10-01-00000.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rest/2022-10-01-00000/hillslope_eval.datm.r.2022-10-01-00000.nc
+Archiving restarts for clm (lnd)
+copying file /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.r.2022-10-01-00000.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rest/2022-10-01-00000/hillslope_eval.clm2.r.2022-10-01-00000.nc
+Copying /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h0a.2022-09.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rest/2022-10-01-00000/hillslope_eval.clm2.h0a.2022-09.nc
+Copying /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h1a.2021-10-02-00000.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rest/2022-10-01-00000/hillslope_eval.clm2.h1a.2021-10-02-00000.nc
+ WARNING: /glade/u/apps/derecho/25.10/spack/opt/spack/netcdf/4.9.3/cray-mpich/8.1.32/intel-oneapi-compilers/2025.3.2/yqys/bin/ncdump -v locfnh /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.rh1a.2022-10-01-00000.nc  failed rc=1
+    out=
+    err=/glade/u/apps/derecho/25.10/spack/opt/spack/netcdf/4.9.3/cray-mpich/8.1.32/intel-oneapi-compilers/2025.3.2/yqys/bin/ncdump: locfnh: No such variable
+copying file /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.rh1a.2022-10-01-00000.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rest/2022-10-01-00000/hillslope_eval.clm2.rh1a.2022-10-01-00000.nc
+ WARNING: /glade/u/apps/derecho/25.10/spack/opt/spack/netcdf/4.9.3/cray-mpich/8.1.32/intel-oneapi-compilers/2025.3.2/yqys/bin/ncdump -v locfnh /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.rh0a.2022-10-01-00000.nc  failed rc=1
+    out=
+    err=/glade/u/apps/derecho/25.10/spack/opt/spack/netcdf/4.9.3/cray-mpich/8.1.32/intel-oneapi-compilers/2025.3.2/yqys/bin/ncdump: locfnh: No such variable
+copying file /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.rh0a.2022-10-01-00000.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rest/2022-10-01-00000/hillslope_eval.clm2.rh0a.2022-10-01-00000.nc
+Archiving restarts for mizuroute (rof)
+copying file /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.mizuroute.r.2022-10-01-00000.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rest/2022-10-01-00000/hillslope_eval.mizuroute.r.2022-10-01-00000.nc
+Copying /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.mizuroute.h.2022-09.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rest/2022-10-01-00000/hillslope_eval.mizuroute.h.2022-09.nc
+Archiving restarts for drv (cpl)
+copying file /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.cpl.r.2022-10-01-00000.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rest/2022-10-01-00000/hillslope_eval.cpl.r.2022-10-01-00000.nc
+Archiving restarts for dart (esp)
+Archiving history files for datm (atm)
+Archiving history files for clm (lnd)
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h0a.2016-09.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h0a.2016-09.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h0a.2016-10.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h0a.2016-10.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h0a.2016-11.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h0a.2016-11.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h0a.2016-12.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h0a.2016-12.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h0a.2017-01.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h0a.2017-01.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h0a.2017-02.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h0a.2017-02.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h0a.2017-03.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h0a.2017-03.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h0a.2017-04.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h0a.2017-04.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h0a.2017-05.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h0a.2017-05.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h0a.2017-06.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h0a.2017-06.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h0a.2017-07.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h0a.2017-07.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h0a.2017-08.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h0a.2017-08.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h0a.2017-09.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h0a.2017-09.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h0a.2017-10.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h0a.2017-10.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h0a.2017-11.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h0a.2017-11.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h0a.2017-12.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h0a.2017-12.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h0a.2018-01.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h0a.2018-01.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h0a.2018-02.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h0a.2018-02.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h0a.2018-03.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h0a.2018-03.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h0a.2018-04.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h0a.2018-04.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h0a.2018-05.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h0a.2018-05.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h0a.2018-06.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h0a.2018-06.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h0a.2018-07.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h0a.2018-07.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h0a.2018-08.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h0a.2018-08.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h0a.2018-09.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h0a.2018-09.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h0a.2018-10.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h0a.2018-10.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h0a.2018-11.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h0a.2018-11.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h0a.2018-12.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h0a.2018-12.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h0a.2019-01.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h0a.2019-01.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h0a.2019-02.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h0a.2019-02.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h0a.2019-03.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h0a.2019-03.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h0a.2019-04.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h0a.2019-04.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h0a.2019-05.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h0a.2019-05.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h0a.2019-06.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h0a.2019-06.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h0a.2019-07.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h0a.2019-07.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h0a.2019-08.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h0a.2019-08.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h0a.2019-09.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h0a.2019-09.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h0a.2019-10.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h0a.2019-10.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h0a.2019-11.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h0a.2019-11.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h0a.2019-12.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h0a.2019-12.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h0a.2020-01.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h0a.2020-01.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h0a.2020-02.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h0a.2020-02.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h0a.2020-03.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h0a.2020-03.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h0a.2020-04.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h0a.2020-04.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h0a.2020-05.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h0a.2020-05.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h0a.2020-06.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h0a.2020-06.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h0a.2020-07.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h0a.2020-07.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h0a.2020-08.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h0a.2020-08.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h0a.2020-09.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h0a.2020-09.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h0a.2020-10.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h0a.2020-10.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h0a.2020-11.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h0a.2020-11.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h0a.2020-12.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h0a.2020-12.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h0a.2021-01.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h0a.2021-01.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h0a.2021-02.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h0a.2021-02.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h0a.2021-03.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h0a.2021-03.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h0a.2021-04.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h0a.2021-04.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h0a.2021-05.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h0a.2021-05.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h0a.2021-06.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h0a.2021-06.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h0a.2021-07.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h0a.2021-07.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h0a.2021-08.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h0a.2021-08.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h0a.2021-09.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h0a.2021-09.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h0a.2021-10.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h0a.2021-10.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h0a.2021-11.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h0a.2021-11.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h0a.2021-12.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h0a.2021-12.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h0a.2022-01.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h0a.2022-01.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h0a.2022-02.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h0a.2022-02.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h0a.2022-03.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h0a.2022-03.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h0a.2022-04.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h0a.2022-04.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h0a.2022-05.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h0a.2022-05.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h0a.2022-06.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h0a.2022-06.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h0a.2022-07.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h0a.2022-07.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h0a.2022-08.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h0a.2022-08.nc 
+copying /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h0a.2022-09.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h0a.2022-09.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h1a.2015-10-02-00000.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h1a.2015-10-02-00000.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h1a.2016-10-02-00000.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h1a.2016-10-02-00000.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h1a.2017-10-02-00000.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h1a.2017-10-02-00000.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h1a.2018-10-02-00000.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h1a.2018-10-02-00000.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h1a.2019-10-02-00000.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h1a.2019-10-02-00000.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h1a.2020-10-02-00000.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h1a.2020-10-02-00000.nc 
+copying /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.clm2.h1a.2021-10-02-00000.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/lnd/hist/hillslope_eval.clm2.h1a.2021-10-02-00000.nc 
+Archiving history files for mizuroute (rof)
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.mizuroute.h.2016-09.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rof/hist/hillslope_eval.mizuroute.h.2016-09.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.mizuroute.h.2016-10.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rof/hist/hillslope_eval.mizuroute.h.2016-10.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.mizuroute.h.2016-11.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rof/hist/hillslope_eval.mizuroute.h.2016-11.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.mizuroute.h.2016-12.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rof/hist/hillslope_eval.mizuroute.h.2016-12.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.mizuroute.h.2017-01.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rof/hist/hillslope_eval.mizuroute.h.2017-01.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.mizuroute.h.2017-02.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rof/hist/hillslope_eval.mizuroute.h.2017-02.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.mizuroute.h.2017-03.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rof/hist/hillslope_eval.mizuroute.h.2017-03.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.mizuroute.h.2017-04.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rof/hist/hillslope_eval.mizuroute.h.2017-04.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.mizuroute.h.2017-05.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rof/hist/hillslope_eval.mizuroute.h.2017-05.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.mizuroute.h.2017-06.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rof/hist/hillslope_eval.mizuroute.h.2017-06.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.mizuroute.h.2017-07.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rof/hist/hillslope_eval.mizuroute.h.2017-07.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.mizuroute.h.2017-08.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rof/hist/hillslope_eval.mizuroute.h.2017-08.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.mizuroute.h.2017-09.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rof/hist/hillslope_eval.mizuroute.h.2017-09.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.mizuroute.h.2017-10.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rof/hist/hillslope_eval.mizuroute.h.2017-10.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.mizuroute.h.2017-11.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rof/hist/hillslope_eval.mizuroute.h.2017-11.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.mizuroute.h.2017-12.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rof/hist/hillslope_eval.mizuroute.h.2017-12.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.mizuroute.h.2018-01.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rof/hist/hillslope_eval.mizuroute.h.2018-01.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.mizuroute.h.2018-02.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rof/hist/hillslope_eval.mizuroute.h.2018-02.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.mizuroute.h.2018-03.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rof/hist/hillslope_eval.mizuroute.h.2018-03.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.mizuroute.h.2018-04.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rof/hist/hillslope_eval.mizuroute.h.2018-04.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.mizuroute.h.2018-05.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rof/hist/hillslope_eval.mizuroute.h.2018-05.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.mizuroute.h.2018-06.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rof/hist/hillslope_eval.mizuroute.h.2018-06.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.mizuroute.h.2018-07.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rof/hist/hillslope_eval.mizuroute.h.2018-07.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.mizuroute.h.2018-08.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rof/hist/hillslope_eval.mizuroute.h.2018-08.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.mizuroute.h.2018-09.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rof/hist/hillslope_eval.mizuroute.h.2018-09.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.mizuroute.h.2018-10.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rof/hist/hillslope_eval.mizuroute.h.2018-10.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.mizuroute.h.2018-11.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rof/hist/hillslope_eval.mizuroute.h.2018-11.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.mizuroute.h.2018-12.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rof/hist/hillslope_eval.mizuroute.h.2018-12.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.mizuroute.h.2019-01.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rof/hist/hillslope_eval.mizuroute.h.2019-01.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.mizuroute.h.2019-02.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rof/hist/hillslope_eval.mizuroute.h.2019-02.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.mizuroute.h.2019-03.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rof/hist/hillslope_eval.mizuroute.h.2019-03.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.mizuroute.h.2019-04.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rof/hist/hillslope_eval.mizuroute.h.2019-04.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.mizuroute.h.2019-05.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rof/hist/hillslope_eval.mizuroute.h.2019-05.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.mizuroute.h.2019-06.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rof/hist/hillslope_eval.mizuroute.h.2019-06.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.mizuroute.h.2019-07.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rof/hist/hillslope_eval.mizuroute.h.2019-07.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.mizuroute.h.2019-08.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rof/hist/hillslope_eval.mizuroute.h.2019-08.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.mizuroute.h.2019-09.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rof/hist/hillslope_eval.mizuroute.h.2019-09.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.mizuroute.h.2019-10.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rof/hist/hillslope_eval.mizuroute.h.2019-10.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.mizuroute.h.2019-11.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rof/hist/hillslope_eval.mizuroute.h.2019-11.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.mizuroute.h.2019-12.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rof/hist/hillslope_eval.mizuroute.h.2019-12.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.mizuroute.h.2020-01.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rof/hist/hillslope_eval.mizuroute.h.2020-01.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.mizuroute.h.2020-02.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rof/hist/hillslope_eval.mizuroute.h.2020-02.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.mizuroute.h.2020-03.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rof/hist/hillslope_eval.mizuroute.h.2020-03.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.mizuroute.h.2020-04.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rof/hist/hillslope_eval.mizuroute.h.2020-04.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.mizuroute.h.2020-05.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rof/hist/hillslope_eval.mizuroute.h.2020-05.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.mizuroute.h.2020-06.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rof/hist/hillslope_eval.mizuroute.h.2020-06.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.mizuroute.h.2020-07.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rof/hist/hillslope_eval.mizuroute.h.2020-07.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.mizuroute.h.2020-08.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rof/hist/hillslope_eval.mizuroute.h.2020-08.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.mizuroute.h.2020-09.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rof/hist/hillslope_eval.mizuroute.h.2020-09.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.mizuroute.h.2020-10.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rof/hist/hillslope_eval.mizuroute.h.2020-10.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.mizuroute.h.2020-11.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rof/hist/hillslope_eval.mizuroute.h.2020-11.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.mizuroute.h.2020-12.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rof/hist/hillslope_eval.mizuroute.h.2020-12.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.mizuroute.h.2021-01.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rof/hist/hillslope_eval.mizuroute.h.2021-01.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.mizuroute.h.2021-02.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rof/hist/hillslope_eval.mizuroute.h.2021-02.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.mizuroute.h.2021-03.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rof/hist/hillslope_eval.mizuroute.h.2021-03.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.mizuroute.h.2021-04.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rof/hist/hillslope_eval.mizuroute.h.2021-04.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.mizuroute.h.2021-05.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rof/hist/hillslope_eval.mizuroute.h.2021-05.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.mizuroute.h.2021-06.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rof/hist/hillslope_eval.mizuroute.h.2021-06.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.mizuroute.h.2021-07.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rof/hist/hillslope_eval.mizuroute.h.2021-07.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.mizuroute.h.2021-08.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rof/hist/hillslope_eval.mizuroute.h.2021-08.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.mizuroute.h.2021-09.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rof/hist/hillslope_eval.mizuroute.h.2021-09.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.mizuroute.h.2021-10.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rof/hist/hillslope_eval.mizuroute.h.2021-10.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.mizuroute.h.2021-11.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rof/hist/hillslope_eval.mizuroute.h.2021-11.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.mizuroute.h.2021-12.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rof/hist/hillslope_eval.mizuroute.h.2021-12.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.mizuroute.h.2022-01.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rof/hist/hillslope_eval.mizuroute.h.2022-01.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.mizuroute.h.2022-02.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rof/hist/hillslope_eval.mizuroute.h.2022-02.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.mizuroute.h.2022-03.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rof/hist/hillslope_eval.mizuroute.h.2022-03.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.mizuroute.h.2022-04.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rof/hist/hillslope_eval.mizuroute.h.2022-04.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.mizuroute.h.2022-05.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rof/hist/hillslope_eval.mizuroute.h.2022-05.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.mizuroute.h.2022-06.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rof/hist/hillslope_eval.mizuroute.h.2022-06.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.mizuroute.h.2022-07.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rof/hist/hillslope_eval.mizuroute.h.2022-07.nc 
+moving /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.mizuroute.h.2022-08.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rof/hist/hillslope_eval.mizuroute.h.2022-08.nc 
+copying /glade/derecho/scratch/mozhgana/hillslope_eval/run/hillslope_eval.mizuroute.h.2022-09.nc to /glade/derecho/scratch/mozhgana/archive/hillslope_eval/rof/hist/hillslope_eval.mizuroute.h.2022-09.nc 
+Archiving history files for drv (cpl)
+Archiving history files for dart (esp)
+st_archive completed

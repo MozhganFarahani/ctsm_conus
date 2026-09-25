@@ -1,0 +1,62 @@
+=== h1 inventory ===
+dims: {'time': 13870, 'nbnd': 2, 'lat': 224, 'lon': 464, 'levgrnd': 25, 'levsoi': 20, 'levlak': 10, 'levdcmp': 1}
+n_timesteps: 13870
+
+variables:
+  ALT                  dims=('time', 'lat', 'lon') units=m          current active layer thickness
+  BTRANMN              dims=('time', 'lat', 'lon') units=unitless   daily minimum of transpiration beta factor
+  EFLX_LH_TOT          dims=('time', 'lat', 'lon') units=W/m^2      total latent heat flux [+ to atm]
+  EFLX_SOIL_GRND       dims=('time', 'lat', 'lon') units=W/m^2      soil heat flux [+ into soil]
+  FGR12                dims=('time', 'lat', 'lon') units=W/m^2      heat flux between soil layers 1 and 2
+  FH2OSFC              dims=('time', 'lat', 'lon') units=unitless   fraction of ground covered by surface water
+  FIRA                 dims=('time', 'lat', 'lon') units=W/m^2      net infrared (longwave) radiation
+  FIRE                 dims=('time', 'lat', 'lon') units=W/m^2      emitted infrared (longwave) radiation
+  FPSN                 dims=('time', 'lat', 'lon') units=umol m-2 s-1 photosynthesis
+  FROST_TABLE          dims=('time', 'lat', 'lon') units=m          frost table depth (natural vegetated and crop landunits only)
+  FSDS                 dims=('time', 'lat', 'lon') units=W/m^2      atmospheric incident solar radiation (downscaled for glacier and hillslope columns)
+  FSH                  dims=('time', 'lat', 'lon') units=W/m^2      sensible heat not including correction for land use change and rain/snow conversion
+  FSNO                 dims=('time', 'lat', 'lon') units=unitless   fraction of ground covered by snow
+  H2OSFC               dims=('time', 'lat', 'lon') units=mm         surface water depth
+  H2OSNO               dims=('time', 'lat', 'lon') units=mm         snow depth (liquid water)
+  H2OSOI               dims=('time', 'levsoi', 'lat', 'lon') units=mm3/mm3    volumetric soil water (natural vegetated and crop landunits only)
+  QDRAI                dims=('time', 'lat', 'lon') units=mm/s       sub-surface drainage
+  QDRAI_PERCH          dims=('time', 'lat', 'lon') units=mm/s       perched wt drainage
+  QFLX_EVAP_TOT        dims=('time', 'lat', 'lon') units=kg m-2 s-1 qflx_evap_soi + qflx_evap_can + qflx_tran_veg
+  QFLX_SNOW_DRAIN      dims=('time', 'lat', 'lon') units=mm/s       drainage from snow pack
+  QH2OSFC              dims=('time', 'lat', 'lon') units=mm/s       surface water runoff
+  QIN                  dims=('time', 'levsoi', 'lat', 'lon') units=mm H2O/s   flux of water into soil layer
+  QOUT                 dims=('time', 'levsoi', 'lat', 'lon') units=mm H2O/s   flux of water out of soil layer
+  QOVER                dims=('time', 'lat', 'lon') units=mm/s       total surface runoff (includes QH2OSFC)
+  QRUNOFF              dims=('time', 'lat', 'lon') units=mm/s       total liquid runoff not including correction for land use change
+  QSOIL                dims=('time', 'lat', 'lon') units=mm/s       Ground evaporation (soil/snow evaporation + soil/snow sublimation - dew)
+  QVEGE                dims=('time', 'lat', 'lon') units=mm/s       canopy evaporation
+  QVEGT                dims=('time', 'lat', 'lon') units=mm/s       canopy transpiration
+  RAIN                 dims=('time', 'lat', 'lon') units=mm/s       atmospheric rain, after rain/snow repartitioning based on temperature
+  SNOW                 dims=('time', 'lat', 'lon') units=mm/s       atmospheric snow, after rain/snow repartitioning based on temperature
+  SNOWDP               dims=('time', 'lat', 'lon') units=m          gridcell mean snow height
+  SOILICE              dims=('time', 'levsoi', 'lat', 'lon') units=kg/m2      soil ice (natural vegetated and crop landunits only)
+  SOILLIQ              dims=('time', 'levsoi', 'lat', 'lon') units=kg/m2      soil liquid water (natural vegetated and crop landunits only)
+  TBOT                 dims=('time', 'lat', 'lon') units=K          atmospheric air temperature (downscaled for glacier and hillslope columns)
+  TG                   dims=('time', 'lat', 'lon') units=K          ground temperature
+  TLAI                 dims=('time', 'lat', 'lon') units=m^2/m^2    total projected leaf area index
+  TOTSOILICE           dims=('time', 'lat', 'lon') units=kg/m2      vertically summed soil ice (veg landunits only)
+  TOTSOILLIQ           dims=('time', 'lat', 'lon') units=kg/m2      vertically summed soil liquid water (veg landunits only)
+  TSA                  dims=('time', 'lat', 'lon') units=K          2m air temperature
+  TSKIN                dims=('time', 'lat', 'lon') units=K          skin temperature
+  TSOI                 dims=('time', 'levgrnd', 'lat', 'lon') units=K          soil temperature (natural vegetated and crop landunits only)
+  TV                   dims=('time', 'lat', 'lon') units=K          vegetation temperature
+  TWS                  dims=('time', 'lat', 'lon') units=mm         total water storage
+  ZWT                  dims=('time', 'lat', 'lon') units=m          water table depth (natural vegetated and crop landunits only)
+  ZWT_PERCH            dims=('time', 'lat', 'lon') units=m          perched water table depth (natural vegetated and crop landunits only)
+  area                 dims=('time', 'lat', 'lon') units=km^2       grid cell areas
+  date_written         dims=('time',) units=?          
+  landfrac             dims=('time', 'lat', 'lon') units=?          land fraction
+  landmask             dims=('time', 'lat', 'lon') units=?          land/ocean mask (0.=ocean and 1.=land)
+  mcdate               dims=('time',) units=?          current date (YYYYMMDD) at end of time_bounds
+  mcsec                dims=('time',) units=s          current seconds of current date at end of time_bounds
+  mdcur                dims=('time',) units=?          current day (from base day) at end of time_bounds
+  mscur                dims=('time',) units=?          current seconds of current day at end of time_bounds
+  nbedrock             dims=('time', 'lat', 'lon') units=?          index of shallowest bedrock layer
+  nstep                dims=('time',) units=?          time step
+  time_bounds          dims=('time', 'nbnd') units=?          time interval endpoints
+  time_written         dims=('time',) units=?          

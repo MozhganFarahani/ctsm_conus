@@ -1,0 +1,530 @@
+commit 6a2dd98d52ce1fce2a52f0a7d7ca9a292d6ed080
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec2436.hsn.de.hpc.ucar.edu>
+Date:   Sat Aug 22 07:54:39 2026 -0600
+
+    7199000.desched1
+
+ CaseStatus                             |    2 +
+ st_archive.evolving_landcover.o7199000 | 1010 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 1012 insertions(+)
+
+commit a409224fdb1366821f87b687942e53aed268fd11
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec2436.hsn.de.hpc.ucar.edu>
+Date:   Sat Aug 22 07:53:02 2026 -0600
+
+    7199000.desched1
+
+ CaseStatus                             | 2 ++
+ env_run.xml                            | 2 +-
+ run.evolving_landcover.o7198999        | 4 ++++
+ st_archive.evolving_landcover.o7199000 | 1 +
+ 4 files changed, 8 insertions(+), 1 deletion(-)
+
+commit 169dc8c26b17822e47dd21a24fbe4cc7f6637811
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec0028.hsn.de.hpc.ucar.edu>
+Date:   Sat Aug 22 07:52:25 2026 -0600
+
+    Timing files created for run 7198999.desched1.260822-014601
+
+ CaseStatus                                                           |   2 +
+ timing/cesm.ESMF_Profile.summary.7198999.desched1.260822-014601      | 331 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ timing/cesm_timing.evolving_landcover.7198999.desched1.260822-014601 |  88 +++++++++++++++++++
+ 3 files changed, 421 insertions(+)
+
+commit b793f649dc7184f0bf83386fe529eb9bde17c526
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec0028.hsn.de.hpc.ucar.edu>
+Date:   Sat Aug 22 07:52:25 2026 -0600
+
+    7198999.desched1
+
+ CaseStatus | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit 24a56dce8d65e824fe88ad3fbd2ed5d2f6408e24
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec0028.hsn.de.hpc.ucar.edu>
+Date:   Sat Aug 22 07:52:24 2026 -0600
+
+    7198999.desched1
+
+ CaseStatus | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit a0dbdeec3d1218937145220c3a27993ee4b5f1bd
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec0028.hsn.de.hpc.ucar.edu>
+Date:   Sat Aug 22 01:46:06 2026 -0600
+
+    7198999.desched1
+
+ Buildconf/cplconf/nuopc.runconfig | 20 ++++++++++----------
+ Buildconf/ctsm.input_data_list    | 28 ++++++++++++++--------------
+ CaseDocs/nuopc.runconfig          | 20 ++++++++++----------
+ CaseStatus                        |  2 ++
+ run.evolving_landcover.o7198999   | 42 ++++++++++++++++++++++++++++++++++++++++++
+ 5 files changed, 78 insertions(+), 34 deletions(-)
+
+commit c7d96b10863271d389d365032a23d101015a45b6
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec0028.hsn.de.hpc.ucar.edu>
+Date:   Sat Aug 22 01:46:01 2026 -0600
+
+    7198999.desched1
+
+ Buildconf/.ipynb_checkpoints/cpl-checkpoint.input_data_list  |  6 ++++++
+ Buildconf/.ipynb_checkpoints/ctsm-checkpoint.input_data_list | 18 ++++++++++++++++++
+ CaseStatus                                                   |  2 ++
+ env_run.xml                                                  |  2 +-
+ run.evolving_landcover.o7198999                              |  0
+ 5 files changed, 27 insertions(+), 1 deletion(-)
+
+commit 740938b777aa964271d0304fbdd89986e820b7dc
+Author: Mozhgan Askarzadehfarahani <mozhgana@derecho7.hsn.de.hpc.ucar.edu>
+Date:   Fri Aug 21 14:19:54 2026 -0600
+
+    case.run:7198999.desched1, case.st_archive:7199000.desched1
+
+ CaseStatus | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit 093bb41ca8972203f1cb4c82a4b0d67fc66532c6
+Author: Mozhgan Askarzadehfarahani <mozhgana@derecho7.hsn.de.hpc.ucar.edu>
+Date:   Fri Aug 21 14:19:54 2026 -0600
+
+    case.run:7198999.desched1, case.st_archive:7199000.desched1
+
+ .ipynb_checkpoints/user_nl_clm-checkpoint | 40 ++++++++++++++++++++++++++++++++++++++++
+ Buildconf/clmconf/lnd_in                  |  1 +
+ Buildconf/clmconf/namelist                |  4 ++++
+ Buildconf/cplconf/nuopc.runconfig         | 20 ++++++++++----------
+ Buildconf/ctsm.input_data_list            | 26 +++++++++++++-------------
+ CaseDocs/lnd_in                           |  1 +
+ CaseDocs/nuopc.runconfig                  | 20 ++++++++++----------
+ CaseStatus                                |  2 ++
+ replay.sh                                 |  4 ++++
+ run.evolving_landcover.o7169188           |  2 ++
+ user_nl_clm                               |  2 ++
+ 11 files changed, 89 insertions(+), 33 deletions(-)
+
+commit 083fd5de2c0eecf7f80f3a2068305a941bcdfd4f
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec0817.hsn.de.hpc.ucar.edu>
+Date:   Wed Aug 19 18:24:20 2026 -0600
+
+    ERROR: Model did not complete - see /glade/derecho/scratch/mozhgana/evolving_landcover/run/med.log.7169188.desched1.260819-182336
+
+ CaseStatus | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+commit 71886e51faac15d9715e070685a9459fcc04038e
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec0817.hsn.de.hpc.ucar.edu>
+Date:   Wed Aug 19 18:24:19 2026 -0600
+
+    7169188.desched1
+
+ CaseStatus | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit 65a58d6aa568980dcceff0d1829232e535e0fcf2
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec0817.hsn.de.hpc.ucar.edu>
+Date:   Wed Aug 19 18:23:42 2026 -0600
+
+    7169188.desched1
+
+ Buildconf/cplconf/nuopc.runconfig | 20 ++++++++++----------
+ Buildconf/ctsm.input_data_list    | 26 +++++++++++++-------------
+ CaseDocs/nuopc.runconfig          | 20 ++++++++++----------
+ CaseStatus                        |  2 ++
+ run.evolving_landcover.o7169188   | 42 ++++++++++++++++++++++++++++++++++++++++++
+ 5 files changed, 77 insertions(+), 33 deletions(-)
+
+commit cf5557b6ae7206bd0373e5cd601bdb29f7be80a3
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec0817.hsn.de.hpc.ucar.edu>
+Date:   Wed Aug 19 18:23:37 2026 -0600
+
+    7169188.desched1
+
+ CaseStatus                      | 2 ++
+ env_run.xml                     | 2 +-
+ run.evolving_landcover.o7169188 | 0
+ 3 files changed, 3 insertions(+), 1 deletion(-)
+
+commit 79a7a96c53f10bc4e2075b914f89d764cba2b184
+Author: Mozhgan Askarzadehfarahani <mozhgana@derecho4.hsn.de.hpc.ucar.edu>
+Date:   Wed Aug 19 16:25:19 2026 -0600
+
+    case.run:7169188.desched1, case.st_archive:7169189.desched1
+
+ CaseStatus | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit c136ab10ce7f199d3656debf4ad59a7318733613
+Author: Mozhgan Askarzadehfarahani <mozhgana@derecho4.hsn.de.hpc.ucar.edu>
+Date:   Wed Aug 19 16:25:19 2026 -0600
+
+    case.run:7169188.desched1, case.st_archive:7169189.desched1
+
+ Buildconf/cplconf/nuopc.runconfig | 20 ++++++++++----------
+ Buildconf/ctsm.input_data_list    | 22 +++++++++++-----------
+ CaseDocs/nuopc.runconfig          | 20 ++++++++++----------
+ CaseStatus                        |  2 ++
+ replay.sh                         |  2 ++
+ 5 files changed, 35 insertions(+), 31 deletions(-)
+
+commit 725bedf6d0ea7a40e9be321c90766ac1a011c2fe
+Author: Mozhgan Askarzadehfarahani <mozhgana@derecho4.hsn.de.hpc.ucar.edu>
+Date:   Wed Aug 19 16:14:16 2026 -0600
+
+     no message provided
+
+ Buildconf/clmconf/drv_flds_in             |   2 +-
+ Buildconf/clmconf/lnd_in                  |  12 ++--
+ Buildconf/clmconf/namelist                |   1 +
+ Buildconf/cplconf/nuopc.runconfig         |  26 ++++----
+ Buildconf/ctsm.input_data_list            |  24 ++++---
+ Buildconf/mizuroute.input_data_list       |   1 +
+ Buildconf/mizurouteconf/mizuRoute.control |   2 +-
+ CaseDocs/lnd_in                           |  12 ++--
+ CaseDocs/mizuRoute.control                |   2 +-
+ CaseDocs/nuopc.runconfig                  |  26 ++++----
+ CaseStatus                                |   2 +
+ LockedFiles/env_build.xml                 | 353 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ Macros.make                               |  39 +++++++++++
+ env_build.xml                             |   2 +-
+ 14 files changed, 453 insertions(+), 51 deletions(-)
+
+commit 050b39f917c86433ee1982d4ca77e75ce99625f5
+Author: Mozhgan Askarzadehfarahani <mozhgana@derecho4.hsn.de.hpc.ucar.edu>
+Date:   Wed Aug 19 16:13:43 2026 -0600
+
+     no message provided
+
+ CaseStatus                |   6 ++
+ LockedFiles/env_build.xml | 353 -----------------------------------------------------------------------------------------------------------------
+ Macros.make               |  39 -------------
+ env_build.xml             |   2 +-
+ replay.sh                 |   4 ++
+ software_environment.txt  |  14 ++---
+ 6 files changed, 18 insertions(+), 400 deletions(-)
+
+commit b5263ec43793233c1a77bce71b479908d5465272
+Author: Mozhgan Askarzadehfarahani <mozhgana@derecho4.hsn.de.hpc.ucar.edu>
+Date:   Wed Aug 19 16:12:38 2026 -0600
+
+    <command> ./xmlchange JOB_WALLCLOCK_TIME=12:00:00 --subgroup case.run  </command>
+
+ CaseStatus       | 2 ++
+ env_workflow.xml | 4 ++--
+ replay.sh        | 2 ++
+ 3 files changed, 6 insertions(+), 2 deletions(-)
+
+commit 15c9a88b1a85229a7f395eafd63e3dcc8f1ad1f9
+Author: Mozhgan Askarzadehfarahani <mozhgana@derecho4.hsn.de.hpc.ucar.edu>
+Date:   Wed Aug 19 16:12:37 2026 -0600
+
+    <command> ./xmlchange RESUBMIT=0  </command>
+
+ CaseStatus | 2 ++
+ replay.sh  | 2 ++
+ 2 files changed, 4 insertions(+)
+
+commit 0ad43495e3db0c971cf2c426bdb9a8d5d66afa27
+Author: Mozhgan Askarzadehfarahani <mozhgana@derecho4.hsn.de.hpc.ucar.edu>
+Date:   Wed Aug 19 16:12:37 2026 -0600
+
+    <command> ./xmlchange STOP_N=38  </command>
+
+ CaseStatus  | 2 ++
+ env_run.xml | 2 +-
+ replay.sh   | 2 ++
+ 3 files changed, 5 insertions(+), 1 deletion(-)
+
+commit b22168844f0fb96b97d9b0341a1441f87294e76a
+Author: Mozhgan Askarzadehfarahani <mozhgana@derecho4.hsn.de.hpc.ucar.edu>
+Date:   Wed Aug 19 16:12:36 2026 -0600
+
+    <command> ./xmlchange STOP_OPTION=nyears  </command>
+
+ CaseStatus | 2 ++
+ replay.sh  | 2 ++
+ 2 files changed, 4 insertions(+)
+
+commit 45205e52633da0aaa3e97e96d2e570532744c6ec
+Author: Mozhgan Askarzadehfarahani <mozhgana@derecho4.hsn.de.hpc.ucar.edu>
+Date:   Wed Aug 19 16:12:36 2026 -0600
+
+    <command> ./xmlchange CONTINUE_RUN=FALSE  </command>
+
+ CaseStatus | 2 ++
+ replay.sh  | 2 ++
+ 2 files changed, 4 insertions(+)
+
+commit fa3052943216cf9d561556a23e2890b1d21ac575
+Author: Mozhgan Askarzadehfarahani <mozhgana@derecho4.hsn.de.hpc.ucar.edu>
+Date:   Wed Aug 19 16:12:35 2026 -0600
+
+    <command> ./xmlchange RUN_STARTDATE=1980-10-01  </command>
+
+ CaseStatus | 2 ++
+ replay.sh  | 2 ++
+ 2 files changed, 4 insertions(+)
+
+commit afebc4b9ffbc3b2efb8a7c6f8e5306c316591fd2
+Author: Mozhgan Askarzadehfarahani <mozhgana@derecho4.hsn.de.hpc.ucar.edu>
+Date:   Wed Aug 19 16:12:35 2026 -0600
+
+    <command> ./xmlchange GET_REFCASE=FALSE  </command>
+
+ CaseStatus | 2 ++
+ replay.sh  | 2 ++
+ 2 files changed, 4 insertions(+)
+
+commit 95c65a76329f0a516dfb716b41e31a5d07620520
+Author: Mozhgan Askarzadehfarahani <mozhgana@derecho4.hsn.de.hpc.ucar.edu>
+Date:   Wed Aug 19 16:12:34 2026 -0600
+
+    <command> ./xmlchange RUN_REFDATE=2002-10-01  </command>
+
+ CaseStatus  | 2 ++
+ env_run.xml | 2 +-
+ replay.sh   | 2 ++
+ 3 files changed, 5 insertions(+), 1 deletion(-)
+
+commit 103ba5e8fcb3c987db22af66f05aaef69af35a93
+Author: Mozhgan Askarzadehfarahani <mozhgana@derecho4.hsn.de.hpc.ucar.edu>
+Date:   Wed Aug 19 16:12:34 2026 -0600
+
+    <command> ./xmlchange RUN_REFCASE=evolving_landcover  </command>
+
+ CaseStatus  | 2 ++
+ env_run.xml | 2 +-
+ replay.sh   | 2 ++
+ 3 files changed, 5 insertions(+), 1 deletion(-)
+
+commit adeb16f15b612acffafa64aed59faef0bf7ee67b
+Author: Mozhgan Askarzadehfarahani <mozhgana@derecho4.hsn.de.hpc.ucar.edu>
+Date:   Wed Aug 19 16:12:33 2026 -0600
+
+    <command> ./xmlchange RUN_TYPE=hybrid  </command>
+
+ CaseStatus                             | 2 ++
+ env_run.xml                            | 2 +-
+ replay.sh                              | 2 ++
+ st_archive.evolving_landcover.o7145135 | 1 +
+ 4 files changed, 6 insertions(+), 1 deletion(-)
+
+commit 24afacaa69cd299aa8ba33d7d13845c379a33255
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec2436.hsn.de.hpc.ucar.edu>
+Date:   Tue Aug 18 15:59:48 2026 -0600
+
+    7145135.desched1
+
+ CaseStatus                             |   2 +
+ st_archive.evolving_landcover.o7145135 | 584 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 586 insertions(+)
+
+commit 26a37943670938fd3833cd7c42f0c90779293e5c
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec2436.hsn.de.hpc.ucar.edu>
+Date:   Tue Aug 18 15:58:15 2026 -0600
+
+    7145135.desched1
+
+ CaseStatus                             | 2 ++
+ env_run.xml                            | 2 +-
+ run.evolving_landcover.o7145134        | 4 ++++
+ st_archive.evolving_landcover.o7145135 | 1 +
+ 4 files changed, 8 insertions(+), 1 deletion(-)
+
+commit 4648fd658850af48ecf4bebe8539166e9b650b47
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec0797.hsn.de.hpc.ucar.edu>
+Date:   Tue Aug 18 15:57:50 2026 -0600
+
+    Timing files created for run 7145134.desched1.260818-121456
+
+ CaseStatus                                                           |   2 +
+ timing/cesm.ESMF_Profile.summary.7145134.desched1.260818-121456      | 324 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ timing/cesm_timing.evolving_landcover.7145134.desched1.260818-121456 |  88 +++++++++++++++++++
+ 3 files changed, 414 insertions(+)
+
+commit 1f2487840c08da324c6a0eeb262e2bd4c29b4c9a
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec0797.hsn.de.hpc.ucar.edu>
+Date:   Tue Aug 18 15:57:50 2026 -0600
+
+    7145134.desched1
+
+ CaseStatus | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit fda80d16a30a01ce1c095a461f2846a4ad9241b2
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec0797.hsn.de.hpc.ucar.edu>
+Date:   Tue Aug 18 15:57:50 2026 -0600
+
+    7145134.desched1
+
+ CaseStatus | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit cc25ed77d8f9cb08ea0b238d4055cab364cfe594
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec0797.hsn.de.hpc.ucar.edu>
+Date:   Tue Aug 18 12:15:01 2026 -0600
+
+    7145134.desched1
+
+ Buildconf/cplconf/nuopc.runconfig | 20 ++++++++++----------
+ Buildconf/ctsm.input_data_list    | 22 +++++++++++-----------
+ CaseDocs/nuopc.runconfig          | 20 ++++++++++----------
+ CaseStatus                        |  2 ++
+ run.evolving_landcover.o7145134   | 41 +++++++++++++++++++++++++++++++++++++++++
+ 5 files changed, 74 insertions(+), 31 deletions(-)
+
+commit 946bc52e75205e3bb36cfdb99f959c621a36354c
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec0797.hsn.de.hpc.ucar.edu>
+Date:   Tue Aug 18 12:14:57 2026 -0600
+
+    7145134.desched1
+
+ CaseStatus                      | 2 ++
+ env_run.xml                     | 2 +-
+ run.evolving_landcover.o7145134 | 0
+ 3 files changed, 3 insertions(+), 1 deletion(-)
+
+commit 0bf339e7a96b5fc2bf52efbac791f57ba3130dba
+Author: Mozhgan Askarzadehfarahani <mozhgana@derecho2.hsn.de.hpc.ucar.edu>
+Date:   Tue Aug 18 10:37:28 2026 -0600
+
+    case.run:7145134.desched1, case.st_archive:7145135.desched1
+
+ CaseStatus | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit 8d9017199f2ed425dc41508c3d98c871f028bbf5
+Author: Mozhgan Askarzadehfarahani <mozhgana@derecho2.hsn.de.hpc.ucar.edu>
+Date:   Tue Aug 18 10:37:28 2026 -0600
+
+    case.run:7145134.desched1, case.st_archive:7145135.desched1
+
+ Buildconf/cplconf/nuopc.runconfig | 20 ++++++++++----------
+ Buildconf/ctsm.input_data_list    | 20 ++++++++++----------
+ CaseDocs/nuopc.runconfig          | 20 ++++++++++----------
+ CaseStatus                        |  2 ++
+ replay.sh                         |  2 ++
+ 5 files changed, 34 insertions(+), 30 deletions(-)
+
+commit 564ee1a7ec796c498ee3eb496e8cbad0e84633d7
+Author: Mozhgan Askarzadehfarahani <mozhgana@derecho2.hsn.de.hpc.ucar.edu>
+Date:   Tue Aug 18 10:34:24 2026 -0600
+
+     no message provided
+
+ Buildconf/cplconf/nuopc.runconfig |  20 +++---
+ Buildconf/ctsm.input_data_list    |  24 ++++----
+ CaseDocs/nuopc.runconfig          |  20 +++---
+ CaseStatus                        |   2 +
+ LockedFiles/env_build.xml         | 353 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ Macros.make                       |  39 ++++++++++++
+ env_build.xml                     |   6 +-
+ env_run.xml                       |   2 +-
+ 8 files changed, 430 insertions(+), 36 deletions(-)
+
+commit b0703b45df9e8ba7bc30a7a8b2f33636197a0c05
+Author: Mozhgan Askarzadehfarahani <mozhgana@derecho2.hsn.de.hpc.ucar.edu>
+Date:   Tue Aug 18 10:30:08 2026 -0600
+
+     no message provided
+
+ Buildconf/clmconf/config_cache.xml                      |    6 +
+ Buildconf/clmconf/drv_flds_in                           |   39 ++
+ Buildconf/clmconf/lnd_in                                |  322 +++++++++++++++++
+ Buildconf/clmconf/namelist                              |   41 +++
+ Buildconf/cpl.input_data_list                           |    6 +
+ Buildconf/cplconf/drv_in                                |   23 ++
+ Buildconf/cplconf/namelist_infile                       |    3 +
+ Buildconf/cplconf/nuopc.runconfig                       |  458 ++++++++++++++++++++++++
+ Buildconf/ctsm.input_data_list                          |   16 +
+ Buildconf/datm.input_data_list                          | 1415 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ Buildconf/datmconf/datm.streams.xml                     | 1598 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ Buildconf/datmconf/datm_in                              |   27 ++
+ Buildconf/datmconf/drv_flds_in                          |    3 +
+ Buildconf/datmconf/namelist_infile                      |    3 +
+ Buildconf/mizuroute.input_data_list                     |    1 +
+ Buildconf/mizurouteconf/control_infile                  |    3 +
+ Buildconf/mizurouteconf/mizuRoute.control               |   94 +++++
+ Buildconf/mizurouteconf/mizuRoute_in                    |   12 +
+ CaseDocs/.ipynb_checkpoints/datm.streams-checkpoint.xml | 1598 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ CaseDocs/datm.streams.xml                               | 1598 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ CaseDocs/datm_in                                        |   27 ++
+ CaseDocs/drv_flds_in                                    |   36 ++
+ CaseDocs/drv_in                                         |   23 ++
+ CaseDocs/lnd_in                                         |  322 +++++++++++++++++
+ CaseDocs/mizuRoute.control                              |   94 +++++
+ CaseDocs/mizuRoute_in                                   |   12 +
+ CaseDocs/nuopc.runconfig                                |  458 ++++++++++++++++++++++++
+ CaseDocs/nuopc.runseq                                   |   22 ++
+ CaseStatus                                              |    2 +
+ replay.sh                                               |    4 +
+ user_nl_clm                                             |   18 +
+ user_nl_mizuroute_control                               |   14 +
+ 32 files changed, 8298 insertions(+)
+
+commit 52e92a44c116f679825a4dcfa219d2f12919ba6b
+Author: Mozhgan Askarzadehfarahani <mozhgana@derecho2.hsn.de.hpc.ucar.edu>
+Date:   Tue Aug 18 10:27:20 2026 -0600
+
+    local git repository created
+
+ .case.run                        |   74 ++++++
+ .env_mach_specific.csh           |   13 ++
+ .env_mach_specific.sh            |   13 ++
+ .gitignore                       |   81 +++++++
+ CaseStatus                       |   28 +++
+ Depends.intel                    |   72 ++++++
+ LockedFiles/env_batch.xml        |   57 +++++
+ LockedFiles/env_case.xml         |  395 ++++++++++++++++++++++++++++++++
+ LockedFiles/env_mach_pes.xml     |  191 ++++++++++++++++
+ Macros.cmake                     |   38 ++++
+ README.case                      |   26 +++
+ SourceMods/src.cdeps/README      |   14 ++
+ SourceMods/src.clm/README        |    9 +
+ SourceMods/src.datm/README       |    9 +
+ SourceMods/src.drv/README        |    9 +
+ SourceMods/src.mizuroute/README  |    9 +
+ SourceMods/src.share/README      |    9 +
+ Tools/Makefile                   |    1 +
+ Tools/check_lockedfiles          |    1 +
+ Tools/getTiming                  |    1 +
+ Tools/get_standard_makefile_args |    1 +
+ Tools/mkDepends                  |    1 +
+ Tools/mkSrcfiles                 |    1 +
+ Tools/save_provenance            |    1 +
+ archive_metadata                 |    1 +
+ case.build                       |    1 +
+ case.cmpgen_namelists            |    1 +
+ case.cupid                       |   15 ++
+ case.qstatus                     |    1 +
+ case.setup                       |    1 +
+ case.submit                      |    1 +
+ check_case                       |    1 +
+ check_input_data                 |    1 +
+ cmake_macros/CMakeLists.txt      |    3 +
+ cmake_macros/CNL.cmake           |   14 ++
+ cmake_macros/derecho.cmake       |   22 ++
+ cmake_macros/intel.cmake         |   37 +++
+ cmake_macros/intel_derecho.cmake |   40 ++++
+ cmake_macros/universal.cmake     |   18 ++
+ env_archive.xml                  |  121 ++++++++++
+ env_batch.xml                    |   57 +++++
+ env_build.xml                    |  353 +++++++++++++++++++++++++++++
+ env_case.xml                     |  395 ++++++++++++++++++++++++++++++++
+ env_mach_pes.xml                 |  191 ++++++++++++++++
+ env_mach_specific.xml            |  111 +++++++++
+ env_run.xml                      | 1306 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ env_workflow.xml                 |  169 ++++++++++++++
+ pelayout                         |    1 +
+ preview_namelists                |    1 +
+ preview_run                      |    1 +
+ replay.sh                        |   36 +++
+ software_environment.txt         |  432 +++++++++++++++++++++++++++++++++++
+ user_nl_clm                      |   20 ++
+ user_nl_cpl                      |   19 ++
+ user_nl_datm                     |   13 ++
+ user_nl_datm_streams             |   33 +++
+ user_nl_mizuroute                |    8 +
+ xmlchange                        |    1 +
+ xmlquery                         |    1 +
+ 59 files changed, 4480 insertions(+)

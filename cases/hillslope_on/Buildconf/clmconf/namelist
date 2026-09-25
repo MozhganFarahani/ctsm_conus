@@ -1,0 +1,43 @@
+&comp_inparm 
+
+
+
+hist_empty_htapes = .true.
+
+hist_mfilt = 1,365
+
+hist_nhtfrq = 0,-24
+
+hist_fincl1 = 'BTRANMN','H2OSFC','H2OSNO','SNOWDP','ZWT','ZWT_PERCH','FROST_TABLE',
+
+              'TWS','QDRAI','QOVER','QH2OSFC','QDRAI_PERCH','QVEGT','QVEGE','QSOIL',
+
+              'QOUT','QIN','QLATFLOWOUT','QFLX_SNOW_DRAIN','SOILLIQ','SOILICE','TLAI',
+
+              'TBOT','TSA','TG','TV','TSKIN','FPSN','FSH','EFLX_LH_TOT','EFLX_SOIL_GRND',
+
+              'FGR12','FIRA','FIRE','FSNO','FH2OSFC','FSDS','RAIN','SNOW','TSOI','ALT',
+
+              'QRUNOFF','TOTSOILLIQ','TOTSOILICE','QFLX_EVAP_TOT','H2OSOI'
+
+hist_fincl2 = 'BTRANMN','H2OSFC','H2OSNO','SNOWDP','ZWT','ZWT_PERCH','FROST_TABLE',
+
+              'TWS','QDRAI','QOVER','QH2OSFC','QDRAI_PERCH','QVEGT','QVEGE','QSOIL',
+
+              'QOUT','QIN','QLATFLOWOUT','QFLX_SNOW_DRAIN','SOILLIQ','SOILICE','TLAI',
+
+              'TBOT','TSA','TG','TV','TSKIN','FPSN','FSH','EFLX_LH_TOT','EFLX_SOIL_GRND',
+
+              'FGR12','FIRA','FIRE','FSNO','FH2OSFC','FSDS','RAIN','SNOW','TSOI','ALT',
+
+              'QRUNOFF','TOTSOILLIQ','TOTSOILICE','QFLX_EVAP_TOT','H2OSOI'
+
+
+
+hillslope_file = '/glade/u/home/mozhgana/mywork/ctsm_conus_setup/for_mozhgan/hillslope_geo_params_trapezoid_0.125nldas2_FAB.nc'
+
+use_hillslope = .true.
+
+use_hillslope_routing = .true.
+
+/ 

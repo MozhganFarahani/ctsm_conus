@@ -1,0 +1,27 @@
+&const_forcing_nml
+  dn10 = 1.204
+  peak_lwdn = 450.0
+  peak_swdn = 330.0
+  q = 0.0
+  slp = 101325.0
+  t = 273.15
+  u = 0.0
+  v = 0.0
+/
+&datm_nml
+  datamode = "CLMNCEP"
+  factorfn_data = "null"
+  factorfn_mesh = "null"
+  flds_co2 = .true.
+  flds_presaero = .true.
+  flds_presndep = .true.
+  flds_preso3 = .true.
+  iradsw = 1
+  model_maskfile = "/glade/campaign/cesm/cesmdata/inputdata/share/meshes/0.125nldas2_ESMFmesh_cd5_241220.nc"
+  model_meshfile = "/glade/campaign/cesm/cesmdata/inputdata/share/meshes/0.125nldas2_ESMFmesh_cd5_241220.nc"
+  nextsw_cday_calc = "cam6"
+  nx_global = 464
+  ny_global = 224
+  restfilm = "null"
+  skip_restart_read = .false.
+/

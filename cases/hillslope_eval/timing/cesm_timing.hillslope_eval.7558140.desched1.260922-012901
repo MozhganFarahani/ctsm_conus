@@ -1,0 +1,88 @@
+---------------- TIMING PROFILE ---------------------
+  Case        : hillslope_eval
+  LID         : 7558140.desched1.260922-012901
+  Machine     : derecho
+  Caseroot    : /glade/work/mozhgana/ctsm_conus/cime/scripts/hillslope_eval
+  Timeroot    : /glade/work/mozhgana/ctsm_conus/cime/scripts/hillslope_eval/Tools
+  User        : mozhgana
+  Curr Date   : Tue Sep 22 09:01:16 2026
+  Driver      : CMEPS
+  grid        : a%0.125nldas2_l%0.125nldas2_oi%null_r%MERIT_CONUSmz_g%null_w%null_z%null_m%0.125nldas2
+  compset     : 2000_DATM%NLDAS2_CLM60%SP_SICE_SOCN_MIZUROUTE_SGLC_SWAV_SESP
+  run type    : hybrid, continue_run = TRUE (inittype = FALSE)
+  stop option : nyears, stop_n = 6
+  run length  : 2190 days (2190.0 for ocean)
+
+  component       comp_pes    root_pe   tasks  x threads instances (stride) 
+  ---------        ------     -------   ------   ------  ---------  ------  
+  cpl = cpl        1792        128      1792   x 1       1      (1     ) 
+  atm = datm       128         0        128    x 1       1      (1     ) 
+  lnd = clm        1792        128      1792   x 1       1      (1     ) 
+  ice = sice       1792        128      1792   x 1       1      (1     ) 
+  ocn = socn       1792        128      1792   x 1       1      (1     ) 
+  rof = mizuroute   1792        128      1792   x 1       1      (1     ) 
+  glc = sglc       1792        128      1792   x 1       1      (1     ) 
+  wav = swav       1792        128      1792   x 1       1      (1     ) 
+  esp = sesp       1           0        1      x 1       1      (1     ) 
+
+  total pes active           : 1920 
+  mpi tasks per node         : 128 
+  pe count for cost estimate : 1920 
+
+  Overall Metrics: 
+    Model Cost:            2405.15   pe-hrs/simulated_year 
+    Model Throughput:        19.16   simulated_years/day 
+
+    Init Time   :      34.238 seconds 
+    Run Time    :   27057.916 seconds       12.355 seconds/day 
+    Final Time  :      67.867 seconds 
+
+
+Runs Time in total seconds, seconds/model-day, and model-years/wall-day 
+CPL Run Time represents time in CPL pes alone, not including time associated with data exchange with other components 
+
+    TOT Run Time:   27057.916 seconds       12.355 seconds/mday        19.16 myears/wday 
+    CPL Run Time:    3807.015 seconds        1.738 seconds/mday       136.17 myears/wday 
+    ATM Run Time:   26946.406 seconds       12.304 seconds/mday        19.24 myears/wday 
+    LND Run Time:   26119.934 seconds       11.927 seconds/mday        19.85 myears/wday 
+    ICE Run Time:       0.000 seconds        0.000 seconds/mday         0.00 myears/wday 
+    OCN Run Time:       0.000 seconds        0.000 seconds/mday         0.00 myears/wday 
+    ROF Run Time:     106.528 seconds        0.049 seconds/mday      4866.32 myears/wday 
+    GLC Run Time:       0.000 seconds        0.000 seconds/mday         0.00 myears/wday 
+    WAV Run Time:       0.000 seconds        0.000 seconds/mday         0.00 myears/wday 
+    ESP Run Time:       0.000 seconds        0.000 seconds/mday         0.00 myears/wday 
+    CPL COMM Time:   2743.595 seconds        1.253 seconds/mday       188.95 myears/wday 
+   NOTE: min:max driver timers (seconds/day):   
+                            CPL (pes 128 to 1919) 
+                                                ATM (pes 0 to 127) 
+                                                                                       LND (pes 128 to 1919) 
+                                                                                       ICE (pes 128 to 1919) 
+                                                                                       OCN (pes 128 to 1919) 
+                                                                                       ROF (pes 128 to 1919) 
+                                                                                       GLC (pes 128 to 1919) 
+                                                                                       WAV (pes 128 to 1919) 
+                                                ESP (pes 0 to 0) 
+
+
+
+More info on coupler timing:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

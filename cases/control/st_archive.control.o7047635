@@ -1,0 +1,171 @@
+st_archive starting
+moving /glade/derecho/scratch/mozhgana/control/run/lnd.log.7047634.desched1.260808-034141.gz to /glade/derecho/scratch/mozhgana/archive/control/logs/lnd.log.7047634.desched1.260808-034141.gz
+moving /glade/derecho/scratch/mozhgana/control/run/atm.log.7047634.desched1.260808-034141.gz to /glade/derecho/scratch/mozhgana/archive/control/logs/atm.log.7047634.desched1.260808-034141.gz
+moving /glade/derecho/scratch/mozhgana/control/run/rof.log.7047634.desched1.260808-034141.gz to /glade/derecho/scratch/mozhgana/archive/control/logs/rof.log.7047634.desched1.260808-034141.gz
+moving /glade/derecho/scratch/mozhgana/control/run/cesm.log.7047634.desched1.260808-034141.gz to /glade/derecho/scratch/mozhgana/archive/control/logs/cesm.log.7047634.desched1.260808-034141.gz
+moving /glade/derecho/scratch/mozhgana/control/run/med.log.7047634.desched1.260808-034141.gz to /glade/derecho/scratch/mozhgana/archive/control/logs/med.log.7047634.desched1.260808-034141.gz
+moving /glade/derecho/scratch/mozhgana/control/run/drv.log.7047634.desched1.260808-034141.gz to /glade/derecho/scratch/mozhgana/archive/control/logs/drv.log.7047634.desched1.260808-034141.gz
+-------------------------------------------
+Archiving restarts for date date(1984, 1, 1, 0, 0, 0)
+-------------------------------------------
+Archiving restarts for datm (atm)
+removing interim restart file /glade/derecho/scratch/mozhgana/control/run/control.datm.r.1984-01-01-00000.nc
+Archiving restarts for clm (lnd)
+removing interim restart file /glade/derecho/scratch/mozhgana/control/run/control.clm2.r.1984-01-01-00000.nc
+ WARNING: /glade/u/apps/derecho/25.10/spack/opt/spack/netcdf/4.9.3/cray-mpich/8.1.32/intel-oneapi-compilers/2025.3.2/yqys/bin/ncdump -v locfnh /glade/derecho/scratch/mozhgana/control/run/control.clm2.rh0a.1984-01-01-00000.nc  failed rc=1
+    out=
+    err=/glade/u/apps/derecho/25.10/spack/opt/spack/netcdf/4.9.3/cray-mpich/8.1.32/intel-oneapi-compilers/2025.3.2/yqys/bin/ncdump: locfnh: No such variable
+removing interim restart file /glade/derecho/scratch/mozhgana/control/run/control.clm2.rh0a.1984-01-01-00000.nc
+ WARNING: /glade/u/apps/derecho/25.10/spack/opt/spack/netcdf/4.9.3/cray-mpich/8.1.32/intel-oneapi-compilers/2025.3.2/yqys/bin/ncdump -v locfnh /glade/derecho/scratch/mozhgana/control/run/control.clm2.rh1a.1984-01-01-00000.nc  failed rc=1
+    out=
+    err=/glade/u/apps/derecho/25.10/spack/opt/spack/netcdf/4.9.3/cray-mpich/8.1.32/intel-oneapi-compilers/2025.3.2/yqys/bin/ncdump: locfnh: No such variable
+removing interim restart file /glade/derecho/scratch/mozhgana/control/run/control.clm2.rh1a.1984-01-01-00000.nc
+Archiving restarts for mizuroute (rof)
+removing interim restart file /glade/derecho/scratch/mozhgana/control/run/control.mizuroute.r.1984-01-01-00000.nc
+Archiving restarts for drv (cpl)
+removing interim restart file /glade/derecho/scratch/mozhgana/control/run/control.cpl.r.1984-01-01-00000.nc
+Archiving restarts for dart (esp)
+-------------------------------------------
+Archiving restarts for date date(1988, 1, 1, 0, 0, 0)
+-------------------------------------------
+Archiving restarts for datm (atm)
+copying file /glade/derecho/scratch/mozhgana/control/run/control.datm.r.1988-01-01-00000.nc to /glade/derecho/scratch/mozhgana/archive/control/rest/1988-01-01-00000/control.datm.r.1988-01-01-00000.nc
+Archiving restarts for clm (lnd)
+copying file /glade/derecho/scratch/mozhgana/control/run/control.clm2.r.1988-01-01-00000.nc to /glade/derecho/scratch/mozhgana/archive/control/rest/1988-01-01-00000/control.clm2.r.1988-01-01-00000.nc
+Copying /glade/derecho/scratch/mozhgana/control/run/control.clm2.h1a.1987-01-02-00000.nc to /glade/derecho/scratch/mozhgana/archive/control/rest/1988-01-01-00000/control.clm2.h1a.1987-01-02-00000.nc
+Copying /glade/derecho/scratch/mozhgana/control/run/control.clm2.h0a.1987-12.nc to /glade/derecho/scratch/mozhgana/archive/control/rest/1988-01-01-00000/control.clm2.h0a.1987-12.nc
+ WARNING: /glade/u/apps/derecho/25.10/spack/opt/spack/netcdf/4.9.3/cray-mpich/8.1.32/intel-oneapi-compilers/2025.3.2/yqys/bin/ncdump -v locfnh /glade/derecho/scratch/mozhgana/control/run/control.clm2.rh0a.1988-01-01-00000.nc  failed rc=1
+    out=
+    err=/glade/u/apps/derecho/25.10/spack/opt/spack/netcdf/4.9.3/cray-mpich/8.1.32/intel-oneapi-compilers/2025.3.2/yqys/bin/ncdump: locfnh: No such variable
+copying file /glade/derecho/scratch/mozhgana/control/run/control.clm2.rh0a.1988-01-01-00000.nc to /glade/derecho/scratch/mozhgana/archive/control/rest/1988-01-01-00000/control.clm2.rh0a.1988-01-01-00000.nc
+ WARNING: /glade/u/apps/derecho/25.10/spack/opt/spack/netcdf/4.9.3/cray-mpich/8.1.32/intel-oneapi-compilers/2025.3.2/yqys/bin/ncdump -v locfnh /glade/derecho/scratch/mozhgana/control/run/control.clm2.rh1a.1988-01-01-00000.nc  failed rc=1
+    out=
+    err=/glade/u/apps/derecho/25.10/spack/opt/spack/netcdf/4.9.3/cray-mpich/8.1.32/intel-oneapi-compilers/2025.3.2/yqys/bin/ncdump: locfnh: No such variable
+copying file /glade/derecho/scratch/mozhgana/control/run/control.clm2.rh1a.1988-01-01-00000.nc to /glade/derecho/scratch/mozhgana/archive/control/rest/1988-01-01-00000/control.clm2.rh1a.1988-01-01-00000.nc
+Archiving restarts for mizuroute (rof)
+copying file /glade/derecho/scratch/mozhgana/control/run/control.mizuroute.r.1988-01-01-00000.nc to /glade/derecho/scratch/mozhgana/archive/control/rest/1988-01-01-00000/control.mizuroute.r.1988-01-01-00000.nc
+Copying /glade/derecho/scratch/mozhgana/control/run/control.mizuroute.h.1987-12.nc to /glade/derecho/scratch/mozhgana/archive/control/rest/1988-01-01-00000/control.mizuroute.h.1987-12.nc
+Archiving restarts for drv (cpl)
+copying file /glade/derecho/scratch/mozhgana/control/run/control.cpl.r.1988-01-01-00000.nc to /glade/derecho/scratch/mozhgana/archive/control/rest/1988-01-01-00000/control.cpl.r.1988-01-01-00000.nc
+Archiving restarts for dart (esp)
+Archiving history files for datm (atm)
+Archiving history files for clm (lnd)
+moving /glade/derecho/scratch/mozhgana/control/run/control.clm2.h0a.1983-12.nc to /glade/derecho/scratch/mozhgana/archive/control/lnd/hist/control.clm2.h0a.1983-12.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.clm2.h0a.1984-01.nc to /glade/derecho/scratch/mozhgana/archive/control/lnd/hist/control.clm2.h0a.1984-01.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.clm2.h0a.1984-02.nc to /glade/derecho/scratch/mozhgana/archive/control/lnd/hist/control.clm2.h0a.1984-02.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.clm2.h0a.1984-03.nc to /glade/derecho/scratch/mozhgana/archive/control/lnd/hist/control.clm2.h0a.1984-03.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.clm2.h0a.1984-04.nc to /glade/derecho/scratch/mozhgana/archive/control/lnd/hist/control.clm2.h0a.1984-04.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.clm2.h0a.1984-05.nc to /glade/derecho/scratch/mozhgana/archive/control/lnd/hist/control.clm2.h0a.1984-05.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.clm2.h0a.1984-06.nc to /glade/derecho/scratch/mozhgana/archive/control/lnd/hist/control.clm2.h0a.1984-06.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.clm2.h0a.1984-07.nc to /glade/derecho/scratch/mozhgana/archive/control/lnd/hist/control.clm2.h0a.1984-07.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.clm2.h0a.1984-08.nc to /glade/derecho/scratch/mozhgana/archive/control/lnd/hist/control.clm2.h0a.1984-08.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.clm2.h0a.1984-09.nc to /glade/derecho/scratch/mozhgana/archive/control/lnd/hist/control.clm2.h0a.1984-09.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.clm2.h0a.1984-10.nc to /glade/derecho/scratch/mozhgana/archive/control/lnd/hist/control.clm2.h0a.1984-10.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.clm2.h0a.1984-11.nc to /glade/derecho/scratch/mozhgana/archive/control/lnd/hist/control.clm2.h0a.1984-11.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.clm2.h0a.1984-12.nc to /glade/derecho/scratch/mozhgana/archive/control/lnd/hist/control.clm2.h0a.1984-12.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.clm2.h0a.1985-01.nc to /glade/derecho/scratch/mozhgana/archive/control/lnd/hist/control.clm2.h0a.1985-01.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.clm2.h0a.1985-02.nc to /glade/derecho/scratch/mozhgana/archive/control/lnd/hist/control.clm2.h0a.1985-02.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.clm2.h0a.1985-03.nc to /glade/derecho/scratch/mozhgana/archive/control/lnd/hist/control.clm2.h0a.1985-03.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.clm2.h0a.1985-04.nc to /glade/derecho/scratch/mozhgana/archive/control/lnd/hist/control.clm2.h0a.1985-04.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.clm2.h0a.1985-05.nc to /glade/derecho/scratch/mozhgana/archive/control/lnd/hist/control.clm2.h0a.1985-05.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.clm2.h0a.1985-06.nc to /glade/derecho/scratch/mozhgana/archive/control/lnd/hist/control.clm2.h0a.1985-06.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.clm2.h0a.1985-07.nc to /glade/derecho/scratch/mozhgana/archive/control/lnd/hist/control.clm2.h0a.1985-07.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.clm2.h0a.1985-08.nc to /glade/derecho/scratch/mozhgana/archive/control/lnd/hist/control.clm2.h0a.1985-08.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.clm2.h0a.1985-09.nc to /glade/derecho/scratch/mozhgana/archive/control/lnd/hist/control.clm2.h0a.1985-09.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.clm2.h0a.1985-10.nc to /glade/derecho/scratch/mozhgana/archive/control/lnd/hist/control.clm2.h0a.1985-10.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.clm2.h0a.1985-11.nc to /glade/derecho/scratch/mozhgana/archive/control/lnd/hist/control.clm2.h0a.1985-11.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.clm2.h0a.1985-12.nc to /glade/derecho/scratch/mozhgana/archive/control/lnd/hist/control.clm2.h0a.1985-12.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.clm2.h0a.1986-01.nc to /glade/derecho/scratch/mozhgana/archive/control/lnd/hist/control.clm2.h0a.1986-01.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.clm2.h0a.1986-02.nc to /glade/derecho/scratch/mozhgana/archive/control/lnd/hist/control.clm2.h0a.1986-02.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.clm2.h0a.1986-03.nc to /glade/derecho/scratch/mozhgana/archive/control/lnd/hist/control.clm2.h0a.1986-03.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.clm2.h0a.1986-04.nc to /glade/derecho/scratch/mozhgana/archive/control/lnd/hist/control.clm2.h0a.1986-04.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.clm2.h0a.1986-05.nc to /glade/derecho/scratch/mozhgana/archive/control/lnd/hist/control.clm2.h0a.1986-05.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.clm2.h0a.1986-06.nc to /glade/derecho/scratch/mozhgana/archive/control/lnd/hist/control.clm2.h0a.1986-06.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.clm2.h0a.1986-07.nc to /glade/derecho/scratch/mozhgana/archive/control/lnd/hist/control.clm2.h0a.1986-07.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.clm2.h0a.1986-08.nc to /glade/derecho/scratch/mozhgana/archive/control/lnd/hist/control.clm2.h0a.1986-08.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.clm2.h0a.1986-09.nc to /glade/derecho/scratch/mozhgana/archive/control/lnd/hist/control.clm2.h0a.1986-09.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.clm2.h0a.1986-10.nc to /glade/derecho/scratch/mozhgana/archive/control/lnd/hist/control.clm2.h0a.1986-10.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.clm2.h0a.1986-11.nc to /glade/derecho/scratch/mozhgana/archive/control/lnd/hist/control.clm2.h0a.1986-11.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.clm2.h0a.1986-12.nc to /glade/derecho/scratch/mozhgana/archive/control/lnd/hist/control.clm2.h0a.1986-12.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.clm2.h0a.1987-01.nc to /glade/derecho/scratch/mozhgana/archive/control/lnd/hist/control.clm2.h0a.1987-01.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.clm2.h0a.1987-02.nc to /glade/derecho/scratch/mozhgana/archive/control/lnd/hist/control.clm2.h0a.1987-02.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.clm2.h0a.1987-03.nc to /glade/derecho/scratch/mozhgana/archive/control/lnd/hist/control.clm2.h0a.1987-03.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.clm2.h0a.1987-04.nc to /glade/derecho/scratch/mozhgana/archive/control/lnd/hist/control.clm2.h0a.1987-04.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.clm2.h0a.1987-05.nc to /glade/derecho/scratch/mozhgana/archive/control/lnd/hist/control.clm2.h0a.1987-05.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.clm2.h0a.1987-06.nc to /glade/derecho/scratch/mozhgana/archive/control/lnd/hist/control.clm2.h0a.1987-06.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.clm2.h0a.1987-07.nc to /glade/derecho/scratch/mozhgana/archive/control/lnd/hist/control.clm2.h0a.1987-07.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.clm2.h0a.1987-08.nc to /glade/derecho/scratch/mozhgana/archive/control/lnd/hist/control.clm2.h0a.1987-08.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.clm2.h0a.1987-09.nc to /glade/derecho/scratch/mozhgana/archive/control/lnd/hist/control.clm2.h0a.1987-09.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.clm2.h0a.1987-10.nc to /glade/derecho/scratch/mozhgana/archive/control/lnd/hist/control.clm2.h0a.1987-10.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.clm2.h0a.1987-11.nc to /glade/derecho/scratch/mozhgana/archive/control/lnd/hist/control.clm2.h0a.1987-11.nc 
+copying /glade/derecho/scratch/mozhgana/control/run/control.clm2.h0a.1987-12.nc to /glade/derecho/scratch/mozhgana/archive/control/lnd/hist/control.clm2.h0a.1987-12.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.clm2.h1a.1983-01-02-00000.nc to /glade/derecho/scratch/mozhgana/archive/control/lnd/hist/control.clm2.h1a.1983-01-02-00000.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.clm2.h1a.1984-01-02-00000.nc to /glade/derecho/scratch/mozhgana/archive/control/lnd/hist/control.clm2.h1a.1984-01-02-00000.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.clm2.h1a.1985-01-02-00000.nc to /glade/derecho/scratch/mozhgana/archive/control/lnd/hist/control.clm2.h1a.1985-01-02-00000.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.clm2.h1a.1986-01-02-00000.nc to /glade/derecho/scratch/mozhgana/archive/control/lnd/hist/control.clm2.h1a.1986-01-02-00000.nc 
+copying /glade/derecho/scratch/mozhgana/control/run/control.clm2.h1a.1987-01-02-00000.nc to /glade/derecho/scratch/mozhgana/archive/control/lnd/hist/control.clm2.h1a.1987-01-02-00000.nc 
+Archiving history files for mizuroute (rof)
+moving /glade/derecho/scratch/mozhgana/control/run/control.mizuroute.h.1983-12.nc to /glade/derecho/scratch/mozhgana/archive/control/rof/hist/control.mizuroute.h.1983-12.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.mizuroute.h.1984-01.nc to /glade/derecho/scratch/mozhgana/archive/control/rof/hist/control.mizuroute.h.1984-01.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.mizuroute.h.1984-02.nc to /glade/derecho/scratch/mozhgana/archive/control/rof/hist/control.mizuroute.h.1984-02.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.mizuroute.h.1984-03.nc to /glade/derecho/scratch/mozhgana/archive/control/rof/hist/control.mizuroute.h.1984-03.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.mizuroute.h.1984-04.nc to /glade/derecho/scratch/mozhgana/archive/control/rof/hist/control.mizuroute.h.1984-04.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.mizuroute.h.1984-05.nc to /glade/derecho/scratch/mozhgana/archive/control/rof/hist/control.mizuroute.h.1984-05.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.mizuroute.h.1984-06.nc to /glade/derecho/scratch/mozhgana/archive/control/rof/hist/control.mizuroute.h.1984-06.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.mizuroute.h.1984-07.nc to /glade/derecho/scratch/mozhgana/archive/control/rof/hist/control.mizuroute.h.1984-07.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.mizuroute.h.1984-08.nc to /glade/derecho/scratch/mozhgana/archive/control/rof/hist/control.mizuroute.h.1984-08.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.mizuroute.h.1984-09.nc to /glade/derecho/scratch/mozhgana/archive/control/rof/hist/control.mizuroute.h.1984-09.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.mizuroute.h.1984-10.nc to /glade/derecho/scratch/mozhgana/archive/control/rof/hist/control.mizuroute.h.1984-10.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.mizuroute.h.1984-11.nc to /glade/derecho/scratch/mozhgana/archive/control/rof/hist/control.mizuroute.h.1984-11.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.mizuroute.h.1984-12.nc to /glade/derecho/scratch/mozhgana/archive/control/rof/hist/control.mizuroute.h.1984-12.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.mizuroute.h.1985-01.nc to /glade/derecho/scratch/mozhgana/archive/control/rof/hist/control.mizuroute.h.1985-01.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.mizuroute.h.1985-02.nc to /glade/derecho/scratch/mozhgana/archive/control/rof/hist/control.mizuroute.h.1985-02.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.mizuroute.h.1985-03.nc to /glade/derecho/scratch/mozhgana/archive/control/rof/hist/control.mizuroute.h.1985-03.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.mizuroute.h.1985-04.nc to /glade/derecho/scratch/mozhgana/archive/control/rof/hist/control.mizuroute.h.1985-04.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.mizuroute.h.1985-05.nc to /glade/derecho/scratch/mozhgana/archive/control/rof/hist/control.mizuroute.h.1985-05.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.mizuroute.h.1985-06.nc to /glade/derecho/scratch/mozhgana/archive/control/rof/hist/control.mizuroute.h.1985-06.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.mizuroute.h.1985-07.nc to /glade/derecho/scratch/mozhgana/archive/control/rof/hist/control.mizuroute.h.1985-07.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.mizuroute.h.1985-08.nc to /glade/derecho/scratch/mozhgana/archive/control/rof/hist/control.mizuroute.h.1985-08.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.mizuroute.h.1985-09.nc to /glade/derecho/scratch/mozhgana/archive/control/rof/hist/control.mizuroute.h.1985-09.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.mizuroute.h.1985-10.nc to /glade/derecho/scratch/mozhgana/archive/control/rof/hist/control.mizuroute.h.1985-10.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.mizuroute.h.1985-11.nc to /glade/derecho/scratch/mozhgana/archive/control/rof/hist/control.mizuroute.h.1985-11.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.mizuroute.h.1985-12.nc to /glade/derecho/scratch/mozhgana/archive/control/rof/hist/control.mizuroute.h.1985-12.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.mizuroute.h.1986-01.nc to /glade/derecho/scratch/mozhgana/archive/control/rof/hist/control.mizuroute.h.1986-01.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.mizuroute.h.1986-02.nc to /glade/derecho/scratch/mozhgana/archive/control/rof/hist/control.mizuroute.h.1986-02.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.mizuroute.h.1986-03.nc to /glade/derecho/scratch/mozhgana/archive/control/rof/hist/control.mizuroute.h.1986-03.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.mizuroute.h.1986-04.nc to /glade/derecho/scratch/mozhgana/archive/control/rof/hist/control.mizuroute.h.1986-04.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.mizuroute.h.1986-05.nc to /glade/derecho/scratch/mozhgana/archive/control/rof/hist/control.mizuroute.h.1986-05.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.mizuroute.h.1986-06.nc to /glade/derecho/scratch/mozhgana/archive/control/rof/hist/control.mizuroute.h.1986-06.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.mizuroute.h.1986-07.nc to /glade/derecho/scratch/mozhgana/archive/control/rof/hist/control.mizuroute.h.1986-07.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.mizuroute.h.1986-08.nc to /glade/derecho/scratch/mozhgana/archive/control/rof/hist/control.mizuroute.h.1986-08.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.mizuroute.h.1986-09.nc to /glade/derecho/scratch/mozhgana/archive/control/rof/hist/control.mizuroute.h.1986-09.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.mizuroute.h.1986-10.nc to /glade/derecho/scratch/mozhgana/archive/control/rof/hist/control.mizuroute.h.1986-10.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.mizuroute.h.1986-11.nc to /glade/derecho/scratch/mozhgana/archive/control/rof/hist/control.mizuroute.h.1986-11.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.mizuroute.h.1986-12.nc to /glade/derecho/scratch/mozhgana/archive/control/rof/hist/control.mizuroute.h.1986-12.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.mizuroute.h.1987-01.nc to /glade/derecho/scratch/mozhgana/archive/control/rof/hist/control.mizuroute.h.1987-01.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.mizuroute.h.1987-02.nc to /glade/derecho/scratch/mozhgana/archive/control/rof/hist/control.mizuroute.h.1987-02.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.mizuroute.h.1987-03.nc to /glade/derecho/scratch/mozhgana/archive/control/rof/hist/control.mizuroute.h.1987-03.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.mizuroute.h.1987-04.nc to /glade/derecho/scratch/mozhgana/archive/control/rof/hist/control.mizuroute.h.1987-04.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.mizuroute.h.1987-05.nc to /glade/derecho/scratch/mozhgana/archive/control/rof/hist/control.mizuroute.h.1987-05.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.mizuroute.h.1987-06.nc to /glade/derecho/scratch/mozhgana/archive/control/rof/hist/control.mizuroute.h.1987-06.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.mizuroute.h.1987-07.nc to /glade/derecho/scratch/mozhgana/archive/control/rof/hist/control.mizuroute.h.1987-07.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.mizuroute.h.1987-08.nc to /glade/derecho/scratch/mozhgana/archive/control/rof/hist/control.mizuroute.h.1987-08.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.mizuroute.h.1987-09.nc to /glade/derecho/scratch/mozhgana/archive/control/rof/hist/control.mizuroute.h.1987-09.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.mizuroute.h.1987-10.nc to /glade/derecho/scratch/mozhgana/archive/control/rof/hist/control.mizuroute.h.1987-10.nc 
+moving /glade/derecho/scratch/mozhgana/control/run/control.mizuroute.h.1987-11.nc to /glade/derecho/scratch/mozhgana/archive/control/rof/hist/control.mizuroute.h.1987-11.nc 
+copying /glade/derecho/scratch/mozhgana/control/run/control.mizuroute.h.1987-12.nc to /glade/derecho/scratch/mozhgana/archive/control/rof/hist/control.mizuroute.h.1987-12.nc 
+Archiving history files for drv (cpl)
+Archiving history files for dart (esp)
+st_archive completed
+resubmitting from st_archive, resubmit=1
+Submitting job 'case.run', resubmit=1
+submit_jobs case.run
+Could not resolve $CUPID_MEM_PER_TASK using a value of 10
+Submit job case.run
+Submitting job script qsub -q main -l walltime=08:00:00 -A P93300041 -l job_priority=regular -v ARGS_FOR_SCRIPT='--resubmit' /glade/work/mozhgana/ctsm_conus/cime/scripts/control/.case.run
+Submitted job id is 7049882.desched1
+Submit job case.st_archive
+Submitting job script qsub -q develop -l walltime=00:20:00 -A P93300041 -l job_priority=regular  -W depend=afterok:7049882.desched1 -v ARGS_FOR_SCRIPT='--resubmit' /glade/work/mozhgana/ctsm_conus/cime/scripts/control/case.st_archive
+Submitted job id is 7049883.desched1
+Submitted job case.run with id 7049882.desched1
+Submitted job case.st_archive with id 7049883.desched1

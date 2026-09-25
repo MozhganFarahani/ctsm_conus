@@ -1,0 +1,26 @@
+2026-09-15 16:44:09: ./create_newcase --case hillslope_eval --compset I2000Clm60SpMizGsNldas --driver nuopc --compiler intel --res nldas2_nldas2_rMERIT_mnldas2 --machine derecho --project P93300041 --run-unsupported
+ ---------------------------------------------------
+2026-09-15 16:44:09: Compset longname is 2000_DATM%NLDAS2_CLM60%SP_SICE_SOCN_MIZUROUTE_SGLC_SWAV_SESP
+ ---------------------------------------------------
+2026-09-15 16:44:09: Compset specification file is /glade/work/mozhgana/ctsm_conus/cime_config/config_compsets.xml
+ ---------------------------------------------------
+2026-09-15 16:44:09: Pes     specification file is /glade/work/mozhgana/ctsm_conus/cime_config/config_pes.xml
+ ---------------------------------------------------
+2026-09-15 16:44:09: Forcing is 1972-2004
+ ---------------------------------------------------
+2026-09-15 16:44:09: Using 1 coupler instances
+ ---------------------------------------------------
+2026-09-15 16:44:09: Component ATM is  Data driven ATM  NLDAS2 regional 0.125 degree data set over the U.S. (25-53N, 235-293E). WARNING: Garbage data will be produced for runs extending beyond this regional domain. 
+ ---------------------------------------------------
+2026-09-15 16:44:09: ATM_GRID is 0.125nldas2
+ ---------------------------------------------------
+2026-09-15 16:44:09: Component LND is clm6.0:Satellite phenology:
+ ---------------------------------------------------
+2026-09-15 16:44:09: LND_GRID is 0.125nldas2
+ ---------------------------------------------------
+2026-09-15 16:44:09: Component ROF is mizuRoute River Routing Model
+ ---------------------------------------------------
+2026-09-15 16:44:09: ROF_GRID is MERIT_CONUSmz
+ ---------------------------------------------------
+2026-09-15 16:44:09: ESP_GRID is None
+ ---------------------------------------------------

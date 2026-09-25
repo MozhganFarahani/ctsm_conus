@@ -1,0 +1,896 @@
+commit 7ba7fc225b57261ecaa31712bf3829df6dbfe23f
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec2433.hsn.de.hpc.ucar.edu>
+Date:   Tue Sep 22 09:04:33 2026 -0600
+
+    7558141.desched1
+
+ CaseStatus                         |   2 +
+ st_archive.hillslope_eval.o7558141 | 207 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 209 insertions(+)
+
+commit 206a143b178a20f8713cf34056bb35429ead8dc9
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec2433.hsn.de.hpc.ucar.edu>
+Date:   Tue Sep 22 09:01:38 2026 -0600
+
+    7558141.desched1
+
+ CaseStatus                         | 2 ++
+ env_run.xml                        | 2 +-
+ run.hillslope_eval.o7558140        | 4 ++++
+ st_archive.hillslope_eval.o7558141 | 1 +
+ 4 files changed, 8 insertions(+), 1 deletion(-)
+
+commit 99de3d71f268c6eb879bc06c80e331a408b30acd
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec1283.hsn.de.hpc.ucar.edu>
+Date:   Tue Sep 22 09:01:16 2026 -0600
+
+    Timing files created for run 7558140.desched1.260922-012901
+
+ CaseStatus                                                       |   2 +
+ timing/cesm.ESMF_Profile.summary.7558140.desched1.260922-012901  | 329 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ timing/cesm_timing.hillslope_eval.7558140.desched1.260922-012901 |  88 ++++++++++++++++++++
+ 3 files changed, 419 insertions(+)
+
+commit a2784b026cf4d44c7da254ef54e667b7a0dcb58a
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec1283.hsn.de.hpc.ucar.edu>
+Date:   Tue Sep 22 09:01:16 2026 -0600
+
+    7558140.desched1
+
+ CaseStatus | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit 2ff044e24b8d840f7a85054c3a39abbc2bf0b0ca
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec1283.hsn.de.hpc.ucar.edu>
+Date:   Tue Sep 22 09:01:16 2026 -0600
+
+    7558140.desched1
+
+ CaseStatus | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit 5cb4016ed17f3c42ce411b1e273c5ac5ec45213d
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec1283.hsn.de.hpc.ucar.edu>
+Date:   Tue Sep 22 01:29:06 2026 -0600
+
+    7558140.desched1
+
+ Buildconf/cplconf/nuopc.runconfig | 22 +++++++++++-----------
+ Buildconf/ctsm.input_data_list    | 26 +++++++++++++-------------
+ CaseDocs/nuopc.runconfig          | 22 +++++++++++-----------
+ CaseStatus                        |  2 ++
+ run.hillslope_eval.o7558140       | 42 ++++++++++++++++++++++++++++++++++++++++++
+ 5 files changed, 79 insertions(+), 35 deletions(-)
+
+commit 6055e74b2c504ce01d9a19824e7280b81706b4e1
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec1283.hsn.de.hpc.ucar.edu>
+Date:   Tue Sep 22 01:29:02 2026 -0600
+
+    7558140.desched1
+
+ CaseStatus                  | 2 ++
+ env_run.xml                 | 2 +-
+ run.hillslope_eval.o7558140 | 0
+ 3 files changed, 3 insertions(+), 1 deletion(-)
+
+commit 805d6914c9243e52d534268f1cecdf71e43ff8d1
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec2435.hsn.de.hpc.ucar.edu>
+Date:   Mon Sep 21 14:44:14 2026 -0600
+
+    case.run:7558140.desched1, case.st_archive:7558141.desched1
+
+ CaseStatus | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit 329a1706a888502cc0a5dd06a1d4da884f67ca73
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec2435.hsn.de.hpc.ucar.edu>
+Date:   Mon Sep 21 14:44:14 2026 -0600
+
+    case.run:7558140.desched1, case.st_archive:7558141.desched1
+
+ CaseStatus                         |  2 ++
+ env_run.xml                        |  2 +-
+ st_archive.hillslope_eval.o7552115 | 13 +++++++++++++
+ 3 files changed, 16 insertions(+), 1 deletion(-)
+
+commit 63e0baa5575b92ea67476d2c2a49d2de27bb8cdb
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec2435.hsn.de.hpc.ucar.edu>
+Date:   Mon Sep 21 14:44:14 2026 -0600
+
+    7552115.desched1
+
+ CaseStatus                         |   2 +
+ st_archive.hillslope_eval.o7552115 | 207 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 209 insertions(+)
+
+commit ad78a8214fef5de4dca29a313b9fc88bace5bd00
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec2435.hsn.de.hpc.ucar.edu>
+Date:   Mon Sep 21 14:41:34 2026 -0600
+
+    7552115.desched1
+
+ CaseStatus                         | 2 ++
+ env_run.xml                        | 2 +-
+ run.hillslope_eval.o7552114        | 4 ++++
+ st_archive.hillslope_eval.o7552115 | 1 +
+ 4 files changed, 8 insertions(+), 1 deletion(-)
+
+commit 00ad518a3272e673a2b5874157d76d9693876913
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec1448.hsn.de.hpc.ucar.edu>
+Date:   Mon Sep 21 14:41:20 2026 -0600
+
+    Timing files created for run 7552114.desched1.260921-071357
+
+ CaseStatus                                                       |   2 +
+ timing/cesm.ESMF_Profile.summary.7552114.desched1.260921-071357  | 328 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ timing/cesm_timing.hillslope_eval.7552114.desched1.260921-071357 |  88 ++++++++++++++++++++
+ 3 files changed, 418 insertions(+)
+
+commit 50b318a38bf9806febe45106f002cedf3a4905cb
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec1448.hsn.de.hpc.ucar.edu>
+Date:   Mon Sep 21 14:41:20 2026 -0600
+
+    7552114.desched1
+
+ CaseStatus | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit 39fc5251cecc835b870cec1d364f5d0a27ca4a7d
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec1448.hsn.de.hpc.ucar.edu>
+Date:   Mon Sep 21 14:41:20 2026 -0600
+
+    7552114.desched1
+
+ CaseStatus | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit d36a7028cfa5e25ea5d7faea5b1e7dedd74b60ef
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec1448.hsn.de.hpc.ucar.edu>
+Date:   Mon Sep 21 07:14:02 2026 -0600
+
+    7552114.desched1
+
+ Buildconf/cplconf/nuopc.runconfig | 22 +++++++++++-----------
+ Buildconf/ctsm.input_data_list    | 22 +++++++++++-----------
+ CaseDocs/nuopc.runconfig          | 22 +++++++++++-----------
+ CaseStatus                        |  2 ++
+ run.hillslope_eval.o7552114       | 42 ++++++++++++++++++++++++++++++++++++++++++
+ 5 files changed, 77 insertions(+), 33 deletions(-)
+
+commit 7df240f4ae33c91d97f3f1432581b97af43cd3b2
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec1448.hsn.de.hpc.ucar.edu>
+Date:   Mon Sep 21 07:13:57 2026 -0600
+
+    7552114.desched1
+
+ CaseStatus                  | 2 ++
+ env_run.xml                 | 2 +-
+ run.hillslope_eval.o7552114 | 0
+ 3 files changed, 3 insertions(+), 1 deletion(-)
+
+commit 4e950c4317f16a2f560851469d9205a0111ed809
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec2433.hsn.de.hpc.ucar.edu>
+Date:   Sun Sep 20 22:55:02 2026 -0600
+
+    case.run:7552114.desched1, case.st_archive:7552115.desched1
+
+ CaseStatus | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit 5426f9791f3443519e0d781e533256348ea54e13
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec2433.hsn.de.hpc.ucar.edu>
+Date:   Sun Sep 20 22:55:02 2026 -0600
+
+    case.run:7552114.desched1, case.st_archive:7552115.desched1
+
+ CaseStatus                         |  2 ++
+ env_run.xml                        |  2 +-
+ st_archive.hillslope_eval.o7546204 | 13 +++++++++++++
+ 3 files changed, 16 insertions(+), 1 deletion(-)
+
+commit 29ec49c023cce5972b81743c2f8493f7ce4bfb16
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec2433.hsn.de.hpc.ucar.edu>
+Date:   Sun Sep 20 22:55:01 2026 -0600
+
+    7546204.desched1
+
+ CaseStatus                         |   2 +
+ st_archive.hillslope_eval.o7546204 | 207 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 209 insertions(+)
+
+commit 9e72e7722246fe0a2e7a3767a81e371ce24424a6
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec2433.hsn.de.hpc.ucar.edu>
+Date:   Sun Sep 20 22:49:58 2026 -0600
+
+    7546204.desched1
+
+ CaseStatus                         | 2 ++
+ env_run.xml                        | 2 +-
+ run.hillslope_eval.o7546203        | 4 ++++
+ st_archive.hillslope_eval.o7546204 | 1 +
+ 4 files changed, 8 insertions(+), 1 deletion(-)
+
+commit d9e1d0f8893c2472ca5dc42ee163cc571d110780
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec1801.hsn.de.hpc.ucar.edu>
+Date:   Sun Sep 20 22:49:46 2026 -0600
+
+    Timing files created for run 7546203.desched1.260920-153800
+
+ CaseStatus                                                       |   2 +
+ timing/cesm.ESMF_Profile.summary.7546203.desched1.260920-153800  | 328 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ timing/cesm_timing.hillslope_eval.7546203.desched1.260920-153800 |  88 ++++++++++++++++++++
+ 3 files changed, 418 insertions(+)
+
+commit 7cc6d9b25ee086fec50898f9e09b8d1529c53dc8
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec1801.hsn.de.hpc.ucar.edu>
+Date:   Sun Sep 20 22:49:45 2026 -0600
+
+    7546203.desched1
+
+ CaseStatus | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit fe47336b34e5ba651d36c4dcd1d0817e8ca57600
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec1801.hsn.de.hpc.ucar.edu>
+Date:   Sun Sep 20 22:49:45 2026 -0600
+
+    7546203.desched1
+
+ CaseStatus | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit 54a28f537ecbb1e315c7445a39aa89f80cb245a7
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec1801.hsn.de.hpc.ucar.edu>
+Date:   Sun Sep 20 15:38:05 2026 -0600
+
+    7546203.desched1
+
+ Buildconf/cplconf/nuopc.runconfig | 22 +++++++++++-----------
+ Buildconf/ctsm.input_data_list    | 26 +++++++++++++-------------
+ CaseDocs/nuopc.runconfig          | 22 +++++++++++-----------
+ CaseStatus                        |  2 ++
+ run.hillslope_eval.o7546203       | 42 ++++++++++++++++++++++++++++++++++++++++++
+ 5 files changed, 79 insertions(+), 35 deletions(-)
+
+commit 1b5b80a6c3085dfcdf6dbe85c57b82d03f31c14f
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec1801.hsn.de.hpc.ucar.edu>
+Date:   Sun Sep 20 15:38:01 2026 -0600
+
+    7546203.desched1
+
+ CaseStatus                  | 2 ++
+ env_run.xml                 | 2 +-
+ run.hillslope_eval.o7546203 | 0
+ 3 files changed, 3 insertions(+), 1 deletion(-)
+
+commit e6562490ddd85d35f5b8e028e795ec75189a367f
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec2434.hsn.de.hpc.ucar.edu>
+Date:   Sun Sep 20 02:35:38 2026 -0600
+
+    case.run:7546203.desched1, case.st_archive:7546204.desched1
+
+ CaseStatus | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit 1ef717a7a66bc09df0683710b3b7a06f192bdeed
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec2434.hsn.de.hpc.ucar.edu>
+Date:   Sun Sep 20 02:35:38 2026 -0600
+
+    case.run:7546203.desched1, case.st_archive:7546204.desched1
+
+ CaseStatus                         |  2 ++
+ env_run.xml                        |  2 +-
+ st_archive.hillslope_eval.o7539089 | 13 +++++++++++++
+ 3 files changed, 16 insertions(+), 1 deletion(-)
+
+commit 0bf92f0dc59038279b297571179839fffad1e448
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec2434.hsn.de.hpc.ucar.edu>
+Date:   Sun Sep 20 02:35:38 2026 -0600
+
+    7539089.desched1
+
+ CaseStatus                         |   2 +
+ st_archive.hillslope_eval.o7539089 | 207 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 209 insertions(+)
+
+commit 2dc60dfb93d03761398ecb6d2e38b6a192a79569
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec2434.hsn.de.hpc.ucar.edu>
+Date:   Sun Sep 20 02:32:16 2026 -0600
+
+    7539089.desched1
+
+ CaseStatus                         | 2 ++
+ env_run.xml                        | 2 +-
+ run.hillslope_eval.o7539088        | 4 ++++
+ st_archive.hillslope_eval.o7539089 | 1 +
+ 4 files changed, 8 insertions(+), 1 deletion(-)
+
+commit cc0757ab663868ac48f02a99dc1a90b8ab2768a2
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec2307.hsn.de.hpc.ucar.edu>
+Date:   Sun Sep 20 02:32:00 2026 -0600
+
+    Timing files created for run 7539088.desched1.260919-191742
+
+ CaseStatus                                                       |   2 +
+ timing/cesm.ESMF_Profile.summary.7539088.desched1.260919-191742  | 328 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ timing/cesm_timing.hillslope_eval.7539088.desched1.260919-191742 |  88 ++++++++++++++++++++
+ 3 files changed, 418 insertions(+)
+
+commit f354bb714bf4dd968562c6a42796c47bb6e032c1
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec2307.hsn.de.hpc.ucar.edu>
+Date:   Sun Sep 20 02:31:59 2026 -0600
+
+    7539088.desched1
+
+ CaseStatus | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit 4b0d12df310197370ec67751a97316ac836a1661
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec2307.hsn.de.hpc.ucar.edu>
+Date:   Sun Sep 20 02:31:59 2026 -0600
+
+    7539088.desched1
+
+ CaseStatus | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit 82e15586a201463d3909ee75f0924bcf2b7d0414
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec2307.hsn.de.hpc.ucar.edu>
+Date:   Sat Sep 19 19:17:47 2026 -0600
+
+    7539088.desched1
+
+ Buildconf/cplconf/nuopc.runconfig | 22 +++++++++++-----------
+ Buildconf/ctsm.input_data_list    | 28 ++++++++++++++--------------
+ CaseDocs/nuopc.runconfig          | 22 +++++++++++-----------
+ CaseStatus                        |  2 ++
+ run.hillslope_eval.o7539088       | 42 ++++++++++++++++++++++++++++++++++++++++++
+ 5 files changed, 80 insertions(+), 36 deletions(-)
+
+commit 38e617c9018d5f0aaec870fbbdfcde4e99b4df22
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec2307.hsn.de.hpc.ucar.edu>
+Date:   Sat Sep 19 19:17:42 2026 -0600
+
+    7539088.desched1
+
+ CaseStatus                  | 2 ++
+ env_run.xml                 | 2 +-
+ run.hillslope_eval.o7539088 | 0
+ 3 files changed, 3 insertions(+), 1 deletion(-)
+
+commit a5dffe7f421196e83dd96b2bb48d2859faccad80
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec2434.hsn.de.hpc.ucar.edu>
+Date:   Sat Sep 19 10:42:42 2026 -0600
+
+    case.run:7539088.desched1, case.st_archive:7539089.desched1
+
+ CaseStatus | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit c30b4ce39357f97ba38da7f1d9ec04174d0c6623
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec2434.hsn.de.hpc.ucar.edu>
+Date:   Sat Sep 19 10:42:42 2026 -0600
+
+    case.run:7539088.desched1, case.st_archive:7539089.desched1
+
+ CaseStatus                         |  2 ++
+ env_run.xml                        |  2 +-
+ st_archive.hillslope_eval.o7526264 | 13 +++++++++++++
+ 3 files changed, 16 insertions(+), 1 deletion(-)
+
+commit 2bcca1dee714dae992e16d1f26af62ddfd856754
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec2434.hsn.de.hpc.ucar.edu>
+Date:   Sat Sep 19 10:42:41 2026 -0600
+
+    7526264.desched1
+
+ CaseStatus                         |   2 +
+ st_archive.hillslope_eval.o7526264 | 207 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 209 insertions(+)
+
+commit a8a31b3bb58a6abd6d2516c201a16d6c22ecf563
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec2434.hsn.de.hpc.ucar.edu>
+Date:   Sat Sep 19 10:40:02 2026 -0600
+
+    7526264.desched1
+
+ CaseStatus                         | 2 ++
+ env_run.xml                        | 2 +-
+ run.hillslope_eval.o7526263        | 4 ++++
+ st_archive.hillslope_eval.o7526264 | 1 +
+ 4 files changed, 8 insertions(+), 1 deletion(-)
+
+commit 4ec73d5007bee21433580e356af02d6d2512864c
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec2327.hsn.de.hpc.ucar.edu>
+Date:   Sat Sep 19 10:39:45 2026 -0600
+
+    Timing files created for run 7526263.desched1.260919-032534
+
+ CaseStatus                                                       |   2 +
+ timing/cesm.ESMF_Profile.summary.7526263.desched1.260919-032534  | 328 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ timing/cesm_timing.hillslope_eval.7526263.desched1.260919-032534 |  88 ++++++++++++++++++++
+ 3 files changed, 418 insertions(+)
+
+commit 540a5be59f6fda64962433cd35adce35e324512c
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec2327.hsn.de.hpc.ucar.edu>
+Date:   Sat Sep 19 10:39:45 2026 -0600
+
+    7526263.desched1
+
+ CaseStatus | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit 42b55d85cdc41bf7ce43ea8544551b782822b6ce
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec2327.hsn.de.hpc.ucar.edu>
+Date:   Sat Sep 19 10:39:45 2026 -0600
+
+    7526263.desched1
+
+ CaseStatus | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit 36491483aea113fafc10317e056b3b96428315ee
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec2327.hsn.de.hpc.ucar.edu>
+Date:   Sat Sep 19 03:25:39 2026 -0600
+
+    7526263.desched1
+
+ Buildconf/cplconf/nuopc.runconfig | 22 +++++++++++-----------
+ Buildconf/ctsm.input_data_list    | 26 +++++++++++++-------------
+ CaseDocs/nuopc.runconfig          | 22 +++++++++++-----------
+ CaseStatus                        |  2 ++
+ run.hillslope_eval.o7526263       | 42 ++++++++++++++++++++++++++++++++++++++++++
+ 5 files changed, 79 insertions(+), 35 deletions(-)
+
+commit 661ada3f5ec071cd21e9d0477e0201a988d0b2d1
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec2327.hsn.de.hpc.ucar.edu>
+Date:   Sat Sep 19 03:25:34 2026 -0600
+
+    7526263.desched1
+
+ CaseStatus                  | 2 ++
+ env_run.xml                 | 2 +-
+ run.hillslope_eval.o7526263 | 0
+ 3 files changed, 3 insertions(+), 1 deletion(-)
+
+commit 29bd3e5f6fbeb1206e06f91d551ca96c06349608
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec2443.hsn.de.hpc.ucar.edu>
+Date:   Fri Sep 18 11:12:22 2026 -0600
+
+    case.run:7526263.desched1, case.st_archive:7526264.desched1
+
+ CaseStatus | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit 90bb2037b79ab8a0521492a9c10f3938fbd5e971
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec2443.hsn.de.hpc.ucar.edu>
+Date:   Fri Sep 18 11:12:22 2026 -0600
+
+    case.run:7526263.desched1, case.st_archive:7526264.desched1
+
+ CaseStatus                         |  2 ++
+ env_run.xml                        |  2 +-
+ st_archive.hillslope_eval.o7504981 | 13 +++++++++++++
+ 3 files changed, 16 insertions(+), 1 deletion(-)
+
+commit 485e0cfc637e905c46cf708b5a24a3ad51ac3275
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec2443.hsn.de.hpc.ucar.edu>
+Date:   Fri Sep 18 11:12:21 2026 -0600
+
+    7504981.desched1
+
+ CaseStatus                         |   2 +
+ st_archive.hillslope_eval.o7504981 | 207 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 209 insertions(+)
+
+commit 2d19ac9164a5fbc0ec2a2ea389e974c3d7087c9e
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec2443.hsn.de.hpc.ucar.edu>
+Date:   Fri Sep 18 11:09:51 2026 -0600
+
+    7504981.desched1
+
+ CaseStatus                         | 2 ++
+ env_run.xml                        | 2 +-
+ run.hillslope_eval.o7504980        | 4 ++++
+ st_archive.hillslope_eval.o7504981 | 1 +
+ 4 files changed, 8 insertions(+), 1 deletion(-)
+
+commit 0bdea1b8d2e79917d15b10fb6fdac9f02bad0ef2
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec0301.hsn.de.hpc.ucar.edu>
+Date:   Fri Sep 18 11:09:37 2026 -0600
+
+    Timing files created for run 7504980.desched1.260918-035354
+
+ CaseStatus                                                       |   2 +
+ timing/cesm.ESMF_Profile.summary.7504980.desched1.260918-035354  | 328 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ timing/cesm_timing.hillslope_eval.7504980.desched1.260918-035354 |  88 ++++++++++++++++++++
+ 3 files changed, 418 insertions(+)
+
+commit 72621c06c7fe54774dc787d53b5d5042b95bb77f
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec0301.hsn.de.hpc.ucar.edu>
+Date:   Fri Sep 18 11:09:36 2026 -0600
+
+    7504980.desched1
+
+ CaseStatus | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit 4accd42fb3207e77487b138f52e502a07053eef5
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec0301.hsn.de.hpc.ucar.edu>
+Date:   Fri Sep 18 11:09:36 2026 -0600
+
+    7504980.desched1
+
+ CaseStatus | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit 1347bef5049832c01be5e429da9146dafaec258d
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec0301.hsn.de.hpc.ucar.edu>
+Date:   Fri Sep 18 03:53:58 2026 -0600
+
+    7504980.desched1
+
+ Buildconf/cplconf/nuopc.runconfig         | 24 ++++++++++++------------
+ Buildconf/ctsm.input_data_list            | 24 ++++++++++++------------
+ Buildconf/mizurouteconf/mizuRoute.control |  2 +-
+ CaseDocs/mizuRoute.control                |  2 +-
+ CaseDocs/nuopc.runconfig                  | 24 ++++++++++++------------
+ CaseStatus                                |  2 ++
+ run.hillslope_eval.o7504980               | 42 ++++++++++++++++++++++++++++++++++++++++++
+ 7 files changed, 82 insertions(+), 38 deletions(-)
+
+commit 2920509bc3b1d3371fdce05a6d61c0814562fa90
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec0301.hsn.de.hpc.ucar.edu>
+Date:   Fri Sep 18 03:53:54 2026 -0600
+
+    7504980.desched1
+
+ CaseStatus                  | 2 ++
+ env_run.xml                 | 2 +-
+ run.hillslope_eval.o7504980 | 0
+ 3 files changed, 3 insertions(+), 1 deletion(-)
+
+commit 1e91186a0f1a5804418b0be1d345f891bd253cbc
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec2433.hsn.de.hpc.ucar.edu>
+Date:   Thu Sep 17 09:26:47 2026 -0600
+
+    case.run:7504980.desched1, case.st_archive:7504981.desched1
+
+ CaseStatus | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit 56c4c8504f98df2b1ca656fa627a587fdbe3e27a
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec2433.hsn.de.hpc.ucar.edu>
+Date:   Thu Sep 17 09:26:47 2026 -0600
+
+    case.run:7504980.desched1, case.st_archive:7504981.desched1
+
+ CaseStatus                         |  2 ++
+ env_run.xml                        |  4 ++--
+ st_archive.hillslope_eval.o7490157 | 13 +++++++++++++
+ 3 files changed, 17 insertions(+), 2 deletions(-)
+
+commit 72d391de70255f749f361afa612617c326715e9e
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec2433.hsn.de.hpc.ucar.edu>
+Date:   Thu Sep 17 09:26:47 2026 -0600
+
+    7490157.desched1
+
+ CaseStatus                         |   2 ++
+ st_archive.hillslope_eval.o7490157 | 184 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 186 insertions(+)
+
+commit 9cb2d6f7cba79bbc2df333650b6656e845e2295e
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec2433.hsn.de.hpc.ucar.edu>
+Date:   Thu Sep 17 09:23:58 2026 -0600
+
+    7490157.desched1
+
+ CaseStatus                         | 2 ++
+ env_run.xml                        | 2 +-
+ run.hillslope_eval.o7490156        | 4 ++++
+ st_archive.hillslope_eval.o7490157 | 1 +
+ 4 files changed, 8 insertions(+), 1 deletion(-)
+
+commit af5e52bdd6b644ae38c0ac3171846fcdfff141cc
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec1398.hsn.de.hpc.ucar.edu>
+Date:   Thu Sep 17 09:23:42 2026 -0600
+
+    Timing files created for run 7490156.desched1.260917-020801
+
+ CaseStatus                                                       |   2 +
+ timing/cesm.ESMF_Profile.summary.7490156.desched1.260917-020801  | 327 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ timing/cesm_timing.hillslope_eval.7490156.desched1.260917-020801 |  88 ++++++++++++++++++++
+ 3 files changed, 417 insertions(+)
+
+commit 68b0bd1c09baf4fe61dad69ba12eb29c28005003
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec1398.hsn.de.hpc.ucar.edu>
+Date:   Thu Sep 17 09:23:42 2026 -0600
+
+    7490156.desched1
+
+ CaseStatus | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit 6dd99e629f023f3a38b982386a313801d701b67f
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec1398.hsn.de.hpc.ucar.edu>
+Date:   Thu Sep 17 09:23:42 2026 -0600
+
+    7490156.desched1
+
+ CaseStatus | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit 20d877ea3cd6649f9b986e50f4a22c8b402a5f6f
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec1398.hsn.de.hpc.ucar.edu>
+Date:   Thu Sep 17 02:08:07 2026 -0600
+
+    7490156.desched1
+
+ Buildconf/cplconf/nuopc.runconfig | 20 ++++++++++----------
+ Buildconf/ctsm.input_data_list    | 24 ++++++++++++------------
+ CaseDocs/nuopc.runconfig          | 20 ++++++++++----------
+ CaseStatus                        |  2 ++
+ run.hillslope_eval.o7490156       | 42 ++++++++++++++++++++++++++++++++++++++++++
+ 5 files changed, 76 insertions(+), 32 deletions(-)
+
+commit 09a66b27a1f7bd7e19e46fcc04850115fa0368b1
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec1398.hsn.de.hpc.ucar.edu>
+Date:   Thu Sep 17 02:08:02 2026 -0600
+
+    7490156.desched1
+
+ CaseStatus                  | 2 ++
+ env_run.xml                 | 2 +-
+ run.hillslope_eval.o7490156 | 0
+ 3 files changed, 3 insertions(+), 1 deletion(-)
+
+commit 6412f5423fef2c44b92e4c581dc036b75495b2b1
+Author: Mozhgan Askarzadehfarahani <mozhgana@derecho5.hsn.de.hpc.ucar.edu>
+Date:   Wed Sep 16 09:44:09 2026 -0600
+
+    case.run:7490156.desched1, case.st_archive:7490157.desched1
+
+ CaseStatus | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit d20e8d5bd0695a428008d407782f4c623a02168e
+Author: Mozhgan Askarzadehfarahani <mozhgana@derecho5.hsn.de.hpc.ucar.edu>
+Date:   Wed Sep 16 09:44:09 2026 -0600
+
+    case.run:7490156.desched1, case.st_archive:7490157.desched1
+
+ Buildconf/cplconf/nuopc.runconfig | 20 ++++++++++----------
+ Buildconf/ctsm.input_data_list    | 24 ++++++++++++------------
+ CaseDocs/nuopc.runconfig          | 20 ++++++++++----------
+ CaseStatus                        |  2 ++
+ replay.sh                         |  2 ++
+ 5 files changed, 36 insertions(+), 32 deletions(-)
+
+commit c044828a8a1ceae40f715661203adbfe5a308910
+Author: Mozhgan Askarzadehfarahani <mozhgana@derecho5.hsn.de.hpc.ucar.edu>
+Date:   Wed Sep 16 09:43:28 2026 -0600
+
+     no message provided
+
+ Buildconf/cplconf/nuopc.runconfig |  22 +++----
+ Buildconf/ctsm.input_data_list    |  26 ++++----
+ CaseDocs/nuopc.runconfig          |  22 +++----
+ CaseStatus                        |   2 +
+ LockedFiles/env_build.xml         | 353 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ Macros.make                       |  39 ++++++++++++
+ env_build.xml                     |   2 +-
+ 7 files changed, 430 insertions(+), 36 deletions(-)
+
+commit 1442867e3b4ba6721891940cfe69c08e70eafe94
+Author: Mozhgan Askarzadehfarahani <mozhgana@derecho5.hsn.de.hpc.ucar.edu>
+Date:   Wed Sep 16 09:42:58 2026 -0600
+
+     no message provided
+
+ CaseStatus                   |   6 ++
+ LockedFiles/env_build.xml    | 353 --------------------------------------------------------------------------------------------------------------
+ LockedFiles/env_mach_pes.xml |   4 +-
+ Macros.make                  |  39 -------------
+ env_build.xml                |   2 +-
+ env_mach_pes.xml             |   2 +-
+ replay.sh                    |   4 ++
+ software_environment.txt     |  45 ++++++--------
+ 8 files changed, 32 insertions(+), 423 deletions(-)
+
+commit 5dc35ad36f688f7c9a65cd167a980f89312dd5d7
+Author: Mozhgan Askarzadehfarahani <mozhgana@derecho5.hsn.de.hpc.ucar.edu>
+Date:   Wed Sep 16 09:41:19 2026 -0600
+
+    <command> ./xmlchange NTASKS_ROF=-14  </command>
+
+ CaseStatus                  | 2 ++
+ env_mach_pes.xml            | 2 +-
+ replay.sh                   | 2 ++
+ run.hillslope_eval.o7479415 | 2 ++
+ 4 files changed, 7 insertions(+), 1 deletion(-)
+
+commit 65c7f67457c88fa59ad2ee4b2f839a3359b3b605
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec0748.hsn.de.hpc.ucar.edu>
+Date:   Wed Sep 16 05:10:17 2026 -0600
+
+    ERROR: Model did not complete - see /glade/derecho/scratch/mozhgana/hillslope_eval/run/med.log.7479415.desched1.260916-050931
+
+ CaseStatus | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+commit f2e9627f0e50ec6e4fa74e50854431e8d56f26b9
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec0748.hsn.de.hpc.ucar.edu>
+Date:   Wed Sep 16 05:10:16 2026 -0600
+
+    7479415.desched1
+
+ CaseStatus | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit 5829dc597ff8ec5d15492877af47b07cfb8a4e20
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec0748.hsn.de.hpc.ucar.edu>
+Date:   Wed Sep 16 05:09:35 2026 -0600
+
+    7479415.desched1
+
+ Buildconf/cplconf/nuopc.runconfig | 20 ++++++++++----------
+ Buildconf/ctsm.input_data_list    | 24 ++++++++++++------------
+ CaseDocs/nuopc.runconfig          | 20 ++++++++++----------
+ CaseStatus                        |  2 ++
+ run.hillslope_eval.o7479415       | 42 ++++++++++++++++++++++++++++++++++++++++++
+ 5 files changed, 76 insertions(+), 32 deletions(-)
+
+commit eabf5354106694495cff6be353d60be6c500ee2c
+Author: Mozhgan Askarzadehfarahani <mozhgana@dec0748.hsn.de.hpc.ucar.edu>
+Date:   Wed Sep 16 05:09:31 2026 -0600
+
+    7479415.desched1
+
+ CaseStatus                  | 2 ++
+ env_run.xml                 | 2 +-
+ run.hillslope_eval.o7479415 | 0
+ 3 files changed, 3 insertions(+), 1 deletion(-)
+
+commit 6cb8d2e62716be9960aa6238084935bfde18e3aa
+Author: Mozhgan Askarzadehfarahani <mozhgana@derecho5.hsn.de.hpc.ucar.edu>
+Date:   Tue Sep 15 17:28:38 2026 -0600
+
+    case.run:7479415.desched1, case.st_archive:7479416.desched1
+
+ CaseStatus | 2 ++
+ 1 file changed, 2 insertions(+)
+
+commit 56acf3da8453d7e4031020bb20550df582cd1f81
+Author: Mozhgan Askarzadehfarahani <mozhgana@derecho5.hsn.de.hpc.ucar.edu>
+Date:   Tue Sep 15 17:28:37 2026 -0600
+
+    case.run:7479415.desched1, case.st_archive:7479416.desched1
+
+ Buildconf/cplconf/nuopc.runconfig | 20 ++++++++++----------
+ Buildconf/ctsm.input_data_list    | 16 ++++++++--------
+ CaseDocs/nuopc.runconfig          | 20 ++++++++++----------
+ CaseStatus                        |  2 ++
+ replay.sh                         |  2 ++
+ 5 files changed, 32 insertions(+), 28 deletions(-)
+
+commit 4ee7a3e77a8bc09c41aa23b47050a62e1f40b3e3
+Author: Mozhgan Askarzadehfarahani <mozhgana@derecho5.hsn.de.hpc.ucar.edu>
+Date:   Tue Sep 15 17:26:05 2026 -0600
+
+     no message provided
+
+ Buildconf/clmconf/config_cache.xml        |    6 +
+ Buildconf/clmconf/drv_flds_in             |   39 +++
+ Buildconf/clmconf/lnd_in                  |  319 ++++++++++++++++++++
+ Buildconf/clmconf/namelist                |   44 +++
+ Buildconf/cpl.input_data_list             |    6 +
+ Buildconf/cplconf/drv_in                  |   23 ++
+ Buildconf/cplconf/namelist_infile         |    3 +
+ Buildconf/cplconf/nuopc.runconfig         |  458 ++++++++++++++++++++++++++++
+ Buildconf/ctsm.input_data_list            |   18 ++
+ Buildconf/datm.input_data_list            | 1413 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ Buildconf/datmconf/datm.streams.xml       | 1576 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ Buildconf/datmconf/datm_in                |   27 ++
+ Buildconf/datmconf/drv_flds_in            |    3 +
+ Buildconf/datmconf/namelist_infile        |    3 +
+ Buildconf/mizuroute.input_data_list       |    2 +
+ Buildconf/mizurouteconf/control_infile    |    3 +
+ Buildconf/mizurouteconf/mizuRoute.control |   94 ++++++
+ Buildconf/mizurouteconf/mizuRoute_in      |   12 +
+ CaseDocs/datm.streams.xml                 | 1576 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ CaseDocs/datm_in                          |   27 ++
+ CaseDocs/drv_flds_in                      |   36 +++
+ CaseDocs/drv_in                           |   23 ++
+ CaseDocs/lnd_in                           |  319 ++++++++++++++++++++
+ CaseDocs/mizuRoute.control                |   94 ++++++
+ CaseDocs/mizuRoute_in                     |   12 +
+ CaseDocs/nuopc.runconfig                  |  458 ++++++++++++++++++++++++++++
+ CaseDocs/nuopc.runseq                     |   22 ++
+ CaseStatus                                |    2 +
+ LockedFiles/env_build.xml                 |  353 ++++++++++++++++++++++
+ Macros.make                               |   39 +++
+ env_build.xml                             |    6 +-
+ env_run.xml                               |    2 +-
+ user_nl_mizuroute_control                 |   14 +
+ 33 files changed, 7028 insertions(+), 4 deletions(-)
+
+commit 642afac70a36a5347bab69fd8a03621cdea5473a
+Author: Mozhgan Askarzadehfarahani <mozhgana@derecho5.hsn.de.hpc.ucar.edu>
+Date:   Tue Sep 15 17:21:21 2026 -0600
+
+     no message provided
+
+ .ipynb_checkpoints/user_nl_clm-checkpoint | 39 +++++++++++++++++++++++++++++++++++++++
+ .ipynb_checkpoints/user_nl_cpl-checkpoint | 19 +++++++++++++++++++
+ CaseStatus                                |  2 ++
+ replay.sh                                 |  2 ++
+ user_nl_clm                               | 19 +++++++++++++++++++
+ 5 files changed, 81 insertions(+)
+
+commit 3964766ea6b0c3c565c6d43d327837131383eefb
+Author: Mozhgan Askarzadehfarahani <mozhgana@derecho5.hsn.de.hpc.ucar.edu>
+Date:   Tue Sep 15 16:44:19 2026 -0600
+
+    local git repository created
+
+ .case.run                        |   74 ++++++
+ .env_mach_specific.csh           |   13 ++
+ .env_mach_specific.sh            |   13 ++
+ .gitignore                       |   81 +++++++
+ CaseStatus                       |   44 ++++
+ Depends.intel                    |   72 ++++++
+ LockedFiles/env_batch.xml        |   57 +++++
+ LockedFiles/env_case.xml         |  395 ++++++++++++++++++++++++++++++++
+ LockedFiles/env_mach_pes.xml     |  191 ++++++++++++++++
+ Macros.cmake                     |   38 ++++
+ README.case                      |   26 +++
+ SourceMods/src.cdeps/README      |   14 ++
+ SourceMods/src.clm/README        |    9 +
+ SourceMods/src.datm/README       |    9 +
+ SourceMods/src.drv/README        |    9 +
+ SourceMods/src.mizuroute/README  |    9 +
+ SourceMods/src.share/README      |    9 +
+ Tools/Makefile                   |    1 +
+ Tools/check_lockedfiles          |    1 +
+ Tools/getTiming                  |    1 +
+ Tools/get_standard_makefile_args |    1 +
+ Tools/mkDepends                  |    1 +
+ Tools/mkSrcfiles                 |    1 +
+ Tools/save_provenance            |    1 +
+ archive_metadata                 |    1 +
+ case.build                       |    1 +
+ case.cmpgen_namelists            |    1 +
+ case.cupid                       |   15 ++
+ case.qstatus                     |    1 +
+ case.setup                       |    1 +
+ case.submit                      |    1 +
+ check_case                       |    1 +
+ check_input_data                 |    1 +
+ cmake_macros/CMakeLists.txt      |    3 +
+ cmake_macros/CNL.cmake           |   14 ++
+ cmake_macros/derecho.cmake       |   22 ++
+ cmake_macros/intel.cmake         |   37 +++
+ cmake_macros/intel_derecho.cmake |   40 ++++
+ cmake_macros/universal.cmake     |   18 ++
+ env_archive.xml                  |  121 ++++++++++
+ env_batch.xml                    |   57 +++++
+ env_build.xml                    |  353 +++++++++++++++++++++++++++++
+ env_case.xml                     |  395 ++++++++++++++++++++++++++++++++
+ env_mach_pes.xml                 |  191 ++++++++++++++++
+ env_mach_specific.xml            |  111 +++++++++
+ env_run.xml                      | 1306 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ env_workflow.xml                 |  169 ++++++++++++++
+ pelayout                         |    1 +
+ preview_namelists                |    1 +
+ preview_run                      |    1 +
+ replay.sh                        |   52 +++++
+ software_environment.txt         |  459 +++++++++++++++++++++++++++++++++++++
+ user_nl_clm                      |   20 ++
+ user_nl_cpl                      |   19 ++
+ user_nl_datm                     |   13 ++
+ user_nl_datm_streams             |   33 +++
+ user_nl_mizuroute                |    8 +
+ xmlchange                        |    1 +
+ xmlquery                         |    1 +
+ 59 files changed, 4539 insertions(+)
