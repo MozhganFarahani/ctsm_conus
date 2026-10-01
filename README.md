@@ -145,8 +145,7 @@ Every GLADE path (model output, observations, routing network, CESM input data, 
 
 Every script writes under the output root, `paths.OUTPUT_ROOT` (`/glade/work/mozhgana/ctsm_conus_output/`), by default: `qc/<config>/`, `spinup/<case>/`, `streamflow/`, `climatology/`, `dashboard/` (and its weight cache), `animation/`, `case_inputs.csv`. `--outdir` overrides it (`--csv` for `list_case_inputs.py`). Scripts that read one configuration take `--config` (archive folder name, default `control`); the spinup checks take `--case` (default `hillslope_on`). Every script prints its inputs, outputs and usage with `--help`.
 
-| File | Purpose |
-|---|---|
+
 | File | Purpose | Usage (from the file's folder) |
 |---|---|---|
 | `config/paths.py` | every GLADE path used by the analysis code | imported |
