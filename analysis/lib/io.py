@@ -119,11 +119,20 @@ def bulk_extract(da, ids_present, wanted_ids, resample=None, shift=0):
     (obs calendar is standard, so pd.to_datetime is fine there). shift moves the
     index by whole months."""
     dim = "seg" if "seg" in da.dims else "site"
-    valid = [i for i in wanted_ids if i in ids_present]
+    # position of each id (first occurrence, as list.index); a dict avoids
+    # scanning the 227k-reach list once per gauge
+    pos = {}
+    for k, i in enumerate(ids_present):
+        pos.setdefault(i, k)
+    valid = [i for i in wanted_ids if i in pos]
     if not valid:
         return pd.DataFrame()
-    sub = da.sel({dim: valid}).compute() if dim == "site" else \
-          da.isel({dim: [ids_present.index(i) for i in valid]}).compute()
+    # The obs file stores flow(time, site) contiguously: selecting a list of
+    # sites from disk reads them one by one (~1.5 s per site, ~1 h for all
+    # gauges). Loading the time slice first (~1 s, 0.26 GB) and selecting in
+    # memory gives the same values.
+    sub = da.load().sel({dim: valid}) if dim == "site" else \
+          da.isel({dim: [pos[i] for i in valid]}).compute()
     tv = sub["time"].values
     if resample:
         df = pd.DataFrame(sub.values, index=pd.to_datetime(tv),
