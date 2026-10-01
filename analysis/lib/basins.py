@@ -41,7 +41,7 @@ import numpy as np
 import scipy.sparse as sp
 import xarray as xr
 
-sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "analysis", "config"))
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "config"))
 import paths  # analysis/config/paths.py
 
 # Each can be overridden with an environment variable of the same name.

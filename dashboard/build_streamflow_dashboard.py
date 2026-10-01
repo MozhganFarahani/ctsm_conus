@@ -64,8 +64,8 @@ import pandas as pd
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "analysis", "config"))
 import paths  # analysis/config/paths.py
-
-import upstream_basin as ub
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "analysis"))
+from lib import basins as ub  # analysis/lib/basins.py
 from dashboard_template import TEMPLATE
 
 warnings.filterwarnings("ignore", category=FutureWarning, module="xarray")
@@ -206,7 +206,7 @@ def main():
     ap.add_argument("--out-name", default=None)
     ap.add_argument("--vars", default=None,
                     help="Comma-separated h0 fields to average, or 'all'. "
-                         "Default: upstream_basin.DEFAULT_VARS")
+                         "Default: lib/basins.py DEFAULT_VARS")
     ap.add_argument("--spinup-years", type=int, default=3,
                     help="Years shaded at the start of the time series as a "
                          "reminder that configs start from different "

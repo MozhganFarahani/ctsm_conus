@@ -4,7 +4,7 @@ Scripts import this module with
     sys.path.insert(0, <path to analysis/config>)
     import paths
 
-Strings are kept exactly as the original scripts had them: upstream_basin.py
+Strings are kept exactly as the original scripts had them: lib/basins.py
 hashes NTOPO and WEIGHTS into its cache file names.
 """
 
@@ -55,4 +55,4 @@ OUTPUT_ROOT = "/glade/work/mozhgana/ctsm_conus_output"
 CLIM_OUT = f"{OUTPUT_ROOT}/climatology/maps"
 CLIM_CACHE = f"{OUTPUT_ROOT}/climatology/ctsm_monthly_climatology.nc"
 DASHBOARD_OUT = f"{OUTPUT_ROOT}/dashboard"
-UPSTREAM_CACHE = f"{OUTPUT_ROOT}/dashboard/cache"    # upstream_basin.py weight matrices
+UPSTREAM_CACHE = f"{OUTPUT_ROOT}/dashboard/cache"    # lib/basins.py weight matrices
