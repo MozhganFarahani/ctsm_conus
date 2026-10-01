@@ -18,6 +18,7 @@ Examples
     python ctsm_climatology_maps.py                       # build cache, all figures
     python ctsm_climatology_maps.py --monthly             # maps only, reuse cache
     python ctsm_climatology_maps.py --rebuild --vars QRUNOFF TSA H2OSNO
+--hist-dir, --outdir and --cache override the input folder, figure folder and cache.
 """
 
 import argparse
@@ -510,6 +511,12 @@ def main():
                         "stable across runs), 'pct' the robust 2-98th percentile, "
                         "'minmax' the actual data range. The log/lin/div scale type "
                         "is unaffected.")
+    p.add_argument("--hist-dir", default=DEFAULT_PATHS["ctsm_hist_dir"],
+                   help="h0a folder (default: %(default)s)")
+    p.add_argument("--outdir", default=DEFAULT_PATHS["out_dir"],
+                   help="figure folder (default: %(default)s)")
+    p.add_argument("--cache", default=DEFAULT_PATHS["cache_nc"],
+                   help="climatology cache file (default: %(default)s)")
     args = p.parse_args()
 
     LIMITS = args.limits
@@ -518,12 +525,12 @@ def main():
         args.monthly = args.seasonal = args.summary = True
 
     fields = load_fields(DEFAULT_PATHS["fields_csv"])
-    cache = DEFAULT_PATHS["cache_nc"]
-    out_dir = DEFAULT_PATHS["out_dir"]
+    cache = args.cache
+    out_dir = args.outdir
     os.makedirs(out_dir, exist_ok=True)
 
     if args.rebuild or not os.path.exists(cache):
-        build_cache(DEFAULT_PATHS["ctsm_hist_dir"], fields, cache, args.vars)
+        build_cache(args.hist_dir, fields, cache, args.vars)
     else:
         print(f"stage 1: reusing {cache} (--rebuild to recompute)")
 
@@ -534,7 +541,7 @@ def main():
     if args.seasonal:
         make_maps(clim, fields, out_dir, "seasonal", want)
     if args.summary:
-        make_summary(clim, fields, DEFAULT_PATHS["ctsm_hist_dir"], out_dir)
+        make_summary(clim, fields, args.hist_dir, out_dir)
     clim.close()
 
 
