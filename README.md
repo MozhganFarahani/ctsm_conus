@@ -116,7 +116,7 @@ Case files contain absolute GLADE paths. Symlinks such as `xmlchange` and `case.
 
 Run everything with the `npl-2026a` conda environment on Casper (`module load conda && conda activate npl-2026a`). Light checks can run on a login node; full builds and all-gauge runs go to PBS (`-q casper -A P93300041`; from a Derecho login node, `qsub -q casper@casper-pbs`).
 
-Every GLADE path (model output, observations, routing network, CESM input data, output folder) is defined once in `analysis/config/paths.py`. Scripts, notebooks and the dashboard import it; edit paths there, nowhere else. Notebooks expect to be run from their own folder.
+Every GLADE path (model output, observations, routing network, CESM input data, output folder) is defined once in `analysis/config/paths.py`. Scripts, notebooks and the dashboard import it; edit paths there, nowhere else. The one notebook (animation) expects to be run from its own folder.
 
 Outputs that are not part of the repository (climatology maps and cache, the dashboard build and its weight cache, `case_inputs.csv`) are written to `/glade/work/mozhgana/ctsm_conus_output/`. Scripts with an `--outdir` option write to the current folder by default.
 
@@ -127,13 +127,12 @@ Outputs that are not part of the repository (climatology maps and cache, the das
 | `qc/ctsm_spatial_water_balance.py` | per-cell water-balance residual maps |
 | `spinup/check_hillslope_spinup.py` | yearly domain-mean drift vs interannual noise for a spinup |
 | `spinup/check_restart_discontinuity.py` | tests for a jump in a domain mean at a restart date |
-| `spinup/check_spinup_v2.ipynb` | spinup drift: domain water-year means and daily checks at three sites |
+| `spinup/check_spinup_drift.py` | spinup drift: domain water-year means and daily checks at three sites; `run_spinup_drift.pbs` runs it on Casper |
 | `streamflow/ctsm_streamflow_eval.py` | NSE, KGE, PBIAS and correlation against observed monthly flow, all gauges, one config (`--config`) |
-| `streamflow/streamflow_eval_vs_observed.ipynb` | gauge-by-gauge streamflow comparison notebook |
 | `climatology/` | monthly climatology maps (see its own README); `run_ctsm_climatology.pbs` rebuilds the cache on Casper |
 | `diagnostics/check_time_align.py` | tests month offsets between land output and mizuRoute records for one gauge |
-| `diagnostics/input_data_reference.ipynb` | prints the contents of representative input files (forcing, meshes, maps, topology, surface data, initial condition) |
-| `animation/discharge_map_animation_conus.ipynb` | CONUS maps of `QRUNOFF`, `basRunoff` and `RoutedRunoff`, and an animation |
+| `diagnostics/describe_inputs.py` | prints the contents of representative input files (forcing, meshes, maps, topology, surface data, initial condition) |
+| `animation/discharge_map_animation_conus.ipynb` | CONUS maps of `QRUNOFF`, `basRunoff` and `RoutedRunoff`, and an animation (short notebook on `analysis/lib`) |
 
 ### `dashboard/`
 

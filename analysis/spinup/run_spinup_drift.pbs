@@ -1,0 +1,23 @@
+#!/bin/bash
+#PBS -N spinup_drift
+#PBS -q casper
+#PBS -l select=1:ncpus=4:mem=60GB
+#PBS -l walltime=02:00:00
+#PBS -j oe
+
+# Full spinup drift check (check_spinup_drift.py); the daily h1a files are ~24 GB each.
+# Submit from this folder, passing the account at submit time:
+#   cd analysis/spinup && qsub -A "$PROJECT" run_spinup_drift.pbs
+# Another case: qsub -A "$PROJECT" -v CASE=control run_spinup_drift.pbs
+# Figures go to <output root>/spinup/<case>; the drift summaries go to the PBS log.
+
+set -euo pipefail
+cd "$PBS_O_WORKDIR"
+
+module load conda
+conda activate npl-2026a
+export OMP_NUM_THREADS=1
+
+python -u check_spinup_drift.py --case "${CASE:-hillslope_on}"
+
+echo "done: $(date)"
