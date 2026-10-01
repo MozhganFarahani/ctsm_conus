@@ -52,13 +52,24 @@ HILL_YEAR=$(link_year hillslope_on)
 
 : > "$SMOKE/summary.txt"
 NFAIL=0
+# Drop "Exception ignored in: ..." blocks (the header, its traceback and the final
+# error line). Python prints these from __del__ at garbage collection and they do not
+# change the exit code; xarray's file cleanup with open_mfdataset(parallel=True)
+# sometimes raises "NetCDF: Not a valid ID" there.
+strip_ignored() {
+    awk '/^Exception ignored/ {skip=1; next}
+         skip && (/^Traceback/ || /^ /) {next}
+         skip {skip=0; next}
+         {print}' "$1"
+}
 run() {         # $1 = test name, rest = command, run from the repo root
     local name=$1; shift
-    local log=$SMOKE/logs/$name.log t0=$SECONDS status=PASS
+    local log=$SMOKE/logs/$name.log t0=$SECONDS status=PASS note=""
     (cd "$REPO" && "$@") > "$log" 2>&1 || status=FAIL
-    grep -qE "Traceback|ERROR" "$log" && status=FAIL
+    strip_ignored "$log" | grep -qE "Traceback|ERROR" && status=FAIL
+    grep -q "^Exception ignored" "$log" && note="  (exception ignored at cleanup, see log)"
     [[ $status == FAIL ]] && NFAIL=$((NFAIL+1))
-    printf "%-4s %5ds  %s\n" "$status" $((SECONDS-t0)) "$name" | tee -a "$SMOKE/summary.txt"
+    printf "%-4s %5ds  %s%s\n" "$status" $((SECONDS-t0)) "$name" "$note" | tee -a "$SMOKE/summary.txt"
 }
 
 # --- every script prints its usage ---
