@@ -1,4 +1,5 @@
-"""Every GLADE path used by the analysis code. Edit paths here, nowhere else.
+"""Every GLADE path used by the analysis code, and the evaluation period.
+Edit them here, nowhere else.
 
 Scripts import this module with
     sys.path.insert(0, <path to analysis/config>)
@@ -24,6 +25,12 @@ def lnd_hist(case):
 def rof_hist(case):
     """mizuRoute history folder (monthly <case>.mizuroute.h.YYYY-MM.nc)."""
     return f"{ARCHIVE}/{case}/rof/hist"
+
+
+# --- evaluation period (not a path; the one place it is set) ------------------
+# Oct 1980 - Sep 2018, 456 months. Some archives also hold spinup months
+# (irrigation_on starts 1980-01): lib/io.py eval_period_files() drops them.
+EVAL_START, EVAL_END = "1980-10-01", "2018-09-30"
 
 
 # --- observed streamflow (Naoki Mizukami) and gauge metadata -----------------

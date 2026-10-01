@@ -11,13 +11,14 @@ Do not put analysis/lib itself on sys.path: this file would then shadow the stdl
 import glob
 import os
 import re
+import sys
 
 import numpy as np
 import pandas as pd
 import xarray as xr
 
-# Evaluation period: Oct 1980 - Sep 2018 (456 months).
-EVAL_START, EVAL_END = "1980-10-01", "2018-09-30"
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "config"))
+from paths import EVAL_START, EVAL_END  # evaluation period, set in analysis/config/paths.py
 
 
 # ---------------------------------------------------------------- file lists
@@ -38,6 +39,13 @@ def hist_file_month(path):
     """'YYYY-MM' from a monthly history file name (<case>.<...>.YYYY-MM.nc), else None."""
     m = _MONTH_RE.search(os.path.basename(path))
     return f"{m.group(1)}-{m.group(2)}" if m else None
+
+
+def eval_period_files(files):
+    """Monthly history files whose YYYY-MM lies in EVAL_START..EVAL_END.
+    Drops spinup months left in an archive (irrigation_on holds 1980-01..09)."""
+    first, last = EVAL_START[:7], EVAL_END[:7]
+    return [f for f in files if first <= (hist_file_month(f) or "") <= last]
 
 
 # ---------------------------------------------------------------- opening

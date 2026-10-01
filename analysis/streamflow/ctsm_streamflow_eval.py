@@ -16,6 +16,7 @@ per-gauge work is this cheap).
 files, since it reads them concurrently rather than one at a time.
 
 Inputs : mizuRoute RoutedRunoff of one config (<archive>/<config>/rof/hist),
+         eval period only (paths.EVAL_START..EVAL_END),
          observed daily flow (paths.OBS_DAILY, resampled to monthly),
          gauge crosswalk (paths.CROSSWALK)
 Outputs: <outdir>/<config>_streamflow_eval.csv, one row per gauge
@@ -91,9 +92,14 @@ def main():
 
     os.makedirs(args.outdir, exist_ok=True)
 
-    rof = lio.rof_files(args.archive_root, args.config)
+    rof_all = lio.rof_files(args.archive_root, args.config)
+    rof = lio.eval_period_files(rof_all)     # evaluation period only (paths.py)
     if not rof:
-        sys.exit(f"No mizuRoute files under {args.archive_root}/{args.config}/rof/hist")
+        sys.exit(f"No mizuRoute files for {lio.EVAL_START}..{lio.EVAL_END} under "
+                 f"{args.archive_root}/{args.config}/rof/hist")
+    if len(rof) < len(rof_all):
+        print(f"[mizuroute] skipping {len(rof_all) - len(rof)} file(s) outside "
+              f"{lio.EVAL_START}..{lio.EVAL_END}")
     df_gauges = lio.read_crosswalk(args.crosswalk)
     if args.limit:
         df_gauges = df_gauges.head(args.limit)

@@ -220,7 +220,8 @@ def main():
         print(f"--parallel: {n} CPU(s); dask capped to match.")
 
     h0_files = lambda c: lio.lnd_h0_files(args.archive_root, c)
-    rof_files = lambda c: lio.rof_files(args.archive_root, c)
+    # evaluation period only (paths.py): drops spinup months left in an archive
+    rof_files = lambda c: lio.eval_period_files(lio.rof_files(args.archive_root, c))
 
     # ---------------------------------------------------- gauges
     df = lio.read_crosswalk(args.crosswalk, dedupe=True)
