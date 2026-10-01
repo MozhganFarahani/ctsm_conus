@@ -1,0 +1,16 @@
+#!/bin/bash
+#PBS -N streamflow_eval
+#PBS -q casper
+#PBS -l select=1:ncpus=4:mem=10GB
+#PBS -l walltime=00:30:00
+#PBS -j oe
+# Streamflow evaluation for one config (all gauges): ~20 s and 3 GB on a login node.
+# Submit from this folder, one job per config:
+#   source ../../setup/ctsm.env
+#   for c in control irrigation_on evolving_landcover hillslope_eval prog_phenology; do
+#     qsub -A "$PROJECT" -o "$OUTPUT_ROOT/streamflow/" -N sf_$c -v CONFIG=$c run_streamflow_eval.pbs
+#   done
+module load conda
+conda activate npl-2026a
+cd "$PBS_O_WORKDIR"
+python ctsm_streamflow_eval.py --config "${CONFIG:?set CONFIG with qsub -v}" --parallel

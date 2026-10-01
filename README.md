@@ -158,7 +158,7 @@ Every script writes under the output root, `paths.OUTPUT_ROOT` (`/glade/work/moz
 | `spinup/check_hillslope_spinup.py` | yearly domain-mean drift vs interannual noise for a spinup | `python check_hillslope_spinup.py --case hillslope_on` |
 | `spinup/check_restart_discontinuity.py` | tests for a jump in a domain mean at a restart date | `python check_restart_discontinuity.py --case hillslope_on --restart-date 1998-10-01` |
 | `spinup/check_spinup_drift.py` | spinup drift: domain water-year means and daily checks at three sites | `python check_spinup_drift.py --case hillslope_on --years 1981 1984`; full run: `run_spinup_drift.pbs` |
-| `streamflow/ctsm_streamflow_eval.py` | NSE, KGE, PBIAS and correlation against observed monthly flow, all gauges, one config | `python ctsm_streamflow_eval.py --config control --parallel` |
+| `streamflow/ctsm_streamflow_eval.py` | NSE, KGE, PBIAS and correlation against observed monthly flow, all gauges, one config | `python ctsm_streamflow_eval.py --config control --parallel`; all five configs: `run_streamflow_eval.pbs` |
 | `climatology/ctsm_climatology_maps.py` | monthly climatology cache and maps (see `climatology/README.md`; field list in `ctsm_control_history_fields.csv`) | `python ctsm_climatology_maps.py --monthly`; rebuild the cache: `run_ctsm_climatology.pbs` |
 | `diagnostics/check_time_align.py` | tests month offsets between land output and mizuRoute records for one gauge | `python check_time_align.py 09040000 --config control` |
 | `diagnostics/describe_inputs.py` | prints the contents of representative input files (forcing, meshes, maps, topology, surface data, initial condition) | `python describe_inputs.py` |
