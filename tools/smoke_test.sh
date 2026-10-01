@@ -93,9 +93,10 @@ run climatology python analysis/climatology/ctsm_climatology_maps.py --rebuild -
     --hist-dir "$CTRL_YEAR" --outdir "$SMOKE/climatology" --cache "$SMOKE/climatology/clim.nc"
 run time_align python analysis/diagnostics/check_time_align.py $GAUGE --config control
 run describe_inputs python analysis/diagnostics/describe_inputs.py
-# the notebook runs from its own folder (nbconvert's default); OUT_DIR keeps its figures here
+# the notebook runs from its own folder (nbconvert's default); OUT_DIR keeps its figures here.
+# Its kernel "npl-2026a" exists only on JupyterHub: python3 is the active env's python.
 run animation_nb env OUT_DIR="$SMOKE/animation" jupyter nbconvert --to notebook --execute \
-    --output-dir "$SMOKE/animation" analysis/animation/discharge_map_animation_conus.ipynb
+    --ExecutePreprocessor.kernel_name=python3 --output-dir "$SMOKE/animation" analysis/animation/discharge_map_animation_conus.ipynb
 
 # --- dashboard/ (--no-cache: no test weights in the shared cache) ---
 run dashboard python dashboard/build_streamflow_dashboard.py --configs control \
