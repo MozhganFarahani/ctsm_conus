@@ -187,7 +187,7 @@ The builder writes `<name>_dashboard.html` to `ctsm_conus_output/dashboard/` (`p
 
 | File | Purpose |
 |---|---|
-| `smoke_test.sh` | runs every script on its smallest input (one year, one gauge) and the six setup dry runs, and reports PASS/FAIL per test; writes only under `<output root>/smoke_test/`. Run it after every change: `bash tools/smoke_test.sh` |
+| `smoke_test.sh` | runs every script on its smallest input (one year, one gauge) and the six setup dry runs, and reports PASS/FAIL per test; each dry run must match `cases/<case>/user_nl_clm` (comments and whitespace ignored). Writes only under `<output root>/smoke_test/`. Run it after every change, from the repo root: `bash tools/smoke_test.sh`, or on Casper: `source setup/ctsm.env && qsub -A "$PROJECT" -o "$OUTPUT_ROOT/" tools/smoke_test.sh` |
 | `capture_cases.sh` | copies each CIME case folder (from `$CIME_SCRIPTS` in `setup/ctsm.env`) into `cases/` and saves its per-case git log: `tools/capture_cases.sh . control` |
 | `list_case_inputs.py` | lists every input file each case needs (from `Buildconf/*.input_data_list`, `CaseDocs/lnd_in`, `CaseDocs/mizuRoute.control` and `user_nl_*`), reports whether it exists, flags files on `/glade/derecho/scratch` (purge risk), and points to archived copies of missing restarts: `python tools/list_case_inputs.py control` |
 
