@@ -148,7 +148,7 @@ Every script writes under the output root, `paths.OUTPUT_ROOT` (`/glade/work/moz
 
 | File | Purpose | Usage (from the file's folder) |
 |---|---|---|
-| `config/paths.py` | every GLADE path used by the analysis code | imported |
+| `config/paths.py` | every GLADE path used by the analysis code, and the evaluation period (`EVAL_START`, `EVAL_END`: Oct 1980 – Sep 2018) | imported |
 | `lib/io.py` | open land and mizuRoute history, observed flow and the gauge crosswalk; monthly time alignment | imported (`from lib import io as lio`) |
 | `lib/metrics.py` | NSE, KGE, PBIAS and correlation for many gauges at once; `STABLE_MIN_MONTHS` for NSE_stable | imported |
 | `lib/basins.py` | gauge-to-grid upstream weights and basin averaging (Naoki Mizukami's mapping; within 0.000% of `totalArea` for all 2,311 gauges); weights cached in `paths.UPSTREAM_CACHE` | imported |
