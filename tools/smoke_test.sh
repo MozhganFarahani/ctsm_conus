@@ -18,7 +18,7 @@
 # whitespace ignored). Exit status: the number of failed tests.
 #
 # Usage (from the repo root, npl-2026a is activated if needed):
-#   bash tools/smoke_test.sh                # on a login node: about 15 minutes, light reads
+#   bash tools/smoke_test.sh                # on a login node (light reads only)
 #   source setup/ctsm.env && qsub -A "$PROJECT" -o "$OUTPUT_ROOT/" tools/smoke_test.sh
 
 [[ "${1:-}" =~ ^(-h|--help)$ ]] && { sed -n '8,/^$/s/^# \{0,1\}//p' "$0"; exit 0; }

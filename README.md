@@ -7,7 +7,7 @@ This repository archives the setup scripts, the complete CIME case folders, and 
 Project: CGD SIF-T FY26, NSF NCAR Terrestrial Sciences Section.
 Dashboard: <https://project.cgd.ucar.edu/projects/ctsm-conus/>
 
-> **Status:** work in progress. The analysis code has been reorganized and all GLADE paths are collected in `analysis/config/paths.py`; methods and results are unchanged.
+> **Status:** the code is final: shared helpers in `analysis/lib/`, every path in `analysis/config/paths.py` (Python) or `setup/ctsm.env` (shell), and a smoke test in `tools/smoke_test.sh`. Methods and results are unchanged from the original scripts. See the [pre-public checklist](#pre-public-checklist) before making the repository public.
 
 ## Model versions
 
@@ -70,6 +70,7 @@ Notes on the configurations:
 setup/                  case-creation scripts, one per config, each with spinup and eval modes
 cases/                  the six CIME case folders, complete (archive; never edited by hand)
 analysis/config/        paths.py: every GLADE path the analysis code uses
+analysis/lib/           shared helpers: reading output and observations, metrics, basin averaging, map style
 analysis/qc/            control QC and water-balance checks
 analysis/spinup/        spinup drift and restart-boundary checks
 analysis/streamflow/    streamflow evaluation against observed flow
@@ -77,7 +78,8 @@ analysis/climatology/   monthly climatology maps
 analysis/diagnostics/   time-alignment check and input-data reference
 analysis/animation/     CONUS discharge animation
 dashboard/              multi-config streamflow dashboard: builder, template, PBS job, web/ landing page
-tools/                  scripts that maintain this repository
+tools/                  scripts that maintain and test this repository
+environment.yml         the Python packages the code imports, at the npl-2026a versions
 ```
 
 ### `setup/`
@@ -93,14 +95,22 @@ diff <dry-run folder>/control/user_nl_clm cases/control/user_nl_clm
 
 The archived files also contain CIME's comment header, and they wrap lines differently. Compare them with comments and whitespace removed.
 
+Usage (each script also takes `--dry-run`):
+
+```bash
+bash <repo>/setup/setup_control.sh spinup            # create + configure the spinup case
+bash <repo>/setup/setup_control.sh eval 2002-01-01   # switch it to the eval run from that restart date
+```
+
 | File | Purpose |
 |---|---|
 | `ctsm.env` | shared settings, paths and the account code for shell scripts; also the history field list (`HIST_FIELDS_1`, `HIST_FIELDS_2`, `write_hist_nl`) that the setup scripts share |
-| `setup_control.sh` | control spinup and eval |
-| `setup_irrigation.sh` | irrigation_on |
-| `setup_landcover.sh` | evolving_landcover |
-| `setup_hillslope_spinup.sh`, `setup_hillslope_eval.sh` | hillslope spinup (`hillslope_on`) and eval (`hillslope_eval`) |
-| `setup_proghenol.sh` | prog_phenology |
+| `setup_control.sh` | control spinup and eval: `spinup`, `eval <refdate>` |
+| `setup_irrigation.sh` | irrigation_on: `spinup`, `eval <refdate>` |
+| `setup_landcover.sh` | evolving_landcover: `spinup`, `eval <refdate>` |
+| `setup_hillslope_spinup.sh` | hillslope spinup case `hillslope_on`: no argument |
+| `setup_hillslope_eval.sh` | hillslope eval case `hillslope_eval`: `<refdate>` of the hillslope_on restart |
+| `setup_proghenol.sh` | prog_phenology: `spinup`, `eval <refdate>` |
 
 ### `cases/`
 
@@ -122,7 +132,7 @@ Case files contain absolute GLADE paths. Symlinks such as `xmlchange` and `case.
 
 ### `analysis/`
 
-Run everything with the `npl-2026a` conda environment on Casper (`module load conda && conda activate npl-2026a`). Light checks can run on a login node; full builds and all-gauge runs go to PBS on Casper (from a Derecho login node, add `-q casper@casper-pbs`). The PBS scripts carry no `#PBS -A` or `#PBS -o` line: the account and the log folder are passed at submit time, from `setup/ctsm.env`:
+Run everything with the `npl-2026a` conda environment on Casper (`module load conda && conda activate npl-2026a`); `environment.yml` lists the packages and versions for use elsewhere. Light checks can run on a login node; full builds and all-gauge runs go to PBS on Casper (from a Derecho login node, add `-q casper@casper-pbs`). The PBS scripts carry no `#PBS -A` or `#PBS -o` line: the account and the log folder are passed at submit time, from `setup/ctsm.env`:
 
 ```bash
 source setup/ctsm.env                      # from the repo root: sets $PROJECT and $OUTPUT_ROOT
@@ -131,33 +141,45 @@ cd dashboard && qsub -A "$PROJECT" -o "$OUTPUT_ROOT/dashboard/" run_dashboard.pb
 
 Each PBS script has its own submit line in its header.
 
-Every GLADE path (model output, observations, routing network, CESM input data, output folder) is defined once in `analysis/config/paths.py`. Scripts, notebooks and the dashboard import it; edit paths there, nowhere else. The shell scripts take theirs from `setup/ctsm.env`, which repeats the output root: keep the two in sync. The one notebook (animation) expects to be run from its own folder.
+Every GLADE path (model output, observations, routing network, CESM input data, output folder) is defined once in `analysis/config/paths.py`. Scripts, notebooks and the dashboard import it; edit paths there, nowhere else. The shell scripts take theirs from `setup/ctsm.env`, which repeats the output root: keep the two in sync. The one notebook (animation) expects to be run from its own folder; it writes to `<output root>/animation/`, or to `$OUT_DIR` if set.
 
-Every script writes under the output root, `paths.OUTPUT_ROOT` (`/glade/work/mozhgana/ctsm_conus_output/`), by default: `qc/<config>/`, `spinup/<case>/`, `streamflow/`, `climatology/`, `dashboard/` (and its weight cache), `animation/`, `case_inputs.csv`. `--outdir` overrides it. Scripts that read one configuration take `--config` (archive folder name, default `control`); the spinup checks take `--case` (default `hillslope_on`). Every script prints its inputs, outputs and usage with `--help`.
+Every script writes under the output root, `paths.OUTPUT_ROOT` (`/glade/work/mozhgana/ctsm_conus_output/`), by default: `qc/<config>/`, `spinup/<case>/`, `streamflow/`, `climatology/`, `dashboard/` (and its weight cache), `animation/`, `case_inputs.csv`. `--outdir` overrides it (`--csv` for `list_case_inputs.py`). Scripts that read one configuration take `--config` (archive folder name, default `control`); the spinup checks take `--case` (default `hillslope_on`). Every script prints its inputs, outputs and usage with `--help`.
 
 | File | Purpose |
 |---|---|
-| `config/paths.py` | every GLADE path used by the analysis code |
-| `qc/ctsm_control_explore.py` | file inventory, time gaps, domain water balance, mizuRoute screen |
-| `qc/ctsm_spatial_water_balance.py` | per-cell water-balance residual maps |
-| `spinup/check_hillslope_spinup.py` | yearly domain-mean drift vs interannual noise for a spinup |
-| `spinup/check_restart_discontinuity.py` | tests for a jump in a domain mean at a restart date |
-| `spinup/check_spinup_drift.py` | spinup drift: domain water-year means and daily checks at three sites; `run_spinup_drift.pbs` runs it on Casper |
-| `streamflow/ctsm_streamflow_eval.py` | NSE, KGE, PBIAS and correlation against observed monthly flow, all gauges, one config (`--config`) |
-| `climatology/` | monthly climatology maps (see its own README); `run_ctsm_climatology.pbs` rebuilds the cache on Casper |
-| `diagnostics/check_time_align.py` | tests month offsets between land output and mizuRoute records for one gauge |
-| `diagnostics/describe_inputs.py` | prints the contents of representative input files (forcing, meshes, maps, topology, surface data, initial condition) |
-| `animation/discharge_map_animation_conus.ipynb` | CONUS maps of `QRUNOFF`, `basRunoff` and `RoutedRunoff`, and an animation (short notebook on `analysis/lib`) |
+| File | Purpose | Usage (from the file's folder) |
+|---|---|---|
+| `config/paths.py` | every GLADE path used by the analysis code | imported |
+| `lib/io.py` | open land and mizuRoute history, observed flow and the gauge crosswalk; monthly time alignment | imported (`from lib import io as lio`) |
+| `lib/metrics.py` | NSE, KGE, PBIAS and correlation for many gauges at once; `STABLE_MIN_MONTHS` for NSE_stable | imported |
+| `lib/basins.py` | gauge-to-grid upstream weights and basin averaging (Naoki Mizukami's mapping; within 0.000% of `totalArea` for all 2,311 gauges); weights cached in `paths.UPSTREAM_CACHE` | imported |
+| `lib/plotting.py` | CONUS extent, projection and basemap | imported |
+| `qc/ctsm_control_explore.py` | file inventory, time gaps, domain water balance, mizuRoute screen | `python ctsm_control_explore.py --config control` |
+| `qc/ctsm_spatial_water_balance.py` | per-cell water-balance residual maps | `python ctsm_spatial_water_balance.py --config control` |
+| `spinup/check_hillslope_spinup.py` | yearly domain-mean drift vs interannual noise for a spinup | `python check_hillslope_spinup.py --case hillslope_on` |
+| `spinup/check_restart_discontinuity.py` | tests for a jump in a domain mean at a restart date | `python check_restart_discontinuity.py --case hillslope_on --restart-date 1998-10-01` |
+| `spinup/check_spinup_drift.py` | spinup drift: domain water-year means and daily checks at three sites | `python check_spinup_drift.py --case hillslope_on --years 1981 1984`; full run: `run_spinup_drift.pbs` |
+| `streamflow/ctsm_streamflow_eval.py` | NSE, KGE, PBIAS and correlation against observed monthly flow, all gauges, one config | `python ctsm_streamflow_eval.py --config control --parallel` |
+| `climatology/ctsm_climatology_maps.py` | monthly climatology cache and maps (see `climatology/README.md`; field list in `ctsm_control_history_fields.csv`) | `python ctsm_climatology_maps.py --monthly`; rebuild the cache: `run_ctsm_climatology.pbs` |
+| `diagnostics/check_time_align.py` | tests month offsets between land output and mizuRoute records for one gauge | `python check_time_align.py 09040000 --config control` |
+| `diagnostics/describe_inputs.py` | prints the contents of representative input files (forcing, meshes, maps, topology, surface data, initial condition) | `python describe_inputs.py` |
+| `animation/discharge_map_animation_conus.ipynb` | CONUS maps of `QRUNOFF`, `basRunoff` and `RoutedRunoff`, and an animation (short notebook on `analysis/lib`) | open in Jupyter |
 
 ### `dashboard/`
 
 | File | Purpose |
 |---|---|
-| `upstream_basin.py` | gauge-to-grid upstream weights and basin averaging (Naoki Mizukami's mapping; within 0.000% of `totalArea` for all 2,311 gauges) |
-| `build_streamflow_dashboard.py` | builds one self-contained HTML dashboard for several configs |
+| `build_streamflow_dashboard.py` | builds one self-contained HTML dashboard for several configs; basin averages come from `analysis/lib/basins.py` |
 | `dashboard_template.py` | the HTML/CSS/JS template the builder fills in |
 | `run_dashboard.pbs` | Casper job that builds the dashboard for all five configs; submit from this folder |
 | `web/index.html`, `web/assets/hero.png` | the landing page |
+
+Test on a few gauges first, then build all five on Casper:
+
+```bash
+python build_streamflow_dashboard.py --configs control,irrigation_on --test-basins 09040000
+source ../setup/ctsm.env && qsub -A "$PROJECT" -o "$OUTPUT_ROOT/dashboard/" run_dashboard.pbs
+```
 
 The builder writes `<name>_dashboard.html` to `ctsm_conus_output/dashboard/` (`paths.DASHBOARD_OUT`; `--outdir` overrides it). To deploy, copy it as `dashboard.html`, together with `web/index.html` and `web/assets/`, with `scp` from `data-access.ucar.edu` to goldhill, `/project/webshare/projects/ctsm-conus`.
 
@@ -165,8 +187,9 @@ The builder writes `<name>_dashboard.html` to `ctsm_conus_output/dashboard/` (`p
 
 | File | Purpose |
 |---|---|
-| `capture_cases.sh` | copies each CIME case folder (from `$CIME_SCRIPTS` in `setup/ctsm.env`) into `cases/` and saves its per-case git log |
-| `list_case_inputs.py` | lists every input file each case needs (from `Buildconf/*.input_data_list`, `CaseDocs/lnd_in`, `CaseDocs/mizuRoute.control` and `user_nl_*`), reports whether it exists, flags files on `/glade/derecho/scratch` (purge risk), and points to archived copies of missing restarts |
+| `smoke_test.sh` | runs every script on its smallest input (one year, one gauge) and the six setup dry runs, and reports PASS/FAIL per test; writes only under `<output root>/smoke_test/`. Run it after every change: `bash tools/smoke_test.sh` |
+| `capture_cases.sh` | copies each CIME case folder (from `$CIME_SCRIPTS` in `setup/ctsm.env`) into `cases/` and saves its per-case git log: `tools/capture_cases.sh . control` |
+| `list_case_inputs.py` | lists every input file each case needs (from `Buildconf/*.input_data_list`, `CaseDocs/lnd_in`, `CaseDocs/mizuRoute.control` and `user_nl_*`), reports whether it exists, flags files on `/glade/derecho/scratch` (purge risk), and points to archived copies of missing restarts: `python tools/list_case_inputs.py control` |
 
 ## Input data (not in this repository)
 
@@ -189,9 +212,13 @@ The full list of inputs for each case is in `cases/<case>/Buildconf/*.input_data
 - The hillslope spinup is 24 years; soil liquid water still drifts at about 1.1 times its interannual noise.
 - Routed runoff received by mizuRoute (`basRunoff`) does not match basin-averaged `QRUNOFF` at some snow-dominated gauges; this is under investigation and is not a mapping error.
 
-## Planned work
+## Pre-public checklist
 
-- Add a license before the repository is made public.
+Before the repository is made public:
+
+- [ ] Add a LICENSE.
+- [ ] Get Naoki Mizukami's OK and credit him for the code adapted from his notebooks (at least the basin averaging in `analysis/lib/basins.py`, which follows his remapping).
+- [ ] Review the account codes, usernames and internal hostnames left in `cases/` (the archive is kept as is).
 
 ## Contributors
 
