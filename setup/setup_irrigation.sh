@@ -27,8 +27,8 @@ write_user_nl() {
     write_hist_nl "$HIST_FIELDS_1
               'QOUT','QIN',$HIST_FIELDS_2,
               'QIRRIG_FROM_SURFACE','QIRRIG_FROM_GW_UNCONFINED','QIRRIG_FROM_GW_CONFINED',
-              'QIRRIG_DRIP','QIRRIG_SPRINKLER','QIRRIG_DEMAND'"
-    echo "irrigate = .true." >> user_nl_clm
+              'QIRRIG_DRIP','QIRRIG_SPRINKLER','QIRRIG_DEMAND'" \
+        "irrigate = .true."
 }
 
 if $dry_run; then
