@@ -82,7 +82,8 @@ print('cartopy data cached')
 ### 3. Smoke-test two variables before committing to all 44
 
 ```bash
-qsub -I -A P93300041 -q casper -l select=1:ncpus=4:mem=20GB -l walltime=01:00:00
+source <repo>/setup/ctsm.env     # sets $PROJECT
+qsub -I -A "$PROJECT" -q casper -l select=1:ncpus=4:mem=20GB -l walltime=01:00:00
 module load conda && conda activate npl-2026a
 cd <repo>/analysis/climatology
 
@@ -96,11 +97,15 @@ two variables, and `--rebuild` overwrites rather than merges.
 ### 4. Full run as a batch job
 
 ```bash
-cd <repo>/analysis/climatology && qsub run_ctsm_climatology.pbs
+source <repo>/setup/ctsm.env     # sets $PROJECT and $OUTPUT_ROOT
+cd <repo>/analysis/climatology
+qsub -A "$PROJECT" -o "$OUTPUT_ROOT/climatology/" run_ctsm_climatology.pbs
 ```
 
 Submit from this folder: the job runs the script from the folder it was
-submitted from, and writes its log to `ctsm_conus_output/climatology/ctsm_clim.log`.
+submitted from. The account and the log folder are given at submit time (the
+PBS script has no `#PBS -A` or `#PBS -o` line); the log is
+`ctsm_conus_output/climatology/ctsm_clim.o<jobid>`.
 From a Derecho login node use `qsub -q casper@casper-pbs`. It requests
 8 cpus / 80 GB / 3 h, which is deliberately generous — the level-collapse has to
 materialise each file's soil levels before reducing them, and a three-hour job
@@ -180,7 +185,7 @@ python ctsm_climatology_maps.py --monthly --vars SOILLIQ SOILICE TSOI ZWT
 ```
 /glade/work/mozhgana/ctsm_conus_output/climatology/
 ├── ctsm_monthly_climatology.nc      # stage-1 cache: 12 x lat x lon per variable
-├── ctsm_clim.log                    # batch log
+├── ctsm_clim.o<jobid>               # batch log
 └── maps/
     ├── monthly/
     │   ├── QRUNOFF.png              # 12 panels, shared colour scale

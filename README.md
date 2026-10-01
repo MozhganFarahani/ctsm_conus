@@ -82,11 +82,11 @@ tools/                  scripts that maintain this repository
 
 ### `setup/`
 
-All scripts source `ctsm.env` (project, compiler, driver, resolution, queue, machine, compsets). Run them on Derecho; `create_newcase` does not work from Casper.
+All scripts source `ctsm.env` (project, compiler, driver, resolution, queue, machine, compsets, and every path the shell scripts use). Run them on Derecho, from the CIME scripts folder (`$CIME_SCRIPTS` in `ctsm.env`); `create_newcase` does not work from Casper. Each script prints its usage with `--help`.
 
 | File | Purpose |
 |---|---|
-| `ctsm.env` | shared settings |
+| `ctsm.env` | shared settings, paths and the account code for shell scripts |
 | `setup_control.sh` | control spinup and eval |
 | `setup_irrigation.sh` | irrigation_on |
 | `setup_landcover.sh` | evolving_landcover |
@@ -114,11 +114,18 @@ Case files contain absolute GLADE paths. Symlinks such as `xmlchange` and `case.
 
 ### `analysis/`
 
-Run everything with the `npl-2026a` conda environment on Casper (`module load conda && conda activate npl-2026a`). Light checks can run on a login node; full builds and all-gauge runs go to PBS (`-q casper -A P93300041`; from a Derecho login node, `qsub -q casper@casper-pbs`).
+Run everything with the `npl-2026a` conda environment on Casper (`module load conda && conda activate npl-2026a`). Light checks can run on a login node; full builds and all-gauge runs go to PBS on Casper (from a Derecho login node, add `-q casper@casper-pbs`). The PBS scripts carry no `#PBS -A` or `#PBS -o` line: the account and the log folder are passed at submit time, from `setup/ctsm.env`:
 
-Every GLADE path (model output, observations, routing network, CESM input data, output folder) is defined once in `analysis/config/paths.py`. Scripts, notebooks and the dashboard import it; edit paths there, nowhere else. The one notebook (animation) expects to be run from its own folder.
+```bash
+source setup/ctsm.env                      # from the repo root: sets $PROJECT and $OUTPUT_ROOT
+cd dashboard && qsub -A "$PROJECT" -o "$OUTPUT_ROOT/dashboard/" run_dashboard.pbs
+```
 
-Outputs that are not part of the repository (climatology maps and cache, the dashboard build and its weight cache, `case_inputs.csv`) are written to `/glade/work/mozhgana/ctsm_conus_output/`. Scripts with an `--outdir` option write to the current folder by default.
+Each PBS script has its own submit line in its header.
+
+Every GLADE path (model output, observations, routing network, CESM input data, output folder) is defined once in `analysis/config/paths.py`. Scripts, notebooks and the dashboard import it; edit paths there, nowhere else. The shell scripts take theirs from `setup/ctsm.env`, which repeats the output root: keep the two in sync. The one notebook (animation) expects to be run from its own folder.
+
+Every script writes under the output root, `paths.OUTPUT_ROOT` (`/glade/work/mozhgana/ctsm_conus_output/`), by default: `qc/<config>/`, `spinup/<case>/`, `streamflow/`, `climatology/`, `dashboard/` (and its weight cache), `animation/`, `case_inputs.csv`. `--outdir` overrides it. Scripts that read one configuration take `--config` (archive folder name, default `control`); the spinup checks take `--case` (default `hillslope_on`). Every script prints its inputs, outputs and usage with `--help`.
 
 | File | Purpose |
 |---|---|
@@ -144,13 +151,13 @@ Outputs that are not part of the repository (climatology maps and cache, the das
 | `run_dashboard.pbs` | Casper job that builds the dashboard for all five configs; submit from this folder |
 | `web/index.html`, `web/assets/hero.png` | the landing page |
 
-`run_dashboard.pbs` writes `<name>_dashboard.html` to `ctsm_conus_output/dashboard/` (run by hand, the builder writes to `--outdir`, default `./dashboard`). To deploy, copy it as `dashboard.html`, together with `web/index.html` and `web/assets/`, with `scp` from `data-access.ucar.edu` to goldhill, `/project/webshare/projects/ctsm-conus`.
+The builder writes `<name>_dashboard.html` to `ctsm_conus_output/dashboard/` (`paths.DASHBOARD_OUT`; `--outdir` overrides it). To deploy, copy it as `dashboard.html`, together with `web/index.html` and `web/assets/`, with `scp` from `data-access.ucar.edu` to goldhill, `/project/webshare/projects/ctsm-conus`.
 
 ### `tools/`
 
 | File | Purpose |
 |---|---|
-| `capture_cases.sh` | copies each CIME case folder into `cases/` and saves its per-case git log |
+| `capture_cases.sh` | copies each CIME case folder (from `$CIME_SCRIPTS` in `setup/ctsm.env`) into `cases/` and saves its per-case git log |
 | `list_case_inputs.py` | lists every input file each case needs (from `Buildconf/*.input_data_list`, `CaseDocs/lnd_in`, `CaseDocs/mizuRoute.control` and `user_nl_*`), reports whether it exists, flags files on `/glade/derecho/scratch` (purge risk), and points to archived copies of missing restarts |
 
 ## Input data (not in this repository)

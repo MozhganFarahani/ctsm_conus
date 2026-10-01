@@ -4,12 +4,14 @@
 #PBS -l select=1:ncpus=4:mem=60GB
 #PBS -l walltime=02:00:00
 #PBS -j oe
-
+#
 # Full spinup drift check (check_spinup_drift.py); the daily h1a files are ~24 GB each.
-# Submit from this folder, passing the account at submit time:
-#   cd analysis/spinup && qsub -A "$PROJECT" run_spinup_drift.pbs
-# Another case: qsub -A "$PROJECT" -v CASE=control run_spinup_drift.pbs
-# Figures go to <output root>/spinup/<case>; the drift summaries go to the PBS log.
+# Inputs : <archive>/<case>/lnd/hist h0a and h1a files (default case hillslope_on)
+# Outputs: figures in <output root>/spinup/<case>; the drift summaries go to the PBS log
+# Submit from this folder; the account and log folder come from setup/ctsm.env:
+#   source setup/ctsm.env                       # from the repo root
+#   cd analysis/spinup && qsub -A "$PROJECT" -o "$OUTPUT_ROOT/spinup/" run_spinup_drift.pbs
+# Another case: add -v CASE=control
 
 set -euo pipefail
 cd "$PBS_O_WORKDIR"

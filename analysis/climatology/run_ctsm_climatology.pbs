@@ -1,16 +1,18 @@
 #!/bin/bash
 #PBS -N ctsm_clim
-#PBS -A P93300041
 #PBS -q casper
 #PBS -l select=1:ncpus=8:mem=80GB
 #PBS -l walltime=03:00:00
 #PBS -j oe
-#PBS -o /glade/work/mozhgana/ctsm_conus_output/climatology/ctsm_clim.log
+#
+# Rebuild the control climatology cache and all maps (ctsm_climatology_maps.py --rebuild).
+# Inputs : control h0a files; paths from analysis/config/paths.py
+# Outputs: <output root>/climatology/ (cache and maps/); the log goes to the -o folder
+# Submit from this folder; the account and log folder come from setup/ctsm.env:
+#   source setup/ctsm.env                       # from the repo root
+#   cd analysis/climatology && qsub -A "$PROJECT" -o "$OUTPUT_ROOT/climatology/" run_ctsm_climatology.pbs
 
 set -euo pipefail
-
-# submit from this folder (cd analysis/climatology && qsub run_ctsm_climatology.pbs);
-# input, output and cache paths come from analysis/config/paths.py
 cd "$PBS_O_WORKDIR"
 
 module load conda

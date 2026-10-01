@@ -175,7 +175,7 @@ def main():
                          "each config's finidat (initialization date)")
     ap.add_argument("--crosswalk", default=DEFAULT_CROSSWALK)
     ap.add_argument("--obs-daily", default=DEFAULT_OBS_DAILY)
-    ap.add_argument("--outdir", default="./dashboard")
+    ap.add_argument("--outdir", default=paths.DASHBOARD_OUT, help="default: %(default)s")
     ap.add_argument("--out-name", default=None)
     ap.add_argument("--vars", default=None,
                     help="Comma-separated h0 fields to average, or 'all'. "

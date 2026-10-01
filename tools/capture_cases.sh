@@ -3,7 +3,8 @@
 # Usage: ./capture_cases.sh <repo_dir> [case ...]   (default: all six cases)
 #   ./capture_cases.sh /glade/work/mozhgana/repo_staging
 set -euo pipefail
-SRC=/glade/work/mozhgana/ctsm_conus/cime/scripts
+source "$(dirname "$0")/../setup/ctsm.env" > /dev/null   # paths
+SRC=$CIME_SCRIPTS
 REPO=${1:?usage: capture_cases.sh <repo_dir> [case ...]}; shift
 CASES=${*:-control irrigation_on evolving_landcover hillslope_on hillslope_eval prog_phenology}
 

@@ -80,7 +80,8 @@ def main():
                      help="Config (subdirectory) name to evaluate, e.g. control, irrigation_on")
     ap.add_argument("--crosswalk", default=DEFAULT_CROSSWALK)
     ap.add_argument("--obs-daily", default=DEFAULT_OBS_DAILY)
-    ap.add_argument("--outdir", default="./streamflow_eval")
+    ap.add_argument("--outdir", default=f"{paths.OUTPUT_ROOT}/streamflow",
+                    help="default: %(default)s")
     ap.add_argument("--parallel", action="store_true",
                      help="Read mizuRoute files with dask's parallel=True "
                           "(default: serial, parallel=False)")

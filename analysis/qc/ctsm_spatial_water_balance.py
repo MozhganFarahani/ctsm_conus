@@ -43,7 +43,7 @@ Usage
         --label control
 
 Recommend running this as a short batch job rather than interactively:
-    qsub -I -l select=1:ncpus=4:mem=32GB -l walltime=00:30:00 -q casper -A <proj>
+    qsub -I -l select=1:ncpus=4:mem=32GB -l walltime=00:30:00 -q casper -A "$PROJECT"
 32 GB is generous headroom for h0-monthly at CONUS scale; adjust down if
 your allocation is tight.
 """
@@ -55,6 +55,9 @@ import sys
 import warnings
 
 import numpy as np
+
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "config"))
+import paths  # analysis/config/paths.py
 
 warnings.filterwarnings("ignore")
 
@@ -225,14 +228,20 @@ def make_residual_maps(residual, land_mask, outdir, label):
 def main():
     ap = argparse.ArgumentParser(description=__doc__,
                                   formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--h0", required=True, help="Glob pattern for h0 history files")
-    ap.add_argument("--outdir", default="./control_qc/spatial")
-    ap.add_argument("--label", default="control",
-                     help="Run label, used as output filename prefix — "
-                          "use the config name (e.g. 'control', 'irrigation_on') "
-                          "so maps from different runs don't overwrite each other")
+    ap.add_argument("--config", default="control",
+                     help="Config (archive folder) to map (default: control)")
+    ap.add_argument("--h0", help="Glob pattern for h0 history files "
+                                 "(default: <archive>/<config>/lnd/hist/*.h0a.*.nc)")
+    ap.add_argument("--outdir", help="default: <output root>/qc/<config>/spatial")
+    ap.add_argument("--label",
+                     help="Run label, used as output filename prefix "
+                          "(default: the config name, so maps from different "
+                          "runs don't overwrite each other)")
     ap.add_argument("--chunk-time", type=int, default=60)
     args = ap.parse_args()
+    args.h0 = args.h0 or paths.lnd_hist(args.config) + "/*.h0a.*.nc"
+    args.outdir = args.outdir or f"{paths.OUTPUT_ROOT}/qc/{args.config}/spatial"
+    args.label = args.label or args.config
 
     import xarray as xr
     ds = open_h0(xr, args.h0, args.chunk_time)

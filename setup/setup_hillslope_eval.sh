@@ -20,9 +20,9 @@
 #   bash /glade/u/home/mozhgana/mywork/ctsm_conus_setup/setup_hillslope_eval.sh 2004-10-01
 
 set -e
-source /glade/u/home/mozhgana/mywork/ctsm_conus_setup/ctsm.env
+source "$(dirname "$0")/ctsm.env"   # settings and paths
 
-SEAN_FILES="/glade/u/home/mozhgana/mywork/ctsm_conus_setup/for_mozhgan"
+SEAN_FILES="$SEAN_FILES_COPY"
 hillslope_file="${SEAN_FILES}/hillslope_geo_params_trapezoid_0.125nldas2_FAB.nc"
 
 spinup_case="hillslope_on"
@@ -101,14 +101,14 @@ echo "Case created. Since GET_REFCASE=FALSE, you must manually stage the"
 echo "reference restart files BEFORE building. Preferred source is the"
 echo "archived restart (st_archive should have moved it there already):"
 echo ""
-echo "  SPINUP_RESTDIR=/glade/derecho/scratch/mozhgana/archive/${spinup_case}/rest/${refdate}-00000"
+echo "  SPINUP_RESTDIR=${ARCHIVE}/${spinup_case}/rest/${refdate}-00000"
 echo "  ls \$SPINUP_RESTDIR   # confirm it's not empty before copying"
-echo "  cp \$SPINUP_RESTDIR/* /glade/derecho/scratch/mozhgana/${casename}/run/"
+echo "  cp \$SPINUP_RESTDIR/* ${SCRATCH}/${casename}/run/"
 echo ""
 echo "If that archive directory is empty (st_archive hasn't run for that"
 echo "segment yet), use the live run directory instead:"
-echo "  cp /glade/derecho/scratch/mozhgana/${spinup_case}/run/*${refdate}* \\"
-echo "     /glade/derecho/scratch/mozhgana/${casename}/run/"
+echo "  cp ${SCRATCH}/${spinup_case}/run/*${refdate}* \\"
+echo "     ${SCRATCH}/${casename}/run/"
 echo ""
 echo "IMPORTANT: use 'cp', never 'mv' or a symlink -- this guarantees"
 echo "hillslope_on's own spinup files are never modified or moved."

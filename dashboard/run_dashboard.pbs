@@ -1,16 +1,18 @@
 #!/bin/bash
 #PBS -N ctsm_dashboard
-#PBS -A P93300041
 #PBS -q casper
 #PBS -l select=1:ncpus=10:mem=100GB
 #PBS -l walltime=06:00:00
 #PBS -j oe
-#PBS -o /glade/work/mozhgana/ctsm_conus_output/dashboard/logs/
 #
-# Build the multi-configuration dashboard for ALL gauges.
-#
-#   cd dashboard && qsub run_dashboard.pbs   (submit from this folder)
-#   qsub -v CONFIGS=control,irrigation_on run_dashboard.pbs
+# Build the multi-configuration dashboard for ALL gauges (build_streamflow_dashboard.py).
+# Inputs : land and mizuRoute history of each config, observed flow, crosswalk,
+#          routing topology and weights; paths from analysis/config/paths.py
+# Outputs: <output root>/dashboard/<name>_dashboard.html (paths.DASHBOARD_OUT)
+# Submit from this folder; the account and log folder come from setup/ctsm.env:
+#   source setup/ctsm.env                       # from the repo root
+#   cd dashboard && qsub -A "$PROJECT" -o "$OUTPUT_ROOT/dashboard/" run_dashboard.pbs
+#   qsub -A "$PROJECT" -o "$OUTPUT_ROOT/dashboard/" -v CONFIGS=control,irrigation_on run_dashboard.pbs
 #
 # This is ONE job producing ONE file containing every configuration -- not
 # one job per config as the earlier version was. Add hillslope_eval and
@@ -24,11 +26,8 @@
 set -euo pipefail
 
 CONFIGS=${CONFIGS:-control,irrigation_on,evolving_landcover,prog_phenology,hillslope_eval}
-# Archive, run root, weight cache and output folder come from
-# analysis/config/paths.py. The -o log folder above must be a literal path:
-# keep it in sync with paths.DASHBOARD_OUT.
-OUTDIR=/glade/work/mozhgana/ctsm_conus_output/dashboard
-mkdir -p "$OUTDIR/logs"
+# Archive, run root, weight cache and output folder (--outdir default,
+# paths.DASHBOARD_OUT) come from analysis/config/paths.py.
 
 module load conda
 conda activate npl-2026a
@@ -39,8 +38,6 @@ echo "host: $(hostname)"
 
 python build_streamflow_dashboard.py \
     --configs "$CONFIGS" \
-    --outdir "$OUTDIR" \
     --parallel
 
 echo "=== done $(date) ==="
-ls -lh "$OUTDIR/"*_dashboard.html

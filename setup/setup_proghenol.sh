@@ -34,7 +34,7 @@
 
 # bash /glade/u/home/mozhgana/mywork/ctsm_conus_setup/setup_proghenol.sh eval 2002-10-01
 set -e
-source /glade/u/home/mozhgana/mywork/ctsm_conus_setup/ctsm.env
+source "$(dirname "$0")/ctsm.env"   # settings and paths
 
 mode=$1
 casename="prog_phenology"

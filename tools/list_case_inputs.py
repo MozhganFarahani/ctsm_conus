@@ -10,7 +10,7 @@ For each case in cases/ this reads (never edits):
   user_nl_*                     quoted absolute paths (user overrides)
 
 A file named by several keys in one case is reported once, with every key.
-Files under /glade/derecho/scratch are flagged: scratch is purged.
+Files on Derecho scratch (paths.SCRATCH_ROOT) are flagged: scratch is purged.
 For a missing file, a copy with the same name under <archive>/*/rest/*/ is
 reported: st_archive moves restarts (finidat, fname_state_in) out of run/.
 
@@ -34,7 +34,7 @@ sys.path.insert(0, os.path.join(REPO, "analysis", "config"))
 import paths  # analysis/config/paths.py
 
 CASES_DIR = os.path.join(REPO, "cases")
-SCRATCH_PREFIX = "/glade/derecho/scratch/"
+SCRATCH_PREFIX = paths.SCRATCH_ROOT + "/"
 QUOTED = re.compile(r"'([^']*)'|\"([^\"]*)\"")
 PLACEHOLDERS = {"", "none", "null", "unset", "empty"}   # "no file" values, not paths
 

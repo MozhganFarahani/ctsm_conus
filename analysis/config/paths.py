@@ -9,7 +9,8 @@ hashes NTOPO and WEIGHTS into its cache file names.
 """
 
 # --- model output ------------------------------------------------------------
-SCRATCH = "/glade/derecho/scratch/mozhgana"
+SCRATCH_ROOT = "/glade/derecho/scratch"   # Derecho scratch: purged
+SCRATCH = f"{SCRATCH_ROOT}/mozhgana"
 RUN_ROOT = SCRATCH                    # <case>/run/ (lnd_in, restarts)
 ARCHIVE = f"{SCRATCH}/archive"        # <case>/{lnd/hist,rof/hist,rest}/
 CASES_ROOT = "/glade/work/mozhgana/ctsm_conus/cime/scripts"   # <case>/CaseDocs/
@@ -51,6 +52,7 @@ ROF_MESH = f"{MIZUROUTE_INPUT}/meshes/polygon_centroid/MERITmz_0.125nldas2_ctrcr
 CLM_INPUT = f"{INPUTDATA}/lnd/clm2"
 
 # --- outputs (outside the repo, so nothing is committed by accident) ---------
+# OUTPUT_ROOT is also set in setup/ctsm.env for the shell scripts: keep in sync.
 OUTPUT_ROOT = "/glade/work/mozhgana/ctsm_conus_output"
 CLIM_OUT = f"{OUTPUT_ROOT}/climatology/maps"
 CLIM_CACHE = f"{OUTPUT_ROOT}/climatology/ctsm_monthly_climatology.nc"

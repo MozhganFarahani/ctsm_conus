@@ -11,9 +11,9 @@
 #   bash /glade/u/home/mozhgana/mywork/ctsm_conus_setup/setup_hillslope_spinup.sh
 
 set -e
-source /glade/u/home/mozhgana/mywork/ctsm_conus_setup/ctsm.env
+source "$(dirname "$0")/ctsm.env"   # settings and paths
 
-SEAN_FILES="/glade/u/home/mozhgana/mywork/ctsm_conus_setup/for_mozhgan"
+SEAN_FILES="$SEAN_FILES_COPY"
 hillslope_file="${SEAN_FILES}/hillslope_geo_params_trapezoid_0.125nldas2_FAB.nc"
 casename="hillslope_on"
 

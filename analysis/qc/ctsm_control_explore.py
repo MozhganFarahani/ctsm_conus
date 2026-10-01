@@ -70,15 +70,6 @@ from lib import io as lio  # analysis/lib/io.py
 
 warnings.filterwarnings("ignore")
 
-# ---------------------------------------------------------------------------
-# EDIT THESE if you'd rather not pass --h0/--h1/--mizuroute every time
-# ---------------------------------------------------------------------------
-DEFAULT_PATHS = {
-    "h0": paths.lnd_hist("control") + "/*.h0a.*.nc",
-    "h1": paths.lnd_hist("control") + "/*.h1a.*.nc",
-    "mizuroute": paths.rof_hist("control") + "/*.nc",
-}
-
 # Water-balance terms, matched to the actual control-run hist_fincl1/2 list:
 # RAIN, SNOW, QFLX_EVAP_TOT, QRUNOFF, TWS are all present in both h0 and h1.
 WBAL_VARS = {
@@ -335,14 +326,16 @@ def check_mizuroute(xr, files, outdir):
 def main():
     ap = argparse.ArgumentParser(description=__doc__,
                                   formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--h0", default=DEFAULT_PATHS["h0"],
-                     help="Glob pattern for h0 history files")
-    ap.add_argument("--h1", default=DEFAULT_PATHS["h1"],
-                     help="Glob pattern for h1 history files")
-    ap.add_argument("--mizuroute", default=DEFAULT_PATHS["mizuroute"],
-                     help="Glob pattern for mizuRoute output files")
-    ap.add_argument("--outdir", default="./control_qc",
-                     help="Where to write inventories and plots")
+    ap.add_argument("--config", default="control",
+                     help="Config (archive folder) to check (default: control)")
+    ap.add_argument("--h0", help="Glob pattern for h0 history files "
+                                 "(default: <archive>/<config>/lnd/hist/*.h0a.*.nc)")
+    ap.add_argument("--h1", help="Glob pattern for h1 history files "
+                                 "(default: <archive>/<config>/lnd/hist/*.h1a.*.nc)")
+    ap.add_argument("--mizuroute", help="Glob pattern for mizuRoute output files "
+                                        "(default: <archive>/<config>/rof/hist/*.nc)")
+    ap.add_argument("--outdir", help="Where to write inventories and plots "
+                                     "(default: <output root>/qc/<config>)")
     ap.add_argument("--chunk-time", type=int, default=30,
                      help="Dask chunk size along time dim (tune for memory)")
     ap.add_argument("--lnd-in", default=None,
@@ -350,6 +343,10 @@ def main():
                           "to auto-print a config summary (phenology, land "
                           "cover, irrigation, hillslope)")
     args = ap.parse_args()
+    args.h0 = args.h0 or paths.lnd_hist(args.config) + "/*.h0a.*.nc"
+    args.h1 = args.h1 or paths.lnd_hist(args.config) + "/*.h1a.*.nc"
+    args.mizuroute = args.mizuroute or paths.rof_hist(args.config) + "/*.nc"
+    args.outdir = args.outdir or f"{paths.OUTPUT_ROOT}/qc/{args.config}"
 
     import xarray as xr
     os.makedirs(args.outdir, exist_ok=True)

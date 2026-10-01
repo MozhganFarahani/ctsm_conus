@@ -39,6 +39,8 @@ import warnings
 
 import pandas as pd
 
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "config"))
+import paths  # analysis/config/paths.py
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
 from lib import io as lio  # analysis/lib/io.py
 
@@ -48,16 +50,19 @@ warnings.filterwarnings("ignore", category=FutureWarning, module="xarray")
 def main():
     ap = argparse.ArgumentParser(description=__doc__,
                                   formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--run-dir", required=True)
+    ap.add_argument("--run-dir", help="h0a folder (default: <archive>/<case>/lnd/hist)")
     ap.add_argument("--restart-date", required=True,
                      help="Suspected boundary, e.g. 1998-10-01")
     ap.add_argument("--var", default="TOTSOILICE")
     ap.add_argument("--window-months", type=int, default=8,
                      help="Months of h1 (daily-tape monthly climatology) or "
                           "h0 (monthly) data to pull on each side of the boundary")
-    ap.add_argument("--outdir", default="./hillslope_spinup_check")
-    ap.add_argument("--case-prefix", default="hillslope_on")
+    ap.add_argument("--outdir", help="default: <output root>/spinup/<case>")
+    ap.add_argument("--case", default="hillslope_on",
+                    help="case name under the archive (default: hillslope_on)")
     args = ap.parse_args()
+    args.run_dir = args.run_dir or paths.lnd_hist(args.case)
+    args.outdir = args.outdir or f"{paths.OUTPUT_ROOT}/spinup/{args.case}"
 
     os.makedirs(args.outdir, exist_ok=True)
 
@@ -65,7 +70,7 @@ def main():
     start = restart - args.window_months
     end = restart + args.window_months
 
-    pattern = os.path.join(args.run_dir, f"{args.case_prefix}.clm2.h0a.*.nc")
+    pattern = os.path.join(args.run_dir, f"{args.case}.clm2.h0a.*.nc")
     files = sorted(glob.glob(pattern))
     if not files:
         sys.exit(f"No h0 files matched: {pattern}")

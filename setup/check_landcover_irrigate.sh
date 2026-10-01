@@ -30,14 +30,15 @@
 #                      and that case needs investigating.
 
 set -e
-source /glade/u/home/mozhgana/mywork/ctsm_conus_setup/ctsm.env
+source "$(dirname "$0")/ctsm.env"   # settings and paths
+SETUP_DIR="$(cd "$(dirname "$0")" && pwd)"   # setup_*.sh live next to this script
 
 compset_longname="HIST_DATM%NLDAS2_CLM60%SP_SICE_SOCN_MIZUROUTE_SGLC_SWAV"
-SEAN_FILES="/glade/u/home/mozhgana/mywork/ctsm_conus_setup/for_mozhgan"
+SEAN_FILES="$SEAN_FILES_COPY"
 FLANDUSE="${SEAN_FILES}/landuse.timeseries_0.125nldas2_hist_1850-2023_78pfts_c260813.nc"
 FSURDAT="${SEAN_FILES}/surfdata_0.125nldas2_hist_1850_78pfts_c260813.nc"
 
-SCRATCH_ROOT="/glade/derecho/scratch/mozhgana"
+SCRATCH_ROOT="$SCRATCH"
 CASES="lcchk_asis lcchk_off"
 
 # --------------------------------------------------------------- helpers
@@ -79,7 +80,7 @@ report() {
     show "lcchk_off"  "$(find_lnd_in lcchk_off)"
     echo ""
     echo "-- did you ever set irrigate yourself? --"
-    grep -n -i "irrigate" /glade/u/home/mozhgana/mywork/ctsm_conus_setup/setup_*.sh \
+    grep -n -i "irrigate" "$SETUP_DIR"/setup_*.sh \
         2>/dev/null || echo "  (not mentioned in any setup_*.sh)"
     echo ""
     echo "-- is it in the production case's user_nl_clm? --"
