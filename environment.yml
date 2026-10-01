@@ -1,0 +1,21 @@
+# Packages the analysis, dashboard and tools code imports, pinned to the
+# versions in NCAR's npl-2026a environment, where all of it was run and tested.
+# On Casper use npl-2026a itself:  module load conda && conda activate npl-2026a
+# Elsewhere:                       conda env create -f environment.yml
+name: ctsm-conus
+channels:
+  - conda-forge
+dependencies:
+  - python=3.13.11
+  - numpy=2.3.5
+  - pandas=2.3.3
+  - xarray=2025.12.0
+  - netcdf4=1.7.4        # engine="netcdf4" in analysis/lib/io.py
+  - cftime=1.6.5         # DatetimeNoLeap model time axes
+  - dask=2025.12.0       # xarray.open_mfdataset(chunks=..., parallel=...)
+  - scipy=1.17.0         # sparse basin-averaging weights (analysis/lib/basins.py)
+  - matplotlib=3.10.8
+  - cartopy=0.25.0       # maps (analysis/lib/plotting.py)
+  - pillow=12.1.0        # GIF writer of the animation notebook
+  - ipykernel=7.1.0      # runs the animation notebook
+  - nbconvert=7.16.6     # tools/smoke_test.sh executes the notebook
