@@ -24,8 +24,6 @@ import warnings
 
 import matplotlib as mpl
 mpl.use("Agg")
-import cartopy.crs as ccrs
-import cartopy.feature as cfeature
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
@@ -33,6 +31,8 @@ import xarray as xr
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "config"))
 import paths  # analysis/config/paths.py
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
+from lib.plotting import PROJ, basemap  # analysis/lib/plotting.py
 
 warnings.filterwarnings("ignore", category=RuntimeWarning)
 
@@ -51,8 +51,6 @@ DEFAULT_PATHS = {
 # analysis window, inclusive, YYYY-MM. First spin-up year already excluded.
 START_YM, END_YM = "1981-10", "2018-10"
 
-EXTENT = [235, 293, 25, 53]          # CONUS, 0-360 lon
-PROJ = ccrs.PlateCarree()
 DPI = 130
 
 # how to collapse a soil-level dimension: "sum" or a list of 0-based level indices
@@ -383,15 +381,6 @@ def scale_caption(stats, unit):
     if stats["pct_masked"] >= 0.01:
         parts.append(f"{stats['pct_masked']:.2f}% <= 0, masked")
     return "     ".join(parts)
-
-
-def basemap(ax):
-    ax.add_feature(cfeature.LAND, facecolor="0.9", zorder=0)
-    ax.add_feature(cfeature.OCEAN, facecolor="white", zorder=2)
-    ax.add_feature(cfeature.STATES, lw=0.25, ec="0.5", zorder=3)
-    ax.coastlines(lw=0.4, color="0.3", zorder=3)
-    ax.add_feature(cfeature.BORDERS, lw=0.4, ec="0.3", zorder=3)
-    ax.set_extent(EXTENT, crs=PROJ)
 
 
 def panel_figure(da, var, meta, labels, ncol, nrow, out_png):

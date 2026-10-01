@@ -33,11 +33,14 @@ Usage
 
 import argparse
 import glob
+import os
 import sys
 import warnings
 
-import numpy as np
 import pandas as pd
+
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
+from lib import io as lio  # analysis/lib/io.py
 
 warnings.filterwarnings("ignore", category=FutureWarning, module="xarray")
 
@@ -56,9 +59,7 @@ def main():
     ap.add_argument("--case-prefix", default="hillslope_on")
     args = ap.parse_args()
 
-    import os
     os.makedirs(args.outdir, exist_ok=True)
-    import xarray as xr
 
     restart = pd.Period(args.restart_date, freq="M")
     start = restart - args.window_months
@@ -85,22 +86,12 @@ def main():
     print(f"Using {len(wanted_files)} monthly files from "
           f"{wanted_files[0].split('.')[-2]} to {wanted_files[-1].split('.')[-2]}")
 
-    ds = xr.open_mfdataset(
-        wanted_files, combine="nested", concat_dim="time", decode_times=True,
-        engine="netcdf4", data_vars="all",
-        preprocess=lambda d: d[[v for v in (args.var, "landfrac") if v in d.variables]],
-    )
+    ds = lio.open_land_hist(wanted_files, [args.var, "landfrac"])
     if args.var not in ds.data_vars:
         sys.exit(f"{args.var} not in these files. Available: {list(ds.data_vars)}")
 
-    weight = ds["landfrac"].isel(time=0) if "landfrac" in ds else None
-    da = ds[args.var]
-    series = ((da * weight).sum(dim=["lat", "lon"]) / weight.sum()
-              if weight is not None else da.mean(dim=["lat", "lon"])).compute()
-
-    time_vals = series["time"].values
-    months = [f"{t.year}-{t.month:02d}" for t in time_vals] if not isinstance(time_vals[0], np.datetime64) \
-        else pd.to_datetime(time_vals).strftime("%Y-%m").tolist()
+    series = lio.domain_mean(ds[args.var], ds).compute()
+    months = lio.monthly_index(series["time"].values).astype(str).tolist()
 
     df = pd.Series(series.values, index=months, name=args.var)
     print(f"\n{args.var}, monthly, around {args.restart_date}:")

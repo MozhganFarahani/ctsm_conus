@@ -67,17 +67,6 @@ WBAL_VARS = {
 }
 
 
-def try_import_xarray():
-    try:
-        import xarray as xr  # noqa
-        return xr
-    except ImportError:
-        sys.exit(
-            "xarray not found. On Casper/Derecho: `module load conda` then "
-            "`conda activate npl` before running this script."
-        )
-
-
 def open_h0(xr, pattern, chunk_time):
     files = sorted(glob.glob(pattern))
     print(f"h0 pattern: {pattern}")
@@ -128,7 +117,7 @@ def get_land_mask(ds):
     return None
 
 
-def make_maps(residual, land_mask, outdir, label):
+def make_residual_maps(residual, land_mask, outdir, label):
     os.makedirs(outdir, exist_ok=True)
 
     print("Reducing: long-term mean, std ...")
@@ -245,11 +234,11 @@ def main():
     ap.add_argument("--chunk-time", type=int, default=60)
     args = ap.parse_args()
 
-    xr = try_import_xarray()
+    import xarray as xr
     ds = open_h0(xr, args.h0, args.chunk_time)
     land_mask = get_land_mask(ds)
     residual = compute_residual_field(ds)
-    make_maps(residual, land_mask, args.outdir, args.label)
+    make_residual_maps(residual, land_mask, args.outdir, args.label)
 
     print("\nDone. If any region jumps out (large |mean residual| or strong "
           "JJA-DJF asymmetry), worth checking against known geography before "

@@ -65,6 +65,8 @@ import numpy as np
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "config"))
 import paths  # analysis/config/paths.py
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
+from lib import io as lio  # analysis/lib/io.py
 
 warnings.filterwarnings("ignore")
 
@@ -147,18 +149,6 @@ def summarize_config(nml):
     print("(Record this per-run — once the 4 sensitivity configs exist, diffing "
           "these lines against control is the fastest way to confirm each run "
           "only flips the one intended axis.)")
-
-
-def try_import_xarray():
-    try:
-        import xarray as xr  # noqa
-        return xr
-    except ImportError:
-        sys.exit(
-            "xarray not found. On Casper/Derecho: `module load conda` then "
-            "`conda activate npl` (or your CTSM postprocessing env) before "
-            "running this script."
-        )
 
 
 def discover(pattern, label):
@@ -253,22 +243,7 @@ def water_balance_check(xr, ds, label, outdir):
     print(f"[{label}] running water balance check: "
           f"dTWS/dt vs (RAIN+SNOW) - QFLX_EVAP_TOT - QRUNOFF")
 
-    def domain_mean(da):
-        weight = None
-        for wname in ["landfrac", "area"]:
-            if wname in ds:
-                weight = ds[wname]
-                break
-        spatial_dims = [d for d in da.dims if d != "time"]
-        if weight is not None:
-            # landfrac/area are physically time-invariant, but some CTSM
-            # archives write them with a 'time' dim anyway. Take a single
-            # time slice so weight.sum() doesn't accidentally collapse
-            # across time too (that silently corrupts the weighted mean).
-            if "time" in weight.dims:
-                weight = weight.isel(time=0)
-            return (da * weight).sum(dim=spatial_dims) / weight.sum(dim=spatial_dims)
-        return da.mean(dim=spatial_dims)
+    domain_mean = lambda da: lio.domain_mean(da, ds)
 
     # Flux terms: CTSM gives these as mm/s (kg/m2/s) -> convert to mm/day
     precip = domain_mean(ds[names["rain"]] + ds[names["snow"]]) * 86400
@@ -376,7 +351,7 @@ def main():
                           "cover, irrigation, hillslope)")
     args = ap.parse_args()
 
-    xr = try_import_xarray()
+    import xarray as xr
     os.makedirs(args.outdir, exist_ok=True)
 
     if args.lnd_in:

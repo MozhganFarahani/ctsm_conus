@@ -52,7 +52,6 @@ differences can be initialization rather than process; the first
 """
 
 import argparse
-import glob
 import json
 import os
 import re
@@ -66,13 +65,12 @@ sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."
 import paths  # analysis/config/paths.py
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "analysis"))
 from lib import basins as ub  # analysis/lib/basins.py
+from lib import io as lio       # analysis/lib/io.py
+from lib import metrics         # analysis/lib/metrics.py
 from dashboard_template import TEMPLATE
 
 warnings.filterwarnings("ignore", category=FutureWarning, module="xarray")
 
-MODEL_START, MODEL_END = "1980-10-01", "2018-09-30"
-MIN_MONTHS = 12
-STABLE_MIN_MONTHS = 60
 DEFAULT_CROSSWALK = paths.CROSSWALK
 DEFAULT_OBS_DAILY = paths.OBS_DAILY
 DEFAULT_RUN_ROOT = paths.RUN_ROOT
@@ -95,31 +93,6 @@ def sig(x, n=4):
     if x is None or not np.isfinite(x):
         return None
     return float(f"{float(x):.{n}g}")
-
-
-def pidx(tv):
-    if isinstance(tv[0], np.datetime64):
-        return pd.PeriodIndex(pd.to_datetime(tv), freq="M")
-    return pd.PeriodIndex([f"{t.year}-{t.month:02d}" for t in tv], freq="M")
-
-
-def bulk_extract(da, ids_present, wanted_ids, resample=None, shift=0):
-    dim = "seg" if "seg" in da.dims else "site"
-    valid = [i for i in wanted_ids if i in ids_present]
-    if not valid:
-        return pd.DataFrame()
-    sub = da.sel({dim: valid}).compute() if dim == "site" else \
-          da.isel({dim: [ids_present.index(i) for i in valid]}).compute()
-    tv = sub["time"].values
-    if resample:
-        df = pd.DataFrame(sub.values, index=pd.to_datetime(tv),
-                          columns=valid).resample(resample).mean()
-        df.index = pd.PeriodIndex(df.index, freq="M")
-    else:
-        df = pd.DataFrame(sub.values, index=pidx(tv), columns=valid)
-    if shift:
-        df.index = df.index + shift
-    return df
 
 
 def init_date(run_root, config):
@@ -239,17 +212,11 @@ def main():
         dask.config.set(scheduler="threads", num_workers=n)
         print(f"--parallel: {n} CPU(s); dask capped to match.")
 
-    h0_files = lambda c: sorted(glob.glob(os.path.join(
-        args.archive_root, c, "lnd", "hist", "*.h0a.*.nc")))
-    rof_files = lambda c: sorted(glob.glob(os.path.join(
-        args.archive_root, c, "rof", "hist", "*.nc")))
+    h0_files = lambda c: lio.lnd_h0_files(args.archive_root, c)
+    rof_files = lambda c: lio.rof_files(args.archive_root, c)
 
     # ---------------------------------------------------- gauges
-    df = pd.read_csv(args.crosswalk)
-    dup = int(df["Station ID"].duplicated().sum())
-    if dup:
-        print(f"NOTE: {dup} duplicate Station ID row(s); keeping the first.")
-        df = df.drop_duplicates(subset="Station ID", keep="first")
+    df = lio.read_crosswalk(args.crosswalk, dedupe=True)
     area_col = next((c for c in df.columns
                      if "area" in c.lower() or "sqkm" in c.lower()), None)
     print(f"Crosswalk: {len(df)} gauges;  configs: {configs}  (baseline = {ref})")
@@ -290,15 +257,11 @@ def main():
 
     # ---------------------------------------------------- observations
     print("Loading observed flow ...")
-    ds_obs = xr.open_dataset(args.obs_daily, decode_times=True, engine="netcdf4")
-    fv = next((v for v in ds_obs.data_vars
-               if v.lower() in ("streamflow", "flow", "discharge", "q")),
-              next(v for v in ds_obs.data_vars if "site" in ds_obs[v].dims))
+    ds_obs, fv, sites = lio.open_obs_daily(args.obs_daily)
     print(f"  variable: {fv}")
-    sites = list(ds_obs["site"].values.astype(int))
     gids = pd.to_numeric(df["GAGE_ID"], errors="coerce").dropna().astype(int).tolist()
-    obs = bulk_extract(ds_obs[fv].sel(time=slice(MODEL_START, MODEL_END)),
-                       sites, gids, resample="MS")
+    obs = lio.bulk_extract(ds_obs[fv].sel(time=slice(lio.EVAL_START, lio.EVAL_END)),
+                           sites, gids, resample="MS")
 
     # ---------------------------------------------------- routed flow
     mod, have = {}, []
@@ -309,16 +272,9 @@ def main():
             print(f"  !! no mizuRoute output for '{c}' -- skipping")
             continue
         print(f"Loading mizuRoute [{c}] ...")
-        dsr = xr.open_mfdataset(rf, combine="nested", concat_dim="time",
-                                decode_times=True, engine="netcdf4",
-                                parallel=args.parallel, data_vars="all",
-                                preprocess=lambda d: d[[v for v in
-                                    ("RoutedRunoff", "reachID")
-                                    if v in d.variables]])
-        # reachID carries a spurious time dimension
-        rid = list(dsr["reachID"].isel(time=0).compute().values.astype(int))
-        mod[c] = bulk_extract(dsr["RoutedRunoff"], rid, reach_ids,
-                              shift=args.rof_shift)
+        dsr, rid = lio.open_mizuroute(rf, ["RoutedRunoff"], parallel=args.parallel)
+        mod[c] = lio.bulk_extract(dsr["RoutedRunoff"], rid, reach_ids,
+                                  shift=args.rof_shift)
         have.append(c)
     if not have:
         sys.exit("No mizuRoute output found for any configuration.")
@@ -346,14 +302,10 @@ def main():
                 print(f"  !! no h0 for '{c}' -- no basin means")
                 continue
             print(f"Basin-averaging [{c}] ...")
-            dsh = xr.open_mfdataset(hf, combine="nested", concat_dim="time",
-                                    decode_times=True, engine="netcdf4",
-                                    parallel=args.parallel, data_vars="all",
-                                    preprocess=lambda d: d[[v for v in wanted
-                                                            if v in d.variables]])
+            dsh = lio.open_land_hist(hf, wanted, parallel=args.parallel)
             vc = usable_vars(dsh, wanted)
             print(f"    {len(vc)}: {' '.join(vc)}")
-            idx = pidx(dsh["time"].values)
+            idx = lio.monthly_index(dsh["time"].values)
             cl = {}
             for v, cfg in vc.items():
                 arr = ub.basin_average(W["A"], dsh, v, scale=cfg.get("scale", 1.0),
@@ -389,28 +341,18 @@ def main():
         for c in cols:
             frame[c] = mod[c].loc[common, rid]
         frame = frame.dropna()
-        if len(frame) < MIN_MONTHS:
+        if len(frame) < metrics.MIN_MONTHS:
             continue
 
         o = frame["o"]
-        sst = ((o - o.mean()) ** 2).sum()
-        o_std, o_mean = o.std(), o.mean()
+        # all configs of this gauge at once, on the same months (lib/metrics.py
+        # returns NaN where the observed record cannot support a metric)
+        sk = metrics.nse_kge_pbias(np.repeat(o.values[:, None], len(cols), axis=1),
+                                   frame[cols].values)
         m_out, s_out, sc_out = {}, {}, {}
-        for c in cols:
+        for j, c in enumerate(cols):
             s = frame[c]
-            nse = 1 - ((o - s) ** 2).sum() / sst if sst > 0 else np.nan
-            # KGE needs a varying, non-zero-mean observed record: a flatlined
-            # or zero-mean gauge makes the ratio terms divide by zero and the
-            # correlation undefined. PBIAS needs the non-zero mean only.
-            if o_std > 0 and o_mean != 0:
-                with np.errstate(invalid="ignore", divide="ignore"):
-                    r = o.corr(s)   # nan for a constant simulation; handled below
-                kge = (1 - ((r - 1) ** 2 + (s.std() / o_std - 1) ** 2
-                            + (s.mean() / o_mean - 1) ** 2) ** 0.5
-                       if np.isfinite(r) else np.nan)
-            else:
-                kge = np.nan
-            pb = 100 * (s.mean() - o_mean) / o_mean if o_mean != 0 else np.nan
+            nse, kge, pb = sk["nse"][j], sk["kge"][j], sk["pbias"][j]
             if not np.isfinite(nse) or abs(nse) > 50:
                 nse = max(-50, min(1, nse)) if np.isfinite(nse) else -50
             # KGE is unbounded below; clamp it the same way as NSE so one bad
@@ -499,7 +441,7 @@ def main():
     build_html({"configs": cfg_meta, "ref": ref, "vars": vars_meta,
                 "panels": panels, "months": months_axis,
                 "spinup_years": args.spinup_years,
-                "stable_min_months": STABLE_MIN_MONTHS,
+                "stable_min_months": metrics.STABLE_MIN_MONTHS,
                 "gauges": gauges, "series": series}, out)
     mb = os.path.getsize(out) / 1e6
     print(f"Saved -> {out} ({mb:.1f} MB)")

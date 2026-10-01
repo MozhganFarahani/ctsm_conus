@@ -84,6 +84,24 @@ def read_crosswalk(path, dedupe=False, **read_csv_kw):
     return df
 
 
+def domain_mean(da, ds):
+    """Mean of da over all non-time dims, weighted by ds's landfrac (else area);
+    unweighted if neither is present. From qc/ctsm_control_explore.py."""
+    weight = None
+    for wname in ["landfrac", "area"]:
+        if wname in ds:
+            weight = ds[wname]
+            break
+    spatial_dims = [d for d in da.dims if d != "time"]
+    if weight is not None:
+        # static fields carry a time dim; without isel(time=0), weight.sum()
+        # would also collapse time and corrupt the weighted mean.
+        if "time" in weight.dims:
+            weight = weight.isel(time=0)
+        return (da * weight).sum(dim=spatial_dims) / weight.sum(dim=spatial_dims)
+    return da.mean(dim=spatial_dims)
+
+
 # ---------------------------------------------------------------- time alignment
 def monthly_index(tv):
     """Monthly PeriodIndex from year and month. mizuRoute stamps day 16, obs are

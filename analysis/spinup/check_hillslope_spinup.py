@@ -36,11 +36,14 @@ specifically, ask Sean whether a column-level output stream is needed.
 
 import argparse
 import glob
+import os
 import sys
 import warnings
 
 import numpy as np
-import pandas as pd
+
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
+from lib import io as lio  # analysis/lib/io.py
 
 warnings.filterwarnings("ignore", category=FutureWarning, module="xarray")
 
@@ -55,9 +58,7 @@ def main():
     ap.add_argument("--case-prefix", default="hillslope_on")
     args = ap.parse_args()
 
-    import os
     os.makedirs(args.outdir, exist_ok=True)
-    import xarray as xr
 
     pattern = os.path.join(args.run_dir, f"{args.case_prefix}.clm2.h0a.*.nc")
     files = sorted(glob.glob(pattern))
@@ -66,12 +67,7 @@ def main():
     print(f"Found {len(files)} monthly h0 files, "
           f"{files[0].split('.')[-2]} -> {files[-1].split('.')[-2]}")
 
-    ds = xr.open_mfdataset(
-        files, combine="nested", concat_dim="time", decode_times=True,
-        engine="netcdf4", data_vars="all",
-        preprocess=lambda d: d[[v for v in STATE_VARS + ["landfrac"]
-                                 if v in d.variables]],
-    )
+    ds = lio.open_land_hist(files, STATE_VARS + ["landfrac"])
 
     available = [v for v in STATE_VARS if v in ds.data_vars]
     missing = [v for v in STATE_VARS if v not in ds.data_vars]
@@ -79,20 +75,13 @@ def main():
         print(f"NOTE: not in output, skipping: {missing}")
     print(f"Checking equilibration for: {available}")
 
-    weight = ds["landfrac"].isel(time=0) if "landfrac" in ds else None
-
-    def domain_mean(da):
-        if weight is not None:
-            return (da * weight).sum(dim=["lat", "lon"]) / weight.sum()
-        return da.mean(dim=["lat", "lon"])
-
     annual = {}
     for v in available:
         if v == "H2OSNO":
             # peak (not mean) annual SWE is the physically meaningful metric
-            series = domain_mean(ds[v]).groupby(ds["time"].dt.year).max()
+            series = lio.domain_mean(ds[v], ds).groupby(ds["time"].dt.year).max()
         else:
-            series = domain_mean(ds[v]).groupby(ds["time"].dt.year).mean()
+            series = lio.domain_mean(ds[v], ds).groupby(ds["time"].dt.year).mean()
         annual[v] = series.compute()
 
     print("\n--- Trend check: recent window, first-half vs second-half mean ---")

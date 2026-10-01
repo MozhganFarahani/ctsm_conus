@@ -14,11 +14,14 @@ Builds both monthly series from their own timestamps and reports agreement
 at lags -2..+2 months. The lag with ratio ~1 and the highest correlation is
 the true alignment.
 """
-import sys, glob, os
+import sys, os
 import numpy as np, pandas as pd, xarray as xr
 
-sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "config"))
+HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, os.path.join(HERE, "..", "config"))
 import paths  # analysis/config/paths.py
+sys.path.insert(0, os.path.join(HERE, ".."))
+from lib import io as lio  # analysis/lib/io.py
 
 GAUGE = sys.argv[1]
 NTOPO   = paths.NTOPO
@@ -28,13 +31,7 @@ ARCH    = paths.ARCHIVE
 CONFIG  = "control"
 
 
-def pidx(tv):
-    if isinstance(tv[0], np.datetime64):
-        return pd.PeriodIndex(pd.to_datetime(tv), freq="M")
-    return pd.PeriodIndex([f"{t.year}-{t.month:02d}" for t in tv], freq="M")
-
-
-g = pd.read_csv(XW, dtype={"Station ID": str}).query("`Station ID` == @GAUGE").iloc[0]
+g = lio.read_crosswalk(XW, dtype={"Station ID": str}).query("`Station ID` == @GAUGE").iloc[0]
 reach = int(g.merit_reach_id)
 print(f"{g.Long_Name}  reach={reach}")
 
@@ -50,10 +47,7 @@ hid, area = nt.hruid.values.astype(int), nt.Basin_Area.values
 print(f"  {hp.size} HRUs, {area[hp].sum()/1e6:,.1f} km2")
 
 # ---- h0: remap QRUNOFF to these HRUs, area-weight
-h0f = sorted(glob.glob(f"{ARCH}/{CONFIG}/lnd/hist/*.h0a.*.nc"))
-ds = xr.open_mfdataset(h0f, combine="nested", concat_dim="time",
-                       engine="netcdf4", data_vars="all",
-                       preprocess=lambda d: d[["QRUNOFF"]])
+ds = lio.open_land_hist(lio.lnd_h0_files(ARCH, CONFIG), ["QRUNOFF"])
 nlat, nlon = ds.lat.size, ds.lon.size
 sw = xr.open_dataset(WEIGHTS).load()
 ov = sw.overlaps.values.astype(int)
@@ -67,19 +61,15 @@ arec = np.array([a_of[k] for k in sw.polyid.values.astype(int)[hrec[sel]]])
 cells, inv = np.unique(flat[sel], return_inverse=True)
 wts = np.bincount(inv, weights=arec * w[sel]); wts /= wts.sum()
 fld = np.nan_to_num(ds.QRUNOFF.values.reshape(ds.time.size, -1)[:, cells])
-q = pd.Series((fld * wts).sum(1) * 86400., index=pidx(ds.time.values))
+q = pd.Series((fld * wts).sum(1) * 86400., index=lio.monthly_index(ds.time.values))
 
 # ---- rof: basRunoff for the same HRUs
-rf = sorted(glob.glob(f"{ARCH}/{CONFIG}/rof/hist/*.nc"))
-dr = xr.open_mfdataset(rf, combine="nested", concat_dim="time",
-                       engine="netcdf4", data_vars="all",
-                       preprocess=lambda d: d[["basRunoff", "basinID"]])
-bid = dr.basinID.isel(time=0).values.astype(int)
+dr, bid = lio.open_mizuroute(lio.rof_files(ARCH, CONFIG), ["basRunoff"], id_var="basinID")
 loc = {b: k for k, b in enumerate(bid)}
 ix = np.array([loc[h] for h in hid[hp] if h in loc])
 aa = np.array([a_of[h] for h in hid[hp] if h in loc])
 brv = dr.basRunoff.isel({dr.basRunoff.dims[-1]: ix}).values
-b = pd.Series((brv * aa).sum(1) / aa.sum() * 86400., index=pidx(dr.time.values))
+b = pd.Series((brv * aa).sum(1) / aa.sum() * 86400., index=lio.monthly_index(dr.time.values))
 
 print(f"\n  h0  first stamps: {[str(x) for x in ds.time.values[:3]]}")
 print(f"  rof first stamps: {[str(x) for x in dr.time.values[:3]]}")
