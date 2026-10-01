@@ -10,6 +10,7 @@
 # Usage:
 #   bash <repo>/setup/setup_irrigation.sh spinup             # create + configure the spinup run
 #   bash <repo>/setup/setup_irrigation.sh eval 2002-10-01    # eval run from the spinup's final restart date
+#   bash <repo>/setup/setup_irrigation.sh --dry-run          # only write user_nl_clm to a temp folder
 
 # -h / --help prints the header block above
 [[ "${1:-}" =~ ^(-h|--help)$ ]] && { sed -n '2,/^$/s/^# \{0,1\}//p' "$0"; exit 0; }
@@ -17,8 +18,25 @@
 set -e
 source "$(dirname "$0")/ctsm.env"   # settings and paths
 
+dry_run=false; [[ "${1:-}" == "--dry-run" ]] && { dry_run=true; shift; }
 mode=$1
 casename="irrigation_on"
+
+# user_nl_clm: base fields + irrigate=.true. + QIRRIG_* fields
+write_user_nl() {
+    write_hist_nl "$HIST_FIELDS_1
+              'QOUT','QIN',$HIST_FIELDS_2,
+              'QIRRIG_FROM_SURFACE','QIRRIG_FROM_GW_UNCONFINED','QIRRIG_FROM_GW_CONFINED',
+              'QIRRIG_DRIP','QIRRIG_SPRINKLER','QIRRIG_DEMAND'"
+    echo "irrigate = .true." >> user_nl_clm
+}
+
+if $dry_run; then
+    cd "$(dry_run_dir "$casename")"
+    write_user_nl
+    echo "dry run: wrote $PWD/user_nl_clm"
+    exit 0
+fi
 
 if [ "$mode" == "spinup" ]; then
 
@@ -50,29 +68,7 @@ if [ "$mode" == "spinup" ]; then
 
     ./case.setup
 
-    # user_nl_clm: base fields + irrigate=.true. + QIRRIG_* fields
-    cat >> user_nl_clm << 'EOF'
-hist_empty_htapes = .true.
-hist_mfilt = 1,365
-hist_nhtfrq = 0,-24
-irrigate = .true.
-hist_fincl1 = 'BTRANMN','H2OSFC','H2OSNO','SNOWDP','ZWT','ZWT_PERCH','FROST_TABLE',
-              'TWS','QDRAI','QOVER','QH2OSFC','QDRAI_PERCH','QVEGT','QVEGE','QSOIL',
-              'QOUT','QIN','QFLX_SNOW_DRAIN','SOILLIQ','SOILICE','TLAI','TBOT','TSA',
-              'TG','TV','TSKIN','FPSN','FSH','EFLX_LH_TOT','EFLX_SOIL_GRND','FGR12',
-              'FIRA','FIRE','FSNO','FH2OSFC','FSDS','RAIN','SNOW','TSOI','ALT',
-              'QRUNOFF','TOTSOILLIQ','TOTSOILICE','QFLX_EVAP_TOT',
-              'QIRRIG_FROM_SURFACE','QIRRIG_FROM_GW_UNCONFINED','QIRRIG_FROM_GW_CONFINED',
-              'QIRRIG_DRIP','QIRRIG_SPRINKLER','QIRRIG_DEMAND'
-hist_fincl2 = 'BTRANMN','H2OSFC','H2OSNO','SNOWDP','ZWT','ZWT_PERCH','FROST_TABLE',
-              'TWS','QDRAI','QOVER','QH2OSFC','QDRAI_PERCH','QVEGT','QVEGE','QSOIL',
-              'QOUT','QIN','QFLX_SNOW_DRAIN','SOILLIQ','SOILICE','TLAI','TBOT','TSA',
-              'TG','TV','TSKIN','FPSN','FSH','EFLX_LH_TOT','EFLX_SOIL_GRND','FGR12',
-              'FIRA','FIRE','FSNO','FH2OSFC','FSDS','RAIN','SNOW','TSOI','ALT',
-              'QRUNOFF','TOTSOILLIQ','TOTSOILICE','QFLX_EVAP_TOT',
-              'QIRRIG_FROM_SURFACE','QIRRIG_FROM_GW_UNCONFINED','QIRRIG_FROM_GW_CONFINED',
-              'QIRRIG_DRIP','QIRRIG_SPRINKLER','QIRRIG_DEMAND'
-EOF
+    write_user_nl
 
     echo "Spinup case created and configured. Next: ./case.build && ./case.submit"
 

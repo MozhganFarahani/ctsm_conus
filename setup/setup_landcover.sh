@@ -10,6 +10,7 @@
 # Usage:
 #   bash <repo>/setup/setup_landcover.sh spinup             # step 1: create + configure spinup
 #   bash <repo>/setup/setup_landcover.sh eval 2002-10-01    # step 2: eval run
+#   bash <repo>/setup/setup_landcover.sh --dry-run          # only write the final user_nl_clm to a temp folder
 
 # ============================================================================
 # RESOLVED (Aug 18, 2026):
@@ -28,6 +29,7 @@
 set -e
 source "$(dirname "$0")/ctsm.env"   # settings and paths
 
+dry_run=false; [[ "${1:-}" == "--dry-run" ]] && { dry_run=true; shift; }
 mode=$1
 casename="evolving_landcover"
 compset_longname="HIST_DATM%NLDAS2_CLM60%SP_SICE_SOCN_MIZUROUTE_SGLC_SWAV"
@@ -35,6 +37,33 @@ compset_longname="HIST_DATM%NLDAS2_CLM60%SP_SICE_SOCN_MIZUROUTE_SGLC_SWAV"
 SEAN_FILES="$SEAN_FILES_SCRATCH"
 FLANDUSE="${SEAN_FILES}/landuse.timeseries_0.125nldas2_hist_1850-2023_78pfts_c260813.nc"
 FSURDAT="${SEAN_FILES}/surfdata_0.125nldas2_hist_1850_78pfts_c260813.nc"
+
+# user_nl_clm: base fields without 'QOUT','QIN' (as this case was run) + Sean's files
+write_user_nl() {
+    write_hist_nl "$HIST_FIELDS_1
+              $HIST_FIELDS_2"
+    cat >> user_nl_clm << EOF
+
+flanduse_timeseries = '${FLANDUSE}'
+fsurdat = '${FSURDAT}'
+EOF
+}
+
+# eval only: the restart (finidat) is from the spinup's end date, but the HIST
+# run starts in 1980, so CTSM's finidat year check fails. Added by hand to the
+# eval run on 2026-08-21 after the first eval job (7169188) failed.
+add_finidat_check() {
+    grep -q "check_finidat_year_consistency" user_nl_clm ||
+        echo "check_finidat_year_consistency = .false." >> user_nl_clm
+}
+
+if $dry_run; then   # spinup namelist + the eval change = what the case ends with
+    cd "$(dry_run_dir "$casename")"
+    write_user_nl
+    add_finidat_check
+    echo "dry run: wrote $PWD/user_nl_clm"
+    exit 0
+fi
 
 if [ "$mode" == "spinup" ]; then
 
@@ -64,26 +93,7 @@ if [ "$mode" == "spinup" ]; then
 
     ./case.setup
 
-    cat >> user_nl_clm << EOF
-hist_empty_htapes = .true.
-hist_mfilt = 1,365
-hist_nhtfrq = 0,-24
-hist_fincl1 = 'BTRANMN','H2OSFC','H2OSNO','SNOWDP','ZWT','ZWT_PERCH','FROST_TABLE',
-              'TWS','QDRAI','QOVER','QH2OSFC','QDRAI_PERCH','QVEGT','QVEGE','QSOIL',
-              'QFLX_SNOW_DRAIN','SOILLIQ','SOILICE','TLAI','TBOT','TSA',
-              'TG','TV','TSKIN','FPSN','FSH','EFLX_LH_TOT','EFLX_SOIL_GRND','FGR12',
-              'FIRA','FIRE','FSNO','FH2OSFC','FSDS','RAIN','SNOW','TSOI','ALT',
-              'QRUNOFF','TOTSOILLIQ','TOTSOILICE','QFLX_EVAP_TOT'
-hist_fincl2 = 'BTRANMN','H2OSFC','H2OSNO','SNOWDP','ZWT','ZWT_PERCH','FROST_TABLE',
-              'TWS','QDRAI','QOVER','QH2OSFC','QDRAI_PERCH','QVEGT','QVEGE','QSOIL',
-              'QFLX_SNOW_DRAIN','SOILLIQ','SOILICE','TLAI','TBOT','TSA',
-              'TG','TV','TSKIN','FPSN','FSH','EFLX_LH_TOT','EFLX_SOIL_GRND','FGR12',
-              'FIRA','FIRE','FSNO','FH2OSFC','FSDS','RAIN','SNOW','TSOI','ALT',
-              'QRUNOFF','TOTSOILLIQ','TOTSOILICE','QFLX_EVAP_TOT'
-
-flanduse_timeseries = '${FLANDUSE}'
-fsurdat = '${FSURDAT}'
-EOF
+    write_user_nl
 
     echo ""
     echo "Spinup case created and configured."
@@ -112,6 +122,8 @@ elif [ "$mode" == "eval" ]; then
     ./xmlchange STOP_N=38
     ./xmlchange RESUBMIT=0
     ./xmlchange JOB_WALLCLOCK_TIME=12:00:00 --subgroup case.run
+
+    add_finidat_check
 
     ./case.setup --reset
 

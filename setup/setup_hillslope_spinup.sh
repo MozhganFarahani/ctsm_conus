@@ -10,6 +10,7 @@
 #
 # Usage:
 #   bash <repo>/setup/setup_hillslope_spinup.sh
+#   bash <repo>/setup/setup_hillslope_spinup.sh --dry-run   # only write user_nl_clm to a temp folder
 
 # Consolidated hillslope SPINUP setup -- everything actually needed, based
 # on troubleshooting during initial setup (Sep 2026). Each non-obvious
@@ -20,10 +21,31 @@
 
 set -e
 source "$(dirname "$0")/ctsm.env"   # settings and paths
+dry_run=false; [[ "${1:-}" == "--dry-run" ]] && { dry_run=true; shift; }
 
 SEAN_FILES="$SEAN_FILES_COPY"
 hillslope_file="${SEAN_FILES}/hillslope_geo_params_trapezoid_0.125nldas2_FAB.nc"
 casename="hillslope_on"
+
+# user_nl_clm: control's 44 fields plus QLATFLOWOUT (right after QOUT,QIN) and
+# H2OSOI, and the hillslope switches.
+write_user_nl() {
+    write_hist_nl "$HIST_FIELDS_1
+              'QOUT','QIN','QLATFLOWOUT',$HIST_FIELDS_2,'H2OSOI'"
+    cat >> user_nl_clm << EOF
+
+hillslope_file = '${hillslope_file}'
+use_hillslope = .true.
+use_hillslope_routing = .true.
+EOF
+}
+
+if $dry_run; then
+    cd "$(dry_run_dir "$casename")"
+    write_user_nl
+    echo "dry run: wrote $PWD/user_nl_clm"
+    exit 0
+fi
 
 ./create_newcase \
     --case "$casename" \
@@ -81,27 +103,7 @@ cd "$casename"
 # conditionally registered only when use_hillslope=.true.). QOUT/QIN/H2OSOI
 # are control's fields, kept for apples-to-apples comparison -- these got
 # accidentally dropped in an earlier draft and were restored.
-cat >> user_nl_clm << EOF
-hist_empty_htapes = .true.
-hist_mfilt = 1,365
-hist_nhtfrq = 0,-24
-hist_fincl1 = 'BTRANMN','H2OSFC','H2OSNO','SNOWDP','ZWT','ZWT_PERCH','FROST_TABLE',
-              'TWS','QDRAI','QOVER','QH2OSFC','QDRAI_PERCH','QVEGT','QVEGE','QSOIL',
-              'QOUT','QIN','QLATFLOWOUT','QFLX_SNOW_DRAIN','SOILLIQ','SOILICE','TLAI',
-              'TBOT','TSA','TG','TV','TSKIN','FPSN','FSH','EFLX_LH_TOT','EFLX_SOIL_GRND',
-              'FGR12','FIRA','FIRE','FSNO','FH2OSFC','FSDS','RAIN','SNOW','TSOI','ALT',
-              'QRUNOFF','TOTSOILLIQ','TOTSOILICE','QFLX_EVAP_TOT','H2OSOI'
-hist_fincl2 = 'BTRANMN','H2OSFC','H2OSNO','SNOWDP','ZWT','ZWT_PERCH','FROST_TABLE',
-              'TWS','QDRAI','QOVER','QH2OSFC','QDRAI_PERCH','QVEGT','QVEGE','QSOIL',
-              'QOUT','QIN','QLATFLOWOUT','QFLX_SNOW_DRAIN','SOILLIQ','SOILICE','TLAI',
-              'TBOT','TSA','TG','TV','TSKIN','FPSN','FSH','EFLX_LH_TOT','EFLX_SOIL_GRND',
-              'FGR12','FIRA','FIRE','FSNO','FH2OSFC','FSDS','RAIN','SNOW','TSOI','ALT',
-              'QRUNOFF','TOTSOILLIQ','TOTSOILICE','QFLX_EVAP_TOT','H2OSOI'
-
-hillslope_file = '${hillslope_file}'
-use_hillslope = .true.
-use_hillslope_routing = .true.
-EOF
+write_user_nl
 
 echo ""
 echo "=========================================================================="

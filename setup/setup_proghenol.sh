@@ -9,6 +9,7 @@
 # Usage:
 #   bash <repo>/setup/setup_proghenol.sh spinup             # step 1: create + configure spinup
 #   bash <repo>/setup/setup_proghenol.sh eval 2002-10-01    # step 2: eval run from <RUN_REFDATE>
+#   bash <repo>/setup/setup_proghenol.sh --dry-run          # only write user_nl_clm to a temp folder
 
 # (shared worktree with evolving_landcover -- this config needs a custom
 #  compset added to config_compsets.xml, which is why it's NOT built
@@ -43,9 +44,26 @@
 set -e
 source "$(dirname "$0")/ctsm.env"   # settings and paths
 
+dry_run=false; [[ "${1:-}" == "--dry-run" ]] && { dry_run=true; shift; }
 mode=$1
 casename="prog_phenology"
 compset_longname="2000_DATM%NLDAS2_CLM60%BGC_SICE_SOCN_MIZUROUTE_SGLC_SWAV"
+
+# user_nl_clm: base fields + H2OSOI + carbon fields.
+# finidat intentionally NOT set here -- see header notes. This is the
+# confirmed-correct choice per Sean, not a missing setting.
+write_user_nl() {
+    write_hist_nl "$HIST_FIELDS_1
+              'QOUT','QIN',$HIST_FIELDS_2,'H2OSOI',
+              'GPP','NPP','NEE','TOTECOSYSC','TOTVEGC','TOTSOMC','AR','HR'"
+}
+
+if $dry_run; then
+    cd "$(dry_run_dir "$casename")"
+    write_user_nl
+    echo "dry run: wrote $PWD/user_nl_clm"
+    exit 0
+fi
 
 if [ "$mode" == "spinup" ]; then
 
@@ -93,27 +111,7 @@ if [ "$mode" == "spinup" ]; then
 
     ./case.setup
 
-    # finidat intentionally NOT set here -- see header notes. This is the
-    # confirmed-correct choice per Sean, not a missing setting.
-    cat >> user_nl_clm << 'EOF'
-hist_empty_htapes = .true.
-hist_mfilt = 1,365
-hist_nhtfrq = 0,-24
-hist_fincl1 = 'BTRANMN','H2OSFC','H2OSNO','SNOWDP','ZWT','ZWT_PERCH','FROST_TABLE',
-              'TWS','QDRAI','QOVER','QH2OSFC','QDRAI_PERCH','QVEGT','QVEGE','QSOIL',
-              'QOUT','QIN','QFLX_SNOW_DRAIN','SOILLIQ','SOILICE','TLAI','TBOT','TSA',
-              'TG','TV','TSKIN','FPSN','FSH','EFLX_LH_TOT','EFLX_SOIL_GRND','FGR12',
-              'FIRA','FIRE','FSNO','FH2OSFC','FSDS','RAIN','SNOW','TSOI','ALT',
-              'QRUNOFF','TOTSOILLIQ','TOTSOILICE','QFLX_EVAP_TOT','H2OSOI',
-              'GPP','NPP','NEE','TOTECOSYSC','TOTVEGC','TOTSOMC','AR','HR'
-hist_fincl2 = 'BTRANMN','H2OSFC','H2OSNO','SNOWDP','ZWT','ZWT_PERCH','FROST_TABLE',
-              'TWS','QDRAI','QOVER','QH2OSFC','QDRAI_PERCH','QVEGT','QVEGE','QSOIL',
-              'QOUT','QIN','QFLX_SNOW_DRAIN','SOILLIQ','SOILICE','TLAI','TBOT','TSA',
-              'TG','TV','TSKIN','FPSN','FSH','EFLX_LH_TOT','EFLX_SOIL_GRND','FGR12',
-              'FIRA','FIRE','FSNO','FH2OSFC','FSDS','RAIN','SNOW','TSOI','ALT',
-              'QRUNOFF','TOTSOILLIQ','TOTSOILICE','QFLX_EVAP_TOT','H2OSOI',
-              'GPP','NPP','NEE','TOTECOSYSC','TOTVEGC','TOTSOMC','AR','HR'
-EOF
+    write_user_nl
 
     echo ""
     echo "=========================================================================="

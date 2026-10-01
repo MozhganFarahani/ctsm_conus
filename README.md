@@ -84,15 +84,23 @@ tools/                  scripts that maintain this repository
 
 All scripts source `ctsm.env` (project, compiler, driver, resolution, queue, machine, compsets, and every path the shell scripts use). Run them on Derecho, from the CIME scripts folder (`$CIME_SCRIPTS` in `ctsm.env`); `create_newcase` does not work from Casper. Each script prints its usage with `--help`.
 
+`--dry-run` (first argument, from any folder) writes only the case's final `user_nl_clm` to `$DRY_RUN_DIR/<case>/` (default: a new temp folder). It creates no case and runs no CIME command. To check a script against the archived case:
+
+```
+DRY_RUN_DIR=$(mktemp -d) bash setup/setup_control.sh --dry-run
+diff <dry-run folder>/control/user_nl_clm cases/control/user_nl_clm
+```
+
+The archived files also contain CIME's comment header, and they wrap lines differently. Compare them with comments and whitespace removed.
+
 | File | Purpose |
 |---|---|
-| `ctsm.env` | shared settings, paths and the account code for shell scripts |
+| `ctsm.env` | shared settings, paths and the account code for shell scripts; also the history field list (`HIST_FIELDS_1`, `HIST_FIELDS_2`, `write_hist_nl`) that the setup scripts share |
 | `setup_control.sh` | control spinup and eval |
 | `setup_irrigation.sh` | irrigation_on |
 | `setup_landcover.sh` | evolving_landcover |
 | `setup_hillslope_spinup.sh`, `setup_hillslope_eval.sh` | hillslope spinup (`hillslope_on`) and eval (`hillslope_eval`) |
 | `setup_proghenol.sh` | prog_phenology |
-| `check_landcover_irrigate.sh` | diagnostic: shows which `irrigate` value build-namelist picks for the land-cover setup |
 
 ### `cases/`
 

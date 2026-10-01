@@ -10,6 +10,7 @@
 # Usage:
 #   bash <repo>/setup/setup_control.sh spinup             # create + configure the spinup run
 #   bash <repo>/setup/setup_control.sh eval 2002-01-01    # eval run from the spinup's final restart date
+#   bash <repo>/setup/setup_control.sh --dry-run          # only write the final user_nl_clm to a temp folder
 
 # -h / --help prints the header block above
 [[ "${1:-}" =~ ^(-h|--help)$ ]] && { sed -n '2,/^$/s/^# \{0,1\}//p' "$0"; exit 0; }
@@ -17,8 +18,29 @@
 set -e
 source "$(dirname "$0")/ctsm.env"   # settings and paths
 
+dry_run=false; [[ "${1:-}" == "--dry-run" ]] && { dry_run=true; shift; }
 mode=$1
 casename="control"
+
+# user_nl_clm: base 44-field diagnostic set used throughout the project.
+# NOTE: does NOT include H2OSOI here -- that field can only be added on a
+# fresh startup/hybrid run, not a CONTINUE_RUN continuation. It was added
+# later, on the eval (hybrid) run (add_h2osoi), not on the spinup namelist.
+write_user_nl() {
+    write_hist_nl "$HIST_FIELDS_1
+              'QOUT','QIN',$HIST_FIELDS_2"
+}
+add_h2osoi() {
+    sed -i "s/'QFLX_EVAP_TOT'/'QFLX_EVAP_TOT','H2OSOI'/g" user_nl_clm
+}
+
+if $dry_run; then   # spinup namelist + the eval change = what the case ends with
+    cd "$(dry_run_dir "$casename")"
+    write_user_nl
+    add_h2osoi
+    echo "dry run: wrote $PWD/user_nl_clm"
+    exit 0
+fi
 
 if [ "$mode" == "spinup" ]; then
 
@@ -51,27 +73,7 @@ if [ "$mode" == "spinup" ]; then
 
     ./case.setup
 
-    # user_nl_clm: base 38-field diagnostic set used throughout the project.
-    # NOTE: does NOT include H2OSOI here -- that field can only be added on a
-    # fresh startup/hybrid run, not a CONTINUE_RUN continuation. It was added
-    # later, on the eval (hybrid) run below, not on this spinup namelist.
-    cat >> user_nl_clm << 'EOF'
-hist_empty_htapes = .true.
-hist_mfilt = 1,365
-hist_nhtfrq = 0,-24
-hist_fincl1 = 'BTRANMN','H2OSFC','H2OSNO','SNOWDP','ZWT','ZWT_PERCH','FROST_TABLE',
-              'TWS','QDRAI','QOVER','QH2OSFC','QDRAI_PERCH','QVEGT','QVEGE','QSOIL',
-              'QOUT','QIN','QFLX_SNOW_DRAIN','SOILLIQ','SOILICE','TLAI','TBOT','TSA',
-              'TG','TV','TSKIN','FPSN','FSH','EFLX_LH_TOT','EFLX_SOIL_GRND','FGR12',
-              'FIRA','FIRE','FSNO','FH2OSFC','FSDS','RAIN','SNOW','TSOI','ALT',
-              'QRUNOFF','TOTSOILLIQ','TOTSOILICE','QFLX_EVAP_TOT'
-hist_fincl2 = 'BTRANMN','H2OSFC','H2OSNO','SNOWDP','ZWT','ZWT_PERCH','FROST_TABLE',
-              'TWS','QDRAI','QOVER','QH2OSFC','QDRAI_PERCH','QVEGT','QVEGE','QSOIL',
-              'QOUT','QIN','QFLX_SNOW_DRAIN','SOILLIQ','SOILICE','TLAI','TBOT','TSA',
-              'TG','TV','TSKIN','FPSN','FSH','EFLX_LH_TOT','EFLX_SOIL_GRND','FGR12',
-              'FIRA','FIRE','FSNO','FH2OSFC','FSDS','RAIN','SNOW','TSOI','ALT',
-              'QRUNOFF','TOTSOILLIQ','TOTSOILICE','QFLX_EVAP_TOT'
-EOF
+    write_user_nl
 
     echo "Spinup case created and configured. Next: ./case.build && ./case.submit"
     echo "NOTE: if extending spinup later (CONTINUE_RUN=TRUE), do NOT add new"
@@ -102,7 +104,7 @@ elif [ "$mode" == "eval" ]; then
 
     # hybrid start allows changing hist_fincl -- add H2OSOI here (blocked on spinup continuation)
     if ! grep -q "H2OSOI" user_nl_clm; then
-        sed -i "s/'QFLX_EVAP_TOT'/'QFLX_EVAP_TOT','H2OSOI'/g" user_nl_clm
+        add_h2osoi
         echo "Added H2OSOI to hist_fincl1/hist_fincl2 (only possible on hybrid/startup, not continuation)."
     fi
 
