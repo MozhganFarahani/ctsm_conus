@@ -26,21 +26,26 @@ What it does
    long-term means) to `--outdir` so you can eyeball results without a
    GUI session on Casper.
 
+Inputs
+------
+h0a, h1a and mizuRoute history of one config (paths.lnd_hist, paths.rof_hist),
+optionally its lnd_in. --h0/--h1/--mizuroute override the file patterns.
+
+Outputs
+-------
+<outdir>/{h0,h1,mizuroute}_inventory.txt and h1_water_balance.png
+(default outdir: <output root>/qc/<config>); the checks print to stdout.
+
 Usage
 -----
     module load conda && conda activate npl-2026a
-    python ctsm_control_explore.py \\
-        --h0 "/glade/derecho/scratch/mozhgana/archive/control/lnd/hist/*.h0a.*.nc" \\
-        --h1 "/glade/derecho/scratch/mozhgana/archive/control/lnd/hist/*.h1a.*.nc" \\
-        --mizuroute "/glade/derecho/scratch/mozhgana/archive/control/rof/hist/*.nc" \\
-        --lnd-in /glade/work/mozhgana/ctsm_conus/cime/scripts/control/CaseDocs/lnd_in \\
-        --outdir ./control_qc
+    python ctsm_control_explore.py --config control \\
+        --lnd-in ../../cases/control/CaseDocs/lnd_in
 
 Notes
 -----
-- EDIT THE PATHS in --h0/--h1/--mizuroute (glob patterns, quote them so the
-  shell doesn't expand the wildcard) or just call this with defaults edited
-  below in `DEFAULT_PATHS`.
+- --h0/--h1/--mizuroute are glob patterns: quote them so the shell doesn't
+  expand the wildcard.
 - CONUS at ~10 km, full time series is large. This uses dask chunking and
   only pulls small reductions (means, sums) into memory — it never loads
   the full array. If you hit memory errors, reduce `--chunk-time`.

@@ -20,15 +20,14 @@ to distinguish:
   - a gradual multi-month decline spanning the boundary
     -> more likely a genuine seasonal/interannual signal, not a bug
 
+Inputs : <archive>/<case>/lnd/hist/<case>.clm2.h0a.*.nc (paths.lnd_hist; --run-dir overrides)
+Outputs: <outdir>/<var>_restart_boundary_check.png (default: <output root>/spinup/<case>);
+         the boundary jump vs typical month-to-month change prints to stdout
+
 Usage
 -----
-
     module load conda && conda activate npl-2026a
-    python check_restart_discontinuity.py \
-  --run-dir /glade/derecho/scratch/mozhgana/archive/hillslope_on/lnd/hist \
-  --restart-date 1998-10-01 \
-  --outdir ./hillslope_spinup_check
-
+    python check_restart_discontinuity.py --case hillslope_on --restart-date 1998-10-01
 """
 
 import argparse

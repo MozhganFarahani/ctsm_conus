@@ -1,6 +1,15 @@
 #!/bin/bash
+# setup_proghenol.sh -- create and configure the prog_phenology case (BGC): spinup, then eval.
 #
-# Run this from: /glade/work/mozhgana/ctsm_conus/cime/scripts
+# Inputs : setup/ctsm.env (resolution, project). Run from the CIME scripts folder
+#          ($CIME_SCRIPTS in ctsm.env), where create_newcase is.
+# Outputs: the case folder ./prog_phenology, configured but not built
+#          (custom BGC compset longname; finidat left at its default).
+#
+# Usage:
+#   bash <repo>/setup/setup_proghenol.sh spinup             # step 1: create + configure spinup
+#   bash <repo>/setup/setup_proghenol.sh eval 2002-10-01    # step 2: eval run from <RUN_REFDATE>
+
 # (shared worktree with evolving_landcover -- this config needs a custom
 #  compset added to config_compsets.xml, which is why it's NOT built
 #  directly in ctsm_conus like irrigation/hillslope)
@@ -27,12 +36,10 @@
 # nitrogen cycling adds real per-timestep cost) but nowhere near hillslope's
 # ~7-8x slowdown. Real measured 22yr spinup: 5.55hr, ~95 sim-years/day --
 # 22 years fits comfortably in one submission at this rate.
-#
-# Usage:
-#bash /glade/u/home/mozhgana/mywork/ctsm_conus_setup/setup_proghenol.sh spinup  # step 1: create + configure spinup    
-#bash /glade/u/home/mozhgana/mywork/ctsm_conus_setup/setup_proghenol.sh eval <RUN_REFDATE>      # step 2: real eval run
 
-# bash /glade/u/home/mozhgana/mywork/ctsm_conus_setup/setup_proghenol.sh eval 2002-10-01
+# -h / --help prints the header block above
+[[ "${1:-}" =~ ^(-h|--help)$ ]] && { sed -n '2,/^$/s/^# \{0,1\}//p' "$0"; exit 0; }
+
 set -e
 source "$(dirname "$0")/ctsm.env"   # settings and paths
 

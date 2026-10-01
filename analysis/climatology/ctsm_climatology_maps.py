@@ -9,6 +9,11 @@ Stage 2  plot from the cache:
            --seasonal  one figure per variable, 4 subplots (DJF/MAM/JJA/SON)
            --summary   one multi-panel page of domain-mean seasonal cycles
 
+Inputs : control h0a monthly files (paths.lnd_hist("control")) and the field list
+         ctsm_control_history_fields.csv next to this script
+Outputs: the cache paths.CLIM_CACHE and figures under paths.CLIM_OUT
+         (<output root>/climatology/); see README.md in this folder
+
 Examples
     python ctsm_climatology_maps.py                       # build cache, all figures
     python ctsm_climatology_maps.py --monthly             # maps only, reuse cache

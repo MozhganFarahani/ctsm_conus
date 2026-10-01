@@ -1,6 +1,15 @@
 #!/bin/bash
-# setup_hillslope_eval.sh
+# setup_hillslope_eval.sh -- create and configure the hillslope eval case (hillslope_eval).
 #
+# Inputs : setup/ctsm.env (compset, resolution, project, $SEAN_FILES_COPY), the
+#          restart date of the hillslope_on spinup. Run from the CIME scripts
+#          folder ($CIME_SCRIPTS in ctsm.env), where create_newcase is.
+# Outputs: the case folder ./hillslope_eval (hybrid run from hillslope_on),
+#          configured but not built; prints the commands that stage the restart.
+#
+# Usage:
+#   bash <repo>/setup/setup_hillslope_eval.sh 2004-10-01    # <RUN_REFDATE>
+
 # Sets up the hillslope EVAL run (38 years, 1980-2018) in a SEPARATE case
 # folder (hillslope_eval), referencing the spinup (hillslope_on) restart
 # via a hybrid run -- deliberately NOT reusing hillslope_on's own directory,
@@ -11,13 +20,9 @@
 # reference restart files must be manually copied into this new case's run
 # directory before building. Exact commands are printed at the end -- use
 # 'cp', never 'mv' or a symlink, so hillslope_on's own files are never at risk.
-#
-# Run this from: /glade/work/mozhgana/ctsm_conus/cime/scripts
-#
-# Usage:
-#   bash /glade/u/home/mozhgana/mywork/ctsm_conus_setup/setup_hillslope_eval.sh <RUN_REFDATE>
-#   e.g.:
-#   bash /glade/u/home/mozhgana/mywork/ctsm_conus_setup/setup_hillslope_eval.sh 2004-10-01
+
+# -h / --help prints the header block above
+[[ "${1:-}" =~ ^(-h|--help)$ ]] && { sed -n '2,/^$/s/^# \{0,1\}//p' "$0"; exit 0; }
 
 set -e
 source "$(dirname "$0")/ctsm.env"   # settings and paths

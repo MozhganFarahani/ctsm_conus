@@ -14,6 +14,9 @@ Files on Derecho scratch (paths.SCRATCH_ROOT) are flagged: scratch is purged.
 For a missing file, a copy with the same name under <archive>/*/rest/*/ is
 reported: st_archive moves restarts (finidat, fname_state_in) out of run/.
 
+Inputs : cases/<case>/ in this repository; the files they name are only checked for existence
+Outputs: a summary on stdout and the full table in <output root>/case_inputs.csv (--csv)
+
 Usage
 -----
     module load conda && conda activate npl-2026a

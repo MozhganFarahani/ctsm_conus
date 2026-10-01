@@ -1,14 +1,22 @@
 #!/bin/bash
-# setup_hillslope_spinup.sh
+# setup_hillslope_spinup.sh -- create and configure the hillslope spinup case (hillslope_on).
 #
+# Inputs : setup/ctsm.env (compset, resolution, project, $SEAN_FILES_COPY: the
+#          hillslope parameter file). Run from the CIME scripts folder
+#          ($CIME_SCRIPTS in ctsm.env), where create_newcase is.
+# Outputs: the case folder ./hillslope_on, configured but not built
+#          (use_hillslope, use_hillslope_routing, hillslope_file in user_nl_clm).
+#          The eval run is a separate case: setup_hillslope_eval.sh.
+#
+# Usage:
+#   bash <repo>/setup/setup_hillslope_spinup.sh
+
 # Consolidated hillslope SPINUP setup -- everything actually needed, based
 # on troubleshooting during initial setup (Sep 2026). Each non-obvious
 # setting below is commented with why it's there.
-#
-# Run this from: /glade/work/mozhgana/ctsm_conus/cime/scripts
-#
-# Usage:
-#   bash /glade/u/home/mozhgana/mywork/ctsm_conus_setup/setup_hillslope_spinup.sh
+
+# -h / --help prints the header block above
+[[ "${1:-}" =~ ^(-h|--help)$ ]] && { sed -n '2,/^$/s/^# \{0,1\}//p' "$0"; exit 0; }
 
 set -e
 source "$(dirname "$0")/ctsm.env"   # settings and paths

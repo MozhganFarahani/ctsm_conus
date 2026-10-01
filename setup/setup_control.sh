@@ -1,14 +1,18 @@
 #!/bin/bash
-# setup_control.sh
+# setup_control.sh -- create and configure the control case: spinup, then eval.
 #
-# Run this from: /glade/work/mozhgana/ctsm_conus/cime/scripts
-#
+# Inputs : setup/ctsm.env (compset, resolution, project). Run from the CIME
+#          scripts folder ($CIME_SCRIPTS in ctsm.env), where create_newcase is.
+# Outputs: the case folder ./control, configured but not built. spinup mode runs
+#          create_newcase, xmlchange, case.setup and writes user_nl_clm; eval mode
+#          switches the same case to a hybrid run from the spinup restart.
 #
 # Usage:
-#   ./setup_control.sh spinup      # create + configure the spinup run
-#   bash /glade/u/home/mozhgana/mywork/ctsm_conus_setup/setup_control.sh spinup 
-#   ./setup_control.sh eval <RUN_REFDATE>   # create + configure the real eval run,
-#                                              using the spinup's final restart date
+#   bash <repo>/setup/setup_control.sh spinup             # create + configure the spinup run
+#   bash <repo>/setup/setup_control.sh eval 2002-01-01    # eval run from the spinup's final restart date
+
+# -h / --help prints the header block above
+[[ "${1:-}" =~ ^(-h|--help)$ ]] && { sed -n '2,/^$/s/^# \{0,1\}//p' "$0"; exit 0; }
 
 set -e
 source "$(dirname "$0")/ctsm.env"   # settings and paths

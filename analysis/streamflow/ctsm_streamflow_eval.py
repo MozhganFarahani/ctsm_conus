@@ -15,15 +15,16 @@ per-gauge work is this cheap).
 (xr.open_mfdataset(parallel=...)) -- meaningful when you have hundreds of
 files, since it reads them concurrently rather than one at a time.
 
+Inputs : mizuRoute RoutedRunoff of one config (<archive>/<config>/rof/hist),
+         observed daily flow (paths.OBS_DAILY, resampled to monthly),
+         gauge crosswalk (paths.CROSSWALK)
+Outputs: <outdir>/<config>_streamflow_eval.csv, one row per gauge
+         (default outdir: <output root>/streamflow); a summary prints to stdout
+
 Usage
 -----
     module load conda && conda activate npl-2026a
-
-    # --archive-root defaults to paths.ARCHIVE (analysis/config/paths.py)
-    python ctsm_streamflow_eval.py --config control --outdir ./streamflow_eval
-
-    python ctsm_streamflow_eval.py --config irrigation_on \\
-        --outdir ./streamflow_eval --parallel --limit 100
+    python ctsm_streamflow_eval.py --config irrigation_on --parallel --limit 100
 """
 
 import argparse

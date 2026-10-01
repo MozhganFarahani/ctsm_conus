@@ -34,13 +34,19 @@ What it does
 5. Saves the small (lat,lon) result fields as NetCDF (reusable for diffing
    against the 4 sensitivity configs later) and as PNG maps.
 
+Inputs
+------
+h0a monthly history of one config (paths.lnd_hist); --h0 overrides the pattern.
+
+Outputs
+-------
+<outdir>/<label>_wbal_spatial.nc and <label>_*.png maps
+(default outdir: <output root>/qc/<config>/spatial, label: the config name).
+
 Usage
 -----
     module load conda && conda activate npl-2026a
-    python ctsm_spatial_water_balance.py \\
-        --h0 "/glade/derecho/scratch/mozhgana/archive/control/lnd/hist/*.h0a.*.nc" \\
-        --outdir ./control_qc/spatial \\
-        --label control
+    python ctsm_spatial_water_balance.py --config control
 
 Recommend running this as a short batch job rather than interactively:
     qsub -I -l select=1:ncpus=4:mem=32GB -l walltime=00:30:00 -q casper -A "$PROJECT"

@@ -1,8 +1,16 @@
 #!/bin/bash
-# setup_landcover.sh
+# setup_landcover.sh -- create and configure the evolving_landcover case: spinup, then eval.
 #
-# Run this from: /glade/work/mozhgana/ctsm_conus/cime/scripts
+# Inputs : setup/ctsm.env (resolution, project, $SEAN_FILES_SCRATCH: Sean's 1850
+#          surface dataset and 1850-2023 land-use timeseries). Run from the CIME
+#          scripts folder ($CIME_SCRIPTS in ctsm.env), where create_newcase is.
+# Outputs: the case folder ./evolving_landcover, configured but not built
+#          (HIST compset; fsurdat and flanduse_timeseries in user_nl_clm).
 #
+# Usage:
+#   bash <repo>/setup/setup_landcover.sh spinup             # step 1: create + configure spinup
+#   bash <repo>/setup/setup_landcover.sh eval 2002-10-01    # step 2: eval run
+
 # ============================================================================
 # RESOLVED (Aug 18, 2026):
 # Compset HIST_DATM%NLDAS2_CLM60%SP_SICE_SOCN_MIZUROUTE_SGLC_SWAV works
@@ -13,10 +21,9 @@
 # Sean (in $SEAN_FILES_SCRATCH) -- this unblocks the
 # earlier "No default value found for flanduse_timeseries" build error.
 # ============================================================================
-#
-# Usage:
-#   ./setup_landcover.sh spinup              # step 1: create + configure spinup
-#   ./setup_landcover.sh eval <RUN_REFDATE>   # step 2: real eval run
+
+# -h / --help prints the header block above
+[[ "${1:-}" =~ ^(-h|--help)$ ]] && { sed -n '2,/^$/s/^# \{0,1\}//p' "$0"; exit 0; }
 
 set -e
 source "$(dirname "$0")/ctsm.env"   # settings and paths

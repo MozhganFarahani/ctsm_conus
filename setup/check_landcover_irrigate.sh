@@ -1,19 +1,23 @@
 #!/bin/bash
-# check_landcover_irrigate.sh
+# check_landcover_irrigate.sh -- which irrigate value does build-namelist pick for
+# the evolving_landcover setup? (diagnostic; no build, no submit)
 #
+# Inputs : setup/ctsm.env, $SEAN_FILES_COPY (the land-cover files), the control,
+#          irrigation_on and evolving_landcover cases (read only).
+# Outputs: throwaway cases ./lcchk_asis and ./lcchk_off and a report on stdout.
+#
+# Usage (from $CIME_SCRIPTS):
+#   bash <repo>/setup/check_landcover_irrigate.sh            # create both test cases + report
+#   bash <repo>/setup/check_landcover_irrigate.sh report     # just re-print the report
+#   bash <repo>/setup/check_landcover_irrigate.sh clean      # delete the test cases
+
 # Why does evolving_landcover have irrigate = .true. when setup_landcover.sh
 # never sets it?
 #
 # Creates throwaway cases IDENTICAL to setup_landcover.sh (spinup path only),
 # runs ./preview_namelists, and reports what CTSM's build-namelist decided.
 # No ./case.build, no ./case.submit -- this takes minutes and burns no core
-# hours.
-#
-#   Run from: /glade/work/mozhgana/ctsm_conus/cime/scripts   (on DERECHO)
-#
-#   ./check_landcover_irrigate.sh            # create both test cases + report
-#   ./check_landcover_irrigate.sh report     # just re-print the report
-#   ./check_landcover_irrigate.sh clean      # delete the test cases
+# hours. Run on Derecho.
 #
 # Three cases are compared:
 #   lcchk_asis     exactly your setup_landcover.sh  -> what IS the default?
@@ -28,6 +32,9 @@
 #   asis = .false.  -> the default is OFF, so the .true. in your production
 #                      run came from somewhere else in that case directory,
 #                      and that case needs investigating.
+
+# -h / --help prints the header block above
+[[ "${1:-}" =~ ^(-h|--help)$ ]] && { sed -n '2,/^$/s/^# \{0,1\}//p' "$0"; exit 0; }
 
 set -e
 source "$(dirname "$0")/ctsm.env"   # settings and paths

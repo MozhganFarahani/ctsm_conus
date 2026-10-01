@@ -1,8 +1,5 @@
 #!/usr/bin/env python
-"""Find the month offset between CTSM h0 and mizuRoute history records.
-   python check_time_align.py 09040000 
-   python check_time_align.py 09081600
-
+"""Find the month offset between CTSM h0 and mizuRoute history records for one gauge.
 
 basRunoff must equal remapped QRUNOFF for the SAME period. If mizuRoute
 stamps a record at the end of its averaging window (or the file name refers
@@ -13,7 +10,19 @@ exactly the pattern across Troublesome / Umpqua / Hermann.
 Builds both monthly series from their own timestamps and reports agreement
 at lags -2..+2 months. The lag with ratio ~1 and the highest correlation is
 the true alignment.
+
+Inputs : h0a QRUNOFF and mizuRoute basRunoff of one config (paths.ARCHIVE),
+         the augmented topology (paths.NTOPO), the NLDAS-to-MERIT weights
+         (paths.WEIGHTS), the gauge crosswalk (paths.CROSSWALK)
+Outputs: a lag table on stdout
+
+Usage
+-----
+    module load conda && conda activate npl-2026a
+    python check_time_align.py 09040000                    # Station ID, control
+    python check_time_align.py 09081600 --config irrigation_on
 """
+import argparse
 import sys, os
 import numpy as np, pandas as pd, xarray as xr
 
@@ -23,12 +32,18 @@ import paths  # analysis/config/paths.py
 sys.path.insert(0, os.path.join(HERE, ".."))
 from lib import io as lio  # analysis/lib/io.py
 
-GAUGE = sys.argv[1]
+ap = argparse.ArgumentParser(description=__doc__,
+                             formatter_class=argparse.RawDescriptionHelpFormatter)
+ap.add_argument("gauge", help="Station ID in the crosswalk, e.g. 09040000")
+ap.add_argument("--config", default="control", help="config to check (default: control)")
+args = ap.parse_args()
+
+GAUGE = args.gauge
 NTOPO   = paths.NTOPO
 WEIGHTS = paths.WEIGHTS
 XW      = paths.CROSSWALK
 ARCH    = paths.ARCHIVE
-CONFIG  = "control"
+CONFIG  = args.config
 
 
 g = lio.read_crosswalk(XW, dtype={"Station ID": str}).query("`Station ID` == @GAUGE").iloc[0]

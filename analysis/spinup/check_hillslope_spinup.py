@@ -15,13 +15,15 @@ total soil moisture across the full spinup so far. A converged spinup
 looks flat (oscillating around a stable mean) in the final several years;
 a spinup that still needs more time shows a visible trend even at the end.
 
+Inputs : <archive>/<case>/lnd/hist/<case>.clm2.h0a.*.nc (paths.lnd_hist; --run-dir overrides)
+Outputs: <outdir>/hillslope_spinup_drift.png (default: <output root>/spinup/<case>);
+         the drift-vs-noise table prints to stdout
+
 Usage
 -----
     module load conda && conda activate npl-2026a
-    python check_hillslope_spinup.py \
-  --run-dir /glade/derecho/scratch/mozhgana/archive/hillslope_on/lnd/hist \
-  --outdir ./hillslope_spinup_check
-  
+    python check_hillslope_spinup.py --case hillslope_on
+
 
 Caveat: this uses the standard gridcell-averaged h0 history output, which
 is what you configured (hist_fincl1/2). CLM's default history output is

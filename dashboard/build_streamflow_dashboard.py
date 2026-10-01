@@ -29,17 +29,24 @@ Difference mode switches every panel to (configuration - baseline) at once.
 Precipitation then flattens to zero, which is a free check that the forcing
 really is identical across configurations.
 
+Inputs
+------
+For each config: h0a land history and mizuRoute history (<archive>/<config>),
+finidat from the run folder (paths.RUN_ROOT). Shared: observed daily flow
+(paths.OBS_DAILY), gauge crosswalk (paths.CROSSWALK), augmented topology and
+NLDAS-to-MERIT weights (paths.NTOPO, paths.WEIGHTS) via lib/basins.py, whose
+weight matrices are cached in paths.UPSTREAM_CACHE.
+
+Outputs
+-------
+<outdir>/<name>_dashboard.html, one self-contained file
+(default outdir: paths.DASHBOARD_OUT, <output root>/dashboard).
+
 Usage
 -----
     module load conda && conda activate npl-2026a
-    export CACHE_DIR=$PWD/cache
-
-    python build_streamflow_dashboard.py --archive-root ... \\
-        --configs control,irrigation_on --test-sample 8 --outdir ./dash_test
-
-    python build_streamflow_dashboard.py --archive-root ... \\
-        --configs control,irrigation_on,evolving_landcover \\
-        --outdir ./dashboard --parallel
+    python build_streamflow_dashboard.py --configs control,irrigation_on --test-sample 8
+The full build (all gauges, all configs) is run_dashboard.pbs.
 
 The FIRST configuration listed is the default baseline for differences.
 
