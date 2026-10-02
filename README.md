@@ -7,7 +7,7 @@ This repository archives the setup scripts, the complete CIME case folders, and 
 Project: CGD SIF-T FY26, NSF NCAR Terrestrial Sciences Section.
 Dashboard: <https://project.cgd.ucar.edu/projects/ctsm-conus/>
 
-> **Status:** the code is final: shared helpers in `analysis/lib/`, every path in `analysis/config/paths.py` (Python) or `setup/ctsm.env` (shell), and a smoke test in `tools/smoke_test.sh`. Methods and results are unchanged from the original scripts. See the [pre-public checklist](#pre-public-checklist) before making the repository public.
+> **Status:** the code is final: shared helpers in `analysis/lib/`, every path in `analysis/config/paths.py` (Python) or `setup/ctsm.env` (shell; four folders are set in both, see [`analysis/`](#analysis)), and a smoke test in `tools/smoke_test.sh`. Methods and results are unchanged from the original scripts. See the [pre-public checklist](#pre-public-checklist) before making the repository public.
 
 ## Model versions
 
@@ -141,7 +141,7 @@ cd dashboard && qsub -A "$PROJECT" -o "$OUTPUT_ROOT/dashboard/" run_dashboard.pb
 
 Each PBS script has its own submit line in its header.
 
-Every GLADE path (model output, observations, routing network, CESM input data, output folder) is defined once in `analysis/config/paths.py`. Scripts, notebooks and the dashboard import it; edit paths there, nowhere else. The evaluation period (`EVAL_START`, `EVAL_END`: Oct 1980 – Sep 2018, 456 months) is set there too; the streamflow evaluation and the dashboard read only the mizuRoute files in that period, so spinup months left in an archive (irrigation_on holds 1980-01 to 1980-09) are skipped. The shell scripts take theirs from `setup/ctsm.env`, which repeats the output root: keep the two in sync. The one notebook (animation) expects to be run from its own folder; it writes to `<output root>/animation/`, or to `$OUT_DIR` if set.
+Every GLADE path (model output, observations, routing network, CESM input data, output folder) is defined once in `analysis/config/paths.py`. Scripts, notebooks and the dashboard import it; edit paths there, nowhere else. The evaluation period (`EVAL_START`, `EVAL_END`: Oct 1980 – Sep 2018, 456 months) is set there too; the streamflow evaluation and the dashboard read only the mizuRoute files in that period, so spinup months left in an archive (irrigation_on holds 1980-01 to 1980-09) are skipped. The shell scripts take theirs from `setup/ctsm.env`, which repeats four of them (`SCRATCH`, `ARCHIVE`, `OUTPUT_ROOT`, and `CIME_SCRIPTS`, which is `CASES_ROOT` in `paths.py`): keep the two files in sync. The one notebook (animation) expects to be run from its own folder; it writes to `<output root>/animation/`, or to `$OUT_DIR` if set.
 
 Every script writes under the output root, `paths.OUTPUT_ROOT` (`/glade/work/mozhgana/ctsm_conus_output/`), by default: `qc/<config>/`, `spinup/<case>/`, `streamflow/`, `climatology/`, `dashboard/` (and its weight cache), `animation/`, `case_inputs.csv`. `--outdir` overrides it (`--csv` for `list_case_inputs.py`). Scripts that read one configuration take `--config` (archive folder name, default `control`); the spinup checks take `--case` (default `hillslope_on`). Every script prints its inputs, outputs and usage with `--help`.
 

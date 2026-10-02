@@ -10,6 +10,8 @@ hashes NTOPO and WEIGHTS into its cache file names.
 """
 
 # --- model output ------------------------------------------------------------
+# SCRATCH, ARCHIVE and CASES_ROOT (CIME_SCRIPTS there) are also set in
+# setup/ctsm.env for the shell scripts: keep them in sync.
 SCRATCH_ROOT = "/glade/derecho/scratch"   # Derecho scratch: purged
 SCRATCH = f"{SCRATCH_ROOT}/mozhgana"
 RUN_ROOT = SCRATCH                    # <case>/run/ (lnd_in, restarts)
