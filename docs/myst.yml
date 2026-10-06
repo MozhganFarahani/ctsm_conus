@@ -1,0 +1,36 @@
+# Jupyter Book 2 (MyST) config for the CTSM-CONUS technical note.
+# Source of truth: Claude Doc eab9ae07-ef83-44b9-ac35-e23a23a31e44. Deploy with BASE_URL=/projects/ctsm-conus/note
+version: 1
+project:
+  title: Overview
+  authors:
+    - name: Mozhgan A. Farahani
+      affiliation: 
+        - Scientist III, TSS CGD NCAR
+  github: https://github.com/MozhganFarahani/ctsm_conus
+  toc:
+    - file: overview.md            # book home
+    - file: common_setup.md
+    - file: cases.md               # Part "Cases" (the Cases tab text is its landing page)
+      children:
+        - file: cases/control.md
+        - file: cases/irrigation_on.md
+        - file: cases/evolving_landcover.md
+        - file: cases/hillslope.md
+        - file: cases/prog_phenology.md
+    - file: analysis.md            # Part "Analysis"
+      children:
+        - file: analysis/checks.md
+        - file: analysis/streamflow_evaluation_method.md
+        - file: analysis/results.md
+        - file: analysis/dashboard.md
+    - file: code_and_data.md
+    - file: lessons.md
+site:
+  template: book-theme
+  options:
+    folders: true                  # keep cases/ and analysis/ in the URLs
+    style: custom.css              # hides the affiliation column beside author names
+    logo_text: CTSM-CONUS Technical Note    # replaces "Made with MyST" in the top bar
+  parts:
+    primary_sidebar_footer: sidebar_footer.md   # replaces the sidebar MyST badge

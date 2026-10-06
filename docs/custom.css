@@ -1,0 +1,2 @@
+/* Hide the affiliation column next to author names; the hover pop-up still shows it */
+.myst-fm-affiliation-col { display: none; }
