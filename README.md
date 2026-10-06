@@ -15,7 +15,7 @@ CTSM is used unmodified: no source changes, and every case's `SourceMods/` is em
 
 | Component | Version |
 |---|---|
-| CTSM | `ctsm5.4.049` (commit `a96fb3f83`), CLM6.0 physics |
+| CTSM | `ctsm5.4.049`, CLM6.0 physics |
 | mizuRoute | `v3.1.1` |
 | CIME | `cime6.2.2` |
 | CMEPS / CDEPS | `cmeps1.1.47` / `cdeps1.0.96` |
