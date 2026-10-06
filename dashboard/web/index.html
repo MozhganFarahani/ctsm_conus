@@ -4,7 +4,7 @@
     <!-- css -->
     <!--#include virtual="/styles/unity/css/css-include.html" -->
 
-    <title>CTSM-CONUS | High-resolution CONUS-wide CTSM implementation, evaluation, and community baseline datasets</title>
+    <title>CTSM-CONUS | High-resolution (1/8th degree) CTSM CONUS-wide hydrology evaluation and community baseline simulation datasets</title>
     <meta name="description" content="High-resolution CTSM and mizuRoute simulations over the contiguous United States: five model configurations evaluated against about 2,300 stream gauges, 1980-2018." />
 
     <style>
@@ -53,6 +53,10 @@
       .cc tbody th { white-space: nowrap; color: var(--dark-blue); font-weight: 600; }
       .cc table.cc-kv th { width: 12rem; }
       .cc li { margin-bottom: .45rem; }
+      .cc section h2 + p, .cc section h2 + ul { margin-top: 0; }
+      .cc section p + h2, .cc section ul + h2 { margin-top: 2.5rem; }
+      .cc .cc-refs li { padding-left: 1.5rem; text-indent: -1.5rem; list-style: none; }
+      .cc .cc-refs { padding-left: 0; }
       .cc .cc-question { border-left: 0.3rem solid var(--brand-primary); padding: .4rem 0 .4rem 1rem;
                          font-style: italic; font-size: 1.1rem; color: var(--dark-blue); }
       .cc .cc-mono { font-family: Menlo, Consolas, 'Liberation Mono', monospace; font-size: .88em; }
@@ -85,7 +89,7 @@
 
                 <div class="main-content clearfix cc">
                     <!-- main content area start -->
-                    <p class="cc-lead">High-resolution CONUS-wide CTSM implementation, evaluation, and community baseline datasets</p>
+                    <p class="cc-lead">High-resolution (1/8th degree) CTSM CONUS-wide hydrology evaluation and community baseline simulation datasets</p>
 
                     <!-- Hero: map screenshot in assets/hero.png.
                          For an animation later, replace the <img> with:
@@ -100,10 +104,10 @@
 
                     <section>
                         <h2>About</h2>
-                        <p>The Community Terrestrial Systems Model (CTSM) offers several process options, including satellite vs. prognostic phenology, static vs. evolving land cover, irrigation, and hillslope hydrology. How these choices affect simulated snow, soil moisture, runoff, evapotranspiration and streamflow at fine scale over the contiguous United States (CONUS) has not been systematically evaluated.</p>
+                        <p>The Community Terrestrial Systems Model (CTSM) now offers multiple process configuration options, including satellite vs. prognostic phenology, static vs. evolving land cover, irrigation, and hillslope hydrology. How these choices affect simulated snow, soil moisture, runoff, evapotranspiration and streamflow over the contiguous United States (CONUS) at spatial scales relevant to hydrology and water resources has not been systematically evaluated, which is the primary motivation for this study. The core science questions we address are the following:</p>
                         <p class="cc-question">Which CTSM configuration choices most influence fine-scale CONUS land and hydrology simulation performance, and how do the resulting simulations compare with observations?</p>
-                        <p>This project runs CTSM coupled to the mizuRoute river routing model at ~12&nbsp;km (0.125°) resolution over CONUS. Starting from a control configuration, each experiment changes one process option: irrigation, evolving land cover, hillslope hydrology, or prognostic phenology. Simulated streamflow is evaluated against about 2,300 stream gauges from 1980 to 2018.</p>
-                        <p>The simulations are intended as a reusable baseline for the CTSM community, for choosing configurations in hydrologic applications, and as a foundation for follow-on work such as machine-learning emulators.</p>
+                        <p>This project runs CTSM coupled to the mizuRoute river routing model at ~12&nbsp;km (0.125°) resolution over CONUS. Starting from a control configuration, each experiment changes one process option: irrigation, evolving land cover, hillslope hydrology, or prognostic phenology. Simulated streamflow is evaluated against approximately 2,300 stream gauges from 1980 to 2018. Details are summarized in the tables below.</p>
+                        <p>The simulations are intended as a reusable baseline for the CTSM community, for choosing configurations in hydrologic applications, and as a foundation for follow-on work, including model calibration efforts.</p>
                     </section>
 
                     <section>
@@ -111,14 +115,14 @@
                         <div class="table-responsive">
                             <table class="table cc-kv">
                                 <tbody>
-                                    <tr><th scope="row">Model</th><td>CTSM (CLM6.0), release tag <a href="https://github.com/ESCOMP/CTSM/tree/ctsm5.4.049">ctsm5.4.049</a> cloned from ESCOMP/CTSM, coupled to mizuRoute</td></tr>
-                                    <tr><th scope="row">Grid</th><td>NLDAS2 0.125° (224 × 464), 25–53°N, 125–67°W</td></tr>
+                                    <tr><th scope="row">Model</th><td>CTSM (CLM6.0), release tag <a href="https://github.com/ESCOMP/CTSM/tree/ctsm5.4.049" target="_blank" rel="noopener">ctsm5.4.049</a> cloned from ESCOMP/CTSM, coupled to mizuRoute</td></tr>
+                                    <tr><th scope="row">Grid</th><td>NLDAS-2 0.125° (224 × 464), 25–53°N, 125–67°W</td></tr>
                                     <tr><th scope="row">River network</th><td>MERIT-Hydro v1, 227,247 reaches</td></tr>
-                                    <tr><th scope="row">Forcing</th><td>NLDAS2, 1980–2018</td></tr>
+                                    <tr><th scope="row">Forcing</th><td>NLDAS-2, 1980–2018</td></tr>
                                     <tr><th scope="row">Evaluation period</th><td>Oct 1980 – Sep 2018</td></tr>
-                                    <tr><th scope="row">Soil</th><td>20 layers to 8.5&nbsp;m</td></tr>
-                                    <tr><th scope="row">Spinup</th><td>Transient NLDAS2 forcing from 1980, 22–24 years</td></tr>
-                                    <tr><th scope="row">Output used here</th><td>Monthly land fields and monthly routed streamflow</td></tr>
+                                    <tr><th scope="row">Soil</th><td>20 layers with a maximum depth of 8.5&nbsp;m</td></tr>
+                                    <tr><th scope="row">Spinup</th><td>22–24 years with NLDAS-2 forcing from 1980 onward; each evaluation run then restarts in Oct 1980 from the spun-up state (details in the technical note)</td></tr>
+                                    <tr><th scope="row">Output</th><td>Monthly land fields and monthly routed streamflow</td></tr>
                                 </tbody>
                             </table>
                         </div>
@@ -156,31 +160,41 @@
 
                     <section>
                         <h2>Evaluation data and methods</h2>
-                        <p>Observed monthly streamflow comes from a multi-agency gauge dataset compiled by N. Mizukami. Some gauges report naturalized flows (for example, USACE on the Missouri). Basin averages use area-weighted mapping from the model grid to each gauge's upstream MERIT catchments, and upstream areas match reported basin areas for all gauges. Skill metrics use only months with observations and output from every configuration. Records shorter than 60 months are flagged.</p>
+                        <p>For this study, we adopt the NLDAS-2 1/8th degree implementation of CTSM that was originally developed to assess its potential for land-atmosphere coupling to regional numerical weather prediction (NWP) applications. The CTSM implementation was configured on an NLDAS-2 grid (1/8th degree, ~12&nbsp;km horizontal spacing) over CONUS (Mitchell et al., 2004).</p>
+                        <p>The streamflow and watershed-based analysis provided in this analysis leveraged multi-year, multi-agency modeling and dataset resources developed at NCAR with USACE, USBR, and NASA funding to support US-wide water security assessment initiatives. These efforts developed a CONUS streamflow validation dataset comprising over 2,200 river flow gauges that combined natural/unimpaired headwaters watersheds with naturalized/reconstructed streamflows that were obtained from USACE and USBR offices through an extended discovery effort. For some gauges, naturalized flows are estimated only on a monthly basis (e.g., from USBR for the Colorado River basin), thus this timestep was adopted for the evaluation metrics shown in this analysis. These sponsored efforts also created the mizuRoute CONUS-wide MERIT-Hydro channel network (Yamazaki et al., 2019) implementation that is used here, including the simulation-to-gauge correspondences that enabled a straightforward analysis of CTSM water balances for a comprehensive collection of US watersheds. In the interactive website, the watershed state and flux analyses use an area-weighted mapping from the model grid to each gauge's drainage area, such that upstream averaging areas match reported basin areas to the extent possible for all gauges.</p>
+                        <p>Simulation skill (performance) is summarized by several metrics, including the Nash–Sutcliffe efficiency (NSE), which measures how closely simulated monthly flows track observations (1 is perfect; below 0 means the simulation is a worse predictor than the observation mean), and the Kling–Gupta efficiency (KGE), which combines correlation, bias and variability into one score (1 is perfect; below −0.41 has less information than the climatological mean). A recent discussion of these metrics for hydrologic performance evaluation is given in Clark et al. (2026). Percent bias (PBIAS) is the difference between simulated and observed mean flow.</p>
                     </section>
 
                     <section>
                         <h2>Notes and caveats</h2>
                         <ul>
-                            <li>No CTSM parameter tuning exists for NLDAS2 forcing, so all runs use the default GSWP3 tuning.</li>
+                            <li>No CTSM parameter tuning exists for the NLDAS-2 forcing configurations, so all runs use the default GSWP3 tuning.</li>
                             <li>Irrigation withdrawals are not limited by available river water. Where river storage is low, irrigation can add water to the system and raise downstream flow.</li>
                             <li>The Prognostic phenology configuration starts from a global restart interpolated to this grid. Soil carbon is not in equilibrium, so this configuration is intended for evaluating water and energy fluxes, not carbon.</li>
                             <li>Monthly metrics at gauges with near-zero flow, mostly in the arid West, can be extreme and should be read with care.</li>
+                            <li>USACE: US Army Corps of Engineers; USBR: US Bureau of Reclamation.</li>
                         </ul>
                     </section>
 
                     <section>
                         <h2>Team</h2>
-                        <p>Mozhgan Farahani, Andy Wood, Sean Swenson, Naoki Mizukami: Terrestrial Sciences Section, Climate and Global Dynamics Laboratory, NSF NCAR. Dr. Farahani conducted all the modeling, analysis and website development work for this effort, with feedback and suggestions from the other team members.</p>
+                        <p>Mozhgan Farahani, Andy Wood, Sean Swenson, Naoki Mizukami from the Terrestrial Sciences Section, CGD Laboratory, NSF NCAR. Dr. Farahani conducted all CTSM modeling and analysis efforts, with input from team members, and developed this website in coordination with Andy Wood and with facilitation by NRIT.</p>
 
                         <h2>Acknowledgments</h2>
-                        <p>Mozhgan Farahani was supported by the CGD Science Innovation Fund (SIF-T) during August–September of FY26 to undertake this CTSM intercomparison project. Computing was provided on NCAR's Derecho and Casper systems. We thank NRIT for help setting up this website.</p>
+                        <p>Mozhgan Farahani was supported by the CGD Science Innovation Fund (SIF-T) during August–September of FY26 to undertake this CTSM intercomparison project. Andy Wood was supported by funding from the NCAR Water Systems Program. Computing was provided on NCAR's Derecho and Casper systems. We thank NRIT for creating a public-facing server space to host this website. We also acknowledge the contribution of (as yet) unpublished CONUS modeling datasets developed in water security projects supported by the U.S. Army Corps of Engineers and the US Bureau of Reclamation (led by Andy Wood, with dataset QC and standardization by Naoki Mizukami).</p>
+
+                        <h2>References</h2>
+                        <ul class="cc-refs">
+                            <li>Clark, M. P., et al. (2026). Comment on Williams (2025): “Friends don't let friends use NSE or KGE for hydrologic model accuracy evaluation: A rant with data and suggestions for better practice.” <em>Environmental Modelling &amp; Software</em>, 197, 106869. <a href="https://doi.org/10.1016/j.envsoft.2026.106869" target="_blank" rel="noopener">https://doi.org/10.1016/j.envsoft.2026.106869</a></li>
+                            <li>Mitchell, K. E., et al. (2004). The multi-institution North American Land Data Assimilation System (NLDAS): Utilizing multiple GCIP products and partners in a continental distributed hydrological modeling system. <em>Journal of Geophysical Research</em>, 109, D07S90. <a href="https://doi.org/10.1029/2003JD003823" target="_blank" rel="noopener">https://doi.org/10.1029/2003JD003823</a></li>
+                            <li>Yamazaki, D., Ikeshima, D., Sosa, J., Bates, P. D., Allen, G. H., &amp; Pavelsky, T. M. (2019). MERIT Hydro: a high-resolution global hydrography map based on latest topography dataset. <em>Water Resources Research</em>, 55, 5053–5073. <a href="https://doi.org/10.1029/2019WR024873" target="_blank" rel="noopener">https://doi.org/10.1029/2019WR024873</a></li>
+                        </ul>
 
                         <h2>Links</h2>
                         <ul>
                             <li><a href="note/">Technical note</a></li>
                             <li><a href="https://github.com/MozhganFarahani/ctsm_conus" target="_blank" rel="noopener">GitHub configuration archive</a></li>
-                            <li>Contact: <a href="mailto:mozhgana@ucar.edu">mozhgana@ucar.edu</a></li>
+                            <li>Contact: Mozhgan Farahani, <a href="mailto:mozhgana@ucar.edu">mozhgana@ucar.edu</a></li>
                         </ul>
                     </section>
 
