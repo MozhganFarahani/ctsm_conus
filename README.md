@@ -73,7 +73,7 @@ analysis/config/        paths.py: every GLADE path the analysis code uses, and t
 analysis/lib/           shared helpers: reading output and observations, metrics, basin averaging, map style
 analysis/qc/            control QC and water-balance checks
 analysis/spinup/        spinup drift and restart-boundary checks
-analysis/streamflow/    streamflow evaluation against observed flow
+analysis/streamflow/    streamflow evaluation against observed flow, HUC02 report figures
 analysis/climatology/   monthly climatology maps
 analysis/diagnostics/   time-alignment check and input-data reference
 analysis/animation/     CONUS discharge animation
@@ -143,7 +143,7 @@ Each PBS script has its own submit line in its header.
 
 Every GLADE path (model output, observations, routing network, CESM input data, output folder) is defined once in `analysis/config/paths.py`. Scripts, notebooks and the dashboard import it; edit paths there, nowhere else. The evaluation period (`EVAL_START`, `EVAL_END`: Oct 1980 – Sep 2018, 456 months) is set there too; the streamflow evaluation and the dashboard read only the mizuRoute files in that period, so spinup months left in an archive (irrigation_on holds 1980-01 to 1980-09) are skipped. The shell scripts take theirs from `setup/ctsm.env`, which repeats four of them (`SCRATCH`, `ARCHIVE`, `OUTPUT_ROOT`, and `CIME_SCRIPTS`, which is `CASES_ROOT` in `paths.py`): keep the two files in sync. The one notebook (animation) expects to be run from its own folder; it writes to `<output root>/animation/`, or to `$OUT_DIR` if set.
 
-Every script writes under the output root, `paths.OUTPUT_ROOT` (`/glade/work/mozhgana/ctsm_conus_output/`), by default: `qc/<config>/`, `spinup/<case>/`, `streamflow/`, `climatology/`, `dashboard/` (and its weight cache), `animation/`, `case_inputs.csv`. `--outdir` overrides it (`--csv` for `list_case_inputs.py`). Scripts that read one configuration take `--config` (archive folder name, default `control`); the spinup checks take `--case` (default `hillslope_on`). Every script prints its inputs, outputs and usage with `--help`.
+Every script writes under the output root, `paths.OUTPUT_ROOT` (`/glade/work/mozhgana/ctsm_conus_output/`), by default: `qc/<config>/`, `spinup/<case>/`, `streamflow/`, `report/`, `climatology/`, `dashboard/` (and its weight cache), `animation/`, `case_inputs.csv`. `--outdir` overrides it (`--csv` for `list_case_inputs.py`). Scripts that read one configuration take `--config` (archive folder name, default `control`); the spinup checks take `--case` (default `hillslope_on`). Every script prints its inputs, outputs and usage with `--help`.
 
 
 | File | Purpose | Usage (from the file's folder) |
@@ -159,6 +159,7 @@ Every script writes under the output root, `paths.OUTPUT_ROOT` (`/glade/work/moz
 | `spinup/check_restart_discontinuity.py` | tests for a jump in a domain mean at a restart date | `python check_restart_discontinuity.py --case hillslope_on --restart-date 1998-10-01` |
 | `spinup/check_spinup_drift.py` | spinup drift: domain water-year means and daily checks at three sites | `python check_spinup_drift.py --case hillslope_on --years 1981 1984`; full run: `run_spinup_drift.pbs` |
 | `streamflow/ctsm_streamflow_eval.py` | NSE, KGE, PBIAS and correlation against observed monthly flow, all gauges, one config | `python ctsm_streamflow_eval.py --config control --parallel`; all five configs: `run_streamflow_eval.pbs` |
+| `streamflow/report_huc02.py` | technical-note figures from the five configs' eval CSVs: median NSE, KGE and PBIAS by HUC02 region (heatmaps, `huc02_summary.csv`) and the share of gauges better/worse than the baseline per contrast (strict, and material: ±0.01 NSE/KGE, ±1 pp PBIAS); writes `<output root>/report/` | `python report_huc02.py`; one region: `python report_huc02.py --huc 10 --outdir <dir>` |
 | `climatology/ctsm_climatology_maps.py` | monthly climatology cache and maps (see `climatology/README.md`; field list in `ctsm_control_history_fields.csv`) | `python ctsm_climatology_maps.py --monthly`; rebuild the cache: `run_ctsm_climatology.pbs` |
 | `diagnostics/check_time_align.py` | tests month offsets between land output and mizuRoute records for one gauge | `python check_time_align.py 09040000 --config control` |
 | `diagnostics/describe_inputs.py` | prints the contents of representative input files (forcing, meshes, maps, topology, surface data, initial condition) | `python describe_inputs.py` |
@@ -208,15 +209,12 @@ The full list of inputs for each case is in `cases/<case>/Buildconf/*.input_data
 
 - No NLDAS2-specific tuning exists; the GSWP3 tuning is used.
 - evolving_landcover runs with irrigation on (see [Configurations](#configurations)).
-- The hillslope spinup is 24 years; soil liquid water still drifts at about 1.1 times its interannual noise.
-- Routed runoff received by mizuRoute (`basRunoff`) does not match basin-averaged `QRUNOFF` at some snow-dominated gauges; this is under investigation and is not a mapping error.
 
 ## Pre-public checklist
 
 Before the repository is made public:
 
 - [ ] Add a LICENSE.
-- [ ] Get Naoki Mizukami's OK and credit him for the code adapted from his notebooks (at least the basin averaging in `analysis/lib/basins.py`, which follows his remapping).
 - [ ] Review the account codes, usernames and internal hostnames left in `cases/` (the archive is kept as is).
 
 ## Contributors

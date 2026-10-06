@@ -100,6 +100,8 @@ run spinup_drift python analysis/spinup/check_spinup_drift.py --case hillslope_o
     --years $YEAR $YEAR --outdir "$SMOKE/spinup"
 run streamflow_eval python analysis/streamflow/ctsm_streamflow_eval.py --config control \
     --limit 1 --outdir "$SMOKE/streamflow"
+# reads the full eval CSVs in <output root>/streamflow (one region)
+run report_huc02 python analysis/streamflow/report_huc02.py --huc 10 --outdir "$SMOKE/report"
 run climatology python analysis/climatology/ctsm_climatology_maps.py --rebuild --vars QRUNOFF \
     --hist-dir "$CTRL_YEAR" --outdir "$SMOKE/climatology" --cache "$SMOKE/climatology/clim.nc"
 run time_align python analysis/diagnostics/check_time_align.py $GAUGE --config control
