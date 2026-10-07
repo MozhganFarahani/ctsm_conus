@@ -1,5 +1,5 @@
 # Jupyter Book 2 (MyST) config for the CTSM-CONUS technical note.
-# Source of truth: Claude Doc eab9ae07-ef83-44b9-ac35-e23a23a31e44. Deploy with BASE_URL=/projects/ctsm-conus/note
+# The .md files in this folder are the source. Deploy with BASE_URL=/projects/ctsm-conus/note
 version: 1
 project:
   title: Overview
