@@ -1,3 +1,4 @@
+
 #!/usr/bin/env python
 """
 CTSM CONUS evaluation dashboard -- multi-configuration
@@ -33,7 +34,8 @@ Inputs
 ------
 For each config: h0a land history and mizuRoute history (<archive>/<config>),
 finidat from the run folder (paths.RUN_ROOT). Shared: observed daily flow
-(paths.OBS_DAILY), gauge crosswalk (paths.CROSSWALK), augmented topology and
+(paths.OBS_DAILY), plus paths.OBS_MONTHLY for the 29 USBR_Colorado gauges
+absent from the daily file (lib/io.py observed_monthly), gauge crosswalk (paths.CROSSWALK), augmented topology and
 NLDAS-to-MERIT weights (paths.NTOPO, paths.WEIGHTS) via lib/basins.py, whose
 weight matrices are cached in paths.UPSTREAM_CACHE.
 
@@ -80,6 +82,7 @@ warnings.filterwarnings("ignore", category=FutureWarning, module="xarray")
 
 DEFAULT_CROSSWALK = paths.CROSSWALK
 DEFAULT_OBS_DAILY = paths.OBS_DAILY
+DEFAULT_OBS_MONTHLY = paths.OBS_MONTHLY
 DEFAULT_RUN_ROOT = paths.RUN_ROOT
 
 CONFIG_COLORS = ["#4c78a8", "#f58518", "#54a24b", "#b279a2", "#e45756",
@@ -182,6 +185,8 @@ def main():
                          "each config's finidat (initialization date)")
     ap.add_argument("--crosswalk", default=DEFAULT_CROSSWALK)
     ap.add_argument("--obs-daily", default=DEFAULT_OBS_DAILY)
+    ap.add_argument("--obs-monthly", default=DEFAULT_OBS_MONTHLY,
+                    help="monthly obs, used for gauges absent from --obs-daily")
     ap.add_argument("--outdir", default=paths.DASHBOARD_OUT, help="default: %(default)s")
     ap.add_argument("--out-name", default=None)
     ap.add_argument("--vars", default=None,
@@ -265,11 +270,10 @@ def main():
 
     # ---------------------------------------------------- observations
     print("Loading observed flow ...")
-    ds_obs, fv, sites = lio.open_obs_daily(args.obs_daily)
-    print(f"  variable: {fv}")
     gids = pd.to_numeric(df["GAGE_ID"], errors="coerce").dropna().astype(int).tolist()
-    obs = lio.bulk_extract(ds_obs[fv].sel(time=slice(lio.EVAL_START, lio.EVAL_END)),
-                           sites, gids, resample="MS")
+    obs, obs_source = lio.observed_monthly(gids, args.obs_daily, args.obs_monthly)
+    n_mon = sum(v == "monthly" for v in obs_source.values())
+    print(f"  {len(obs_source) - n_mon} gauges from the daily file, {n_mon} from the monthly file")
 
     # ---------------------------------------------------- routed flow
     mod, have = {}, []

@@ -17,10 +17,13 @@ files, since it reads them concurrently rather than one at a time.
 
 Inputs : mizuRoute RoutedRunoff of one config (<archive>/<config>/rof/hist),
          eval period only (paths.EVAL_START..EVAL_END),
-         observed daily flow (paths.OBS_DAILY, resampled to monthly),
+         observed daily flow (paths.OBS_DAILY, resampled to monthly), plus
+         paths.OBS_MONTHLY for gauges absent from the daily file (the 29
+         USBR_Colorado naturalized gauges; daily wins if a gauge is in both),
          gauge crosswalk (paths.CROSSWALK)
-Outputs: <outdir>/<config>_streamflow_eval.csv, one row per gauge
-         (default outdir: <output root>/streamflow); a summary prints to stdout
+Outputs: <outdir>/<config>_streamflow_eval.csv, one row per gauge, with
+         obs_source = daily | monthly (default outdir: <output root>/streamflow);
+         a summary and the Station IDs of any dropped gauges print to stdout
 
 Usage
 -----
@@ -46,16 +49,24 @@ warnings.filterwarnings("ignore", category=FutureWarning, module="xarray")
 
 DEFAULT_CROSSWALK = paths.CROSSWALK
 DEFAULT_OBS_DAILY = paths.OBS_DAILY
+DEFAULT_OBS_MONTHLY = paths.OBS_MONTHLY
 
 
-def vectorized_metrics(df_gauges, modeled_df, observed_df):
+def vectorized_metrics(df_gauges, modeled_df, observed_df, obs_source):
     """NSE/KGE/PBIAS for every gauge at once (lib/metrics.py).
-    Aligns modeled/observed to a common monthly index and gauge order."""
+    Aligns modeled/observed to a common monthly index and gauge order.
+    obs_source maps GAGE_ID -> "daily" | "monthly" (lib/io.observed_monthly)."""
     reach_ids = df_gauges["merit_reach_id"].astype(int).to_numpy()
     gage_ids = pd.to_numeric(df_gauges["GAGE_ID"], errors="coerce")
-    keep = (~gage_ids.isna()
-            & pd.Series(reach_ids).isin(modeled_df.columns).to_numpy()
-            & gage_ids.isin(observed_df.columns).to_numpy())
+    has_reach = pd.Series(reach_ids).isin(modeled_df.columns).to_numpy()
+    has_obs = gage_ids.isin(observed_df.columns).to_numpy()
+    keep = ~gage_ids.isna() & has_reach & has_obs
+    # name the dropped gauges and why, not just how many
+    for why, bad in (("bad GAGE_ID", gage_ids.isna().to_numpy()),
+                     ("reach not in mizuRoute", ~has_reach),
+                     ("no observations", ~has_obs & ~gage_ids.isna().to_numpy())):
+        if bad.any():
+            print(f"  dropped ({why}): " + " ".join(df_gauges["Station ID"].astype(str)[bad]))
     df_gauges = df_gauges[keep].reset_index(drop=True)
     reach_ids = reach_ids[keep.to_numpy()]
     gage_ids = gage_ids[keep].astype(int).to_numpy()
@@ -67,6 +78,7 @@ def vectorized_metrics(df_gauges, modeled_df, observed_df):
                               modeled_df.loc[common_idx, reach_ids])
 
     out = df_gauges.copy()
+    out["obs_source"] = [obs_source[g] for g in gage_ids]
     out["n_months"], out["NSE"], out["KGE"], out["PBIAS"], out["corr"] = \
         m["n"], m["nse"], m["kge"], m["pbias"], m["corr"]
     out.loc[out["n_months"] < metrics.MIN_MONTHS, ["NSE", "KGE", "PBIAS", "corr"]] = float("nan")
@@ -82,6 +94,8 @@ def main():
                      help="Config (subdirectory) name to evaluate, e.g. control, irrigation_on")
     ap.add_argument("--crosswalk", default=DEFAULT_CROSSWALK)
     ap.add_argument("--obs-daily", default=DEFAULT_OBS_DAILY)
+    ap.add_argument("--obs-monthly", default=DEFAULT_OBS_MONTHLY,
+                    help="monthly obs, used for gauges absent from --obs-daily")
     ap.add_argument("--outdir", default=f"{paths.OUTPUT_ROOT}/streamflow",
                     help="default: %(default)s")
     ap.add_argument("--parallel", action="store_true",
@@ -108,17 +122,17 @@ def main():
     print(f"[mizuroute] {len(rof)} files, {len(reach_ids)} reaches, "
           f"time {ds_rof.time.values[0]} -> {ds_rof.time.values[-1]} "
           f"({'parallel' if args.parallel else 'serial'} read)")
-    ds_obs, flow_var, obs_sites = lio.open_obs_daily(args.obs_daily)
 
     print(f"[{args.config}] bulk-extracting {len(df_gauges)} reaches + gauges ...")
     modeled_df = lio.bulk_extract(ds_rof["RoutedRunoff"], reach_ids,
                                   df_gauges["merit_reach_id"].astype(int).tolist())
-    obs_slice = ds_obs[flow_var].sel(time=slice(lio.EVAL_START, lio.EVAL_END))
     wanted_gages = pd.to_numeric(df_gauges["GAGE_ID"], errors="coerce").dropna().astype(int).tolist()
-    observed_df = lio.bulk_extract(obs_slice, obs_sites, wanted_gages, resample="MS")
+    observed_df, obs_source = lio.observed_monthly(wanted_gages, args.obs_daily, args.obs_monthly)
+    n_mon = sum(v == "monthly" for v in obs_source.values())
+    print(f"[obs] {len(obs_source) - n_mon} gauges from the daily file, {n_mon} from the monthly file")
 
     print(f"[{args.config}] computing metrics (vectorized, no per-gauge loop) ...")
-    results = vectorized_metrics(df_gauges, modeled_df, observed_df)
+    results = vectorized_metrics(df_gauges, modeled_df, observed_df, obs_source)
     ok = results.dropna(subset=["NSE"])
 
     out_path = os.path.join(args.outdir, f"{args.config}_streamflow_eval.csv")

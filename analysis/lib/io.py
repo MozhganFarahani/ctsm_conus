@@ -72,7 +72,8 @@ def open_mizuroute(files, varnames, id_var="reachID", parallel=False):
 
 
 def open_obs_daily(path):
-    """Naoki's daily multi-agency flow file. Returns (ds, flow_var, site ids)."""
+    """Naoki's daily multi-agency flow file. Returns (ds, flow_var, site ids).
+    Also reads paths.OBS_MONTHLY, which has the same layout."""
     ds = xr.open_dataset(path, decode_times=True, engine="netcdf4")
     fv = next((v for v in ds.data_vars
                if v.lower() in ("streamflow", "flow", "discharge", "q")),
@@ -151,3 +152,28 @@ def bulk_extract(da, ids_present, wanted_ids, resample=None, shift=0):
     if shift:
         df.index = df.index + shift
     return df
+
+
+def observed_monthly(gage_ids, daily_path, monthly_path):
+    """Monthly-mean observed flow (m3/s) over the eval period, on a monthly
+    PeriodIndex, columns = GAGE_ID. Gauges are read from the daily file first;
+    those absent from it are read from the monthly file (the 29 USBR_Colorado
+    naturalized gauges). The monthly file has the daily file's layout with one
+    value per month stamped at month-end, so resample("MS") keeps that value
+    under its month. Its global "Units" attribute says ac-ft/month, but the
+    streamflow variable is m3/s, and the values confirm it (Lees Ferry ~14 MAF/yr).
+    Returns (DataFrame, {gage_id: "daily" | "monthly"})."""
+    parts, source = [], {}
+    todo = list(gage_ids)
+    for label, path in (("daily", daily_path), ("monthly", monthly_path)):
+        if not todo:
+            break
+        ds, fv, sites = open_obs_daily(path)
+        df = bulk_extract(ds[fv].sel(time=slice(EVAL_START, EVAL_END)),
+                          sites, todo, resample="MS")
+        if df.empty:          # none found here; an empty frame would break the index in concat
+            continue
+        parts.append(df)
+        source.update({g: label for g in df.columns})
+        todo = [g for g in todo if g not in source]   # daily wins: ask monthly only for the rest
+    return (pd.concat(parts, axis=1) if parts else pd.DataFrame()), source
