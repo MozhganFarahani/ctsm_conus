@@ -524,7 +524,8 @@ $("q").addEventListener("keydown", e=>{
     qLast = s; qPos = 0;
     qHits = [];
     DATA.gauges.forEach((g,i)=>{
-      if (g.name.toLowerCase().includes(s) || String(g.id).toLowerCase().includes(s)) qHits.push(i);
+      const nm = typeof g.name === "string" ? g.name : "";   // gauges without a name are NaN in DATA
+      if (nm.toLowerCase().includes(s) || String(g.id).toLowerCase().includes(s)) qHits.push(i);
     });
     qHits.sort((a,b)=>(String(DATA.gauges[b].id)===s) - (String(DATA.gauges[a].id)===s)); // exact ID first
   } else if (qHits.length) qPos = (qPos+1) % qHits.length;   // same query: next match

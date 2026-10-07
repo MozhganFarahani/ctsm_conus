@@ -391,7 +391,8 @@ def main():
                 b_out[c] = d
 
         gauges.append({
-            "id": sid, "name": row.get("Long_Name", str(sid)),
+            # 15 crosswalk rows have no Long_Name (NaN): use the Station ID instead
+            "id": sid, "name": row["Long_Name"] if pd.notna(row.get("Long_Name")) else str(sid),
             "lat": float(row["Latitude"]), "lon": float(row["Longitude"]),
             "area_km2": round(float(W["area_km2"][k]), 1) if k is not None else 0.0,
             "n_hru": int(W["n_hru"][k]) if k is not None else 0,
