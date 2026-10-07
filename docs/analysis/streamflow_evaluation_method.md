@@ -5,9 +5,10 @@ Monthly routed streamflow at each gauge's MERIT reach is compared with observed 
 
 **Observations**
 
-- Daily multi-agency streamflow, 2,311 sites (flow_multi_agency_1965-10-01_2024-09-30.nc, m³/s), resampled to monthly means.
-- A crosswalk (flow_multi_agency_all_meta.csv) links each gauge to its MERIT reach (merit_reach_id) and labels it naturalized or observed.
-- 2,257 of the 2,311 gauges have overlapping records and are evaluated.
+- Daily multi-agency streamflow, 2,282 sites (flow_multi_agency_1965-10-01_2024-09-30.nc, m³/s), resampled to monthly means.
+- Monthly naturalized streamflow for the 29 USBR Colorado River Basin gauges that are not in the daily file (flow_multi_agency_1965-10_2024-09_month.nc, m³/s, one value per month). If a gauge were in both files, the daily record would be used.
+- A crosswalk (flow_multi_agency_all_meta.csv) links each of the 2,311 gauges to its MERIT reach (merit_reach_id) and labels it naturalized or observed.
+- 2,286 of the 2,311 gauges have at least 12 months of overlapping record and are evaluated.
 
 **Matching model and observations**
 
