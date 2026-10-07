@@ -515,15 +515,24 @@ $("link").addEventListener("click", ()=>{
     ()=>{ $("stat").textContent = "link copied"; },
     ()=>{ $("stat").textContent = location.href; });
 });
+let qHits = [], qPos = 0, qLast = "";
 $("q").addEventListener("keydown", e=>{
   if (e.key!=="Enter") return;
   const s = e.target.value.trim().toLowerCase();
   if (!s){ $("stat").textContent=""; return; }
-  const i = DATA.gauges.findIndex(g=>g.name.toLowerCase().includes(s)
-            || String(g.id).toLowerCase().includes(s));
-  if (i<0){ $("stat").textContent='no match for "'+s+'"'; return; }
-  $("stat").textContent = "found: "+DATA.gauges[i].name;
-  show(i);                       // redraws the map, so zoom after, not before
+  if (s !== qLast){                                  // new query: collect all matches
+    qLast = s; qPos = 0;
+    qHits = [];
+    DATA.gauges.forEach((g,i)=>{
+      if (g.name.toLowerCase().includes(s) || String(g.id).toLowerCase().includes(s)) qHits.push(i);
+    });
+    qHits.sort((a,b)=>(String(DATA.gauges[b].id)===s) - (String(DATA.gauges[a].id)===s)); // exact ID first
+  } else if (qHits.length) qPos = (qPos+1) % qHits.length;   // same query: next match
+  if (!qHits.length){ $("stat").textContent='no match for "'+s+'"'; return; }
+  const i = qHits[qPos];
+  $("stat").textContent = `match ${qPos+1} of ${qHits.length}: ${DATA.gauges[i].name}`
+                          + (qHits.length>1 ? " (Enter for next)" : "");
+  show(i);                                           // redraws the map, so zoom after
   Plotly.relayout("map",{"geo.center":{lat:DATA.gauges[i].lat,lon:DATA.gauges[i].lon},
     "geo.projection.scale":5});
 });
