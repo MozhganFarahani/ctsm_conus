@@ -1,7 +1,7 @@
 (case-evolving-landcover)=
 # evolving_landcover
 
-Against irrigation_on, evolving land cover lowers the median NSE from 0.106 to 0.097 even though more gauges improve than degrade (547 better, 414 worse in NSE). Details: [Results](#results) (Configuration sensitivities).
+Against irrigation_on, evolving land cover lowers the median NSE from 0.095 to 0.086 even though more gauges improve than degrade (569 better, 419 worse in NSE). Details: [Results](#results) (Configuration sensitivities).
 
 ## Case card
 

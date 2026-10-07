@@ -1,7 +1,7 @@
 (case-prog-phenology)=
 # prog_phenology
 
-prog_phenology lowers skill on all three metrics: median NSE falls to 0.067, KGE to 0.215, and median PBIAS rises to +30.7%. Details: [Results](#results) (Configuration sensitivities).
+prog_phenology lowers skill on all three metrics: median NSE falls to 0.060, KGE to 0.210, and median PBIAS rises to +31.3%. Details: [Results](#results) (Configuration sensitivities).
 
 ## Case card
 

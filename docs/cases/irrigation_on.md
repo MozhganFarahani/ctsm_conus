@@ -1,7 +1,7 @@
 (case-irrigation-on)=
 # irrigation_on
 
-Irrigation leaves the median NSE at 0.106 and raises the median PBIAS from +13.2% to +15.0%. Details: [Results](#results) (Configuration sensitivities).
+Irrigation lowers the median NSE slightly (0.098 to 0.095) and raises the median PBIAS from +13.9% to +15.2%. Details: [Results](#results) (Configuration sensitivities).
 
 ## Case card
 

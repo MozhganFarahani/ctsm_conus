@@ -1,7 +1,7 @@
 (case-control)=
 # control
 
-The control reaches a median monthly NSE of 0.106 across 2,257 gauges, with the best regional skill in the Southeast and the Ohio, Tennessee and Arkansas-White-Red basins and large over-prediction in the Missouri basin. Details: [Results](#results) (Control baseline).
+The control reaches a median monthly NSE of 0.098 across 2,286 gauges, with the best regional skill in the Southeast and the Ohio, Tennessee and Arkansas-White-Red basins and large over-prediction in the Missouri basin. Details: [Results](#results) (Control baseline).
 
 ## Case card
 

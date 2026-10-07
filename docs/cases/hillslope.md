@@ -1,7 +1,7 @@
 (case-hillslope)=
 # hillslope
 
-Hillslope roughly doubles the median NSE (0.106 to 0.219) and raises median KGE from 0.251 to 0.348 and median correlation from 0.642 to 0.712. Details: [Results](#results) (Configuration sensitivities).
+Hillslope roughly doubles the median NSE (0.098 to 0.215) and raises median KGE from 0.246 to 0.349 and median correlation from 0.638 to 0.711. Details: [Results](#results) (Configuration sensitivities).
 
 ## Case card
 
