@@ -225,6 +225,4 @@ This repository was created with support from the CGD Science Innovation Fund (S
 
 ## License
 
-Licensed under the Apache License, Version 2.0 (see `LICENSE`). If you redistribute this code or a
-derivative of it, include the attribution in `NOTICE`. Files under `cases/` keep their original
-CIME/CTSM licenses.
+Licensed under the Apache License, Version 2.0 (see `LICENSE`). If you redistribute or publish contents of this repo that were not included from pre-existing sources, you must include the attribution in `NOTICE`. Files under `cases/` keep their original CIME/CTSM licenses.
