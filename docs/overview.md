@@ -28,6 +28,10 @@ The simulations are intended as a reusable baseline for the CTSM community, for 
 
 Mozhgan Farahani, Andy Wood, Sean Swenson, Naoki Mizukami from the Terrestrial Sciences Section, CGD Laboratory, NSF NCAR. Dr. Farahani conducted all CTSM modeling and analysis efforts, with input from team members. Funded by CGD SIF-T FY26, August-September 2026.
 
+## Acknowledgments
+
+This work was created with support from the CGD Science Innovation Fund (SIF-T) during August–September of FY26, and with minor support from the NCAR Water Systems Program. Computing was provided on NCAR's Derecho and Casper HPC systems. We also acknowledge the contribution of CONUS streamflow modeling datasets developed in water security projects supported by the U.S. Army Corps of Engineers and the US Bureau of Reclamation.
+
 ## Map of the tabs
 
 - [Common setup](#common-setup)

@@ -86,5 +86,6 @@ cd dashboard && qsub -A "$PROJECT" -o "$OUTPUT_ROOT/dashboard/" run_dashboard.pb
 | CTSM source | [github.com/ESCOMP/CTSM](https://github.com/ESCOMP/CTSM), tag ctsm5.4.049 | public |
 | Model output (land and routing history, restarts), all five evaluations and spinups | /glade/campaign/cgd/tss/people/mozhgana/projects/ctsm_conus_runs_archive/&lt;case&gt;/ | NCAR users |
 | Analysis output (QC, streamflow metrics, built dashboard, weight cache, case_inputs.csv) | /glade/work/mozhgana/ctsm_conus_output/ | NCAR users |
+| streamflow timeseries and routing model crosswalk | Zenodo resource TBA | contact Andy Wood |
 | MERIT topology and spatial weights | /glade/work/mizukami/test_mizuRoute/MERIT_basin_nldas/ancillary_data/ntopo_MERIT_Hydro_v1_aug.nc, /glade/work/mizukami/py_mapping/MERIT_Hydro/mapping_v1/spatialweights_nldas0.125_to_merit_nldas.nc | NCAR users |
 | Land-use and hillslope inputs | Sean Swenson, /glade/derecho/scratch/swensosc/for_mozhgan/ (scratch); backup copy in /glade/u/home/mozhgana/mywork/ctsm_conus_setup/for_mozhgan/ | NCAR users |

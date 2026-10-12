@@ -11,7 +11,7 @@ The [dashboard](https://project.cgd.ucar.edu/projects/ctsm-conus/dashboard.html)
 
 **Tools**
 
-- Search by gauge name or ID, with a HUC02 filter.
+- Search by gauge name or ID.
 - Switch the map metric between NSE, KGE and PBIAS; short records are flagged.
 - Load any other basin-averaged CTSM variable, including configuration-specific ones such as QIRRIG_\*, QLATFLOWOUT or GPP.
 - Difference mode shows each configuration minus the baseline in every panel.
