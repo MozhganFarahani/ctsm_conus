@@ -1,0 +1,20 @@
+=========================================================================
+==      NOTICE file for use with the Apache License, Version 2.0       ==
+=========================================================================
+Resource: ctsm_conus codebase, version 1.0
+
+CTSM-CONUS: high-resolution CTSM/mizuRoute simulations over CONUS
+
+This product includes software developed at the NSF National Center for
+Atmospheric Research (NSF NCAR), Climate and Global Dynamics Laboratory,
+Terrestrial Sciences Section, by Mozhgan A. Farahani, with input from
+Andy Wood, Sean Swenson and Naoki Mizukami, under the CGD SIF-T FY26 project.
+
+Project page: https://project.cgd.ucar.edu/projects/ctsm-conus/
+Repository:   https://github.com/MozhganFarahani/ctsm_conus
+
+Files under cases/ are copies of CIME case directories created with CTSM
+(https://github.com/ESCOMP/CTSM) and CIME; they remain under their original
+licenses and are not covered by the Apache License in this repository.
+
+=========================================================================

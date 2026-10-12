@@ -222,3 +222,9 @@ Contact: mozhgana@ucar.edu
 ## Acknowledgments
 
 This repository was created with support from the CGD Science Innovation Fund (SIF-T) during August–September of FY26, and with minor support from the NCAR Water Systems Program. Computing was provided on NCAR's Derecho and Casper HPC systems. We also acknowledge the contribution of CONUS streamflow modeling datasets developed in water security projects supported by the U.S. Army Corps of Engineers and the US Bureau of Reclamation.
+
+## License
+
+Licensed under the Apache License, Version 2.0 (see `LICENSE`). If you redistribute this code or a
+derivative of it, include the attribution in `NOTICE`. Files under `cases/` keep their original
+CIME/CTSM licenses.
