@@ -17,7 +17,7 @@ All five configurations share one CTSM tag, grid, forcing and routing setup; the
 | Forcing | NLDAS-2 0.125°, 1980-2018 (DATM_YR_START=1980, DATM_YR_END=2018, DATM_YR_ALIGN=1980) |
 | Soil layers | 20 layers with a maximum depth of 8.5 m; 20SL_8.5m |
 | Parameter tuning | LND_TUNING_MODE=clm6_0_NLDAS2 falls back to clm6_0_GSWP3v1 (no NLDAS-2 tuning exists) |
-| Routing | mizuRoute, route_opt=5, topology ntopo_MERITmz_0.125nldas2_cdf5_fill_reorder_c20210625.nc |
+| Routing | mizuRoute v3.1.1, route_opt=5, topology ntopo_MERITmz_0.125nldas2_cdf5_fill_reorder_c20210625.nc |
 | Routing options | bypass_routing_option=direct_to_outlet, qgwl_runoff_option=negative |
 | Irrigation options (when on) | limit_irrigation_if_rof_enabled=.false., use_groundwater_irrigation=.false. |
 | PE layout | 1,920 PEs. NTASKS_ROF=-5 (640 tasks) for control, irrigation_on, evolving_landcover and prog_phenology; NTASKS_ROF=-14 (1,792 tasks, the config_pes default) for hillslope |

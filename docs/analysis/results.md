@@ -7,7 +7,7 @@ The control reaches a median monthly NSE of 0.098 across 2,286 gauges. Hillslope
 
 - **Best and worst regions** (HUC02): best in 06 (Tennessee), 11 (Arkansas-White-Red), 05 (Ohio) and 03 (South Atlantic-Gulf); worst in 15 (Lower Colorado), 13 (Rio Grande) and 16 (Great Basin), with the Missouri (10) also poor.
 - **Best gauge:** North Fork Alsea River at Alsea, OR (NSE 0.941).
-- **Missouri over-prediction:** at the five naturalized mainstem gauges, bias grows upstream from +63% at Hermann, MO to +98% at Fort Benton, MT, and NSE falls from −0.39 to −8.40. The Ohio and Mississippi test gauges score NSE 0.30-0.54.
+- **Missouri over-prediction:** at the 22 naturalized mainstem gauges, bias grows upstream from +63% at Hermann, near the mouth, to about +130% at the Dakota mainstem reservoirs, Fort Randall, Big Bend and Oahe, and then falls back to roughly +60 to +110% further upstream. NSE keeps getting worse going upstream: −0.39 at Hermann, −8.4 at Fort Benton, and −13.9 at Canyon Ferry in Montana. For comparison, the Ohio and Mississippi test gauges are at 0.3 to 0.5
 
 ```{figure} ../figures/control_nse_map.png
 :alt: Monthly NSE at each gauge, control

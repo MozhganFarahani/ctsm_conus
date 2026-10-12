@@ -36,4 +36,4 @@ Full build submission: see [Code and data](#code-and-data) (PBS submission).
 
 The builder writes &lt;name&gt;_dashboard.html to the dashboard/ folder under the output root (see [Code and data](#code-and-data), Paths; paths.DASHBOARD_OUT; --outdir overrides it).
 
-**Size:** the five-configuration page is 66 MB, mostly the monthly series.
+**Size:** the five-configuration page is about 70 MB, mostly the monthly series.
