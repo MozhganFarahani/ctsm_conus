@@ -19,6 +19,7 @@ analysis/climatology/   monthly climatology maps
 analysis/diagnostics/   time-alignment check and input-data reference
 analysis/animation/     CONUS discharge animation
 dashboard/              multi-config streamflow dashboard: builder, template, PBS job, web/ landing page
+docs/                   technical note source (Jupyter Book 2 / MyST), served at the project page's note/
 tools/                  scripts that maintain and test this repository
 environment.yml         the Python packages the code imports, at the npl-2026a versions
 ```
