@@ -47,7 +47,7 @@ bash setup/setup_control.sh eval 2002-01-01   # switch it to the eval run from t
 
 ## Paths
 
-**Paths and settings.** Every path is defined once: in analysis/config/paths.py for Python, in setup/ctsm.env for shell. ctsm.env repeats four of them (SCRATCH, ARCHIVE, OUTPUT_ROOT, and CIME_SCRIPTS, which is CASES_ROOT in paths.py): keep the two files in sync.
+**Paths and settings.** Every path is defined once: in analysis/config/paths.py for Python, in setup/ctsm.env for shell. ctsm.env repeats four of them (SCRATCH, ARCHIVE, OUTPUT_ROOT, and CIME_SCRIPTS, which is CASES_ROOT in paths.py): keep the two files in sync. Observed streamflow and gauge metadata are not yet public (Zenodo resource TBA): paths.py holds placeholders for OBS_DIR and CALIB_CONUS, and the real values go in an untracked analysis/config/paths_local.py that defines those two names.
 
 **Output root.** Every script writes under /glade/work/mozhgana/ctsm_conus_output/ by default: qc/&lt;config&gt;/, spinup/&lt;case&gt;/, streamflow/, report/, climatology/, dashboard/ (with its weight cache), animation/ and case_inputs.csv. --outdir overrides it.
 

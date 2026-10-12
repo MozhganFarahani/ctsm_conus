@@ -71,10 +71,18 @@ def open_mizuroute(files, varnames, id_var="reachID", parallel=False):
     return ds, ids
 
 
+def _check_local(path):
+    """Stop if a path still holds a placeholder from paths.py (no paths_local.py)."""
+    if str(path).startswith("<path_to_"):
+        sys.exit(f"{path} is a placeholder: set OBS_DIR and CALIB_CONUS in "
+                 "analysis/config/paths_local.py (see paths.py).")
+
+
 def open_obs_daily(path):
     """Naoki's daily multi-agency flow file. Returns (ds, flow_var, site ids).
     Also reads paths.OBS_MONTHLY, which has the same layout."""
-    ds = xr.open_dataset(path, decode_times=True, engine="netcdf4")
+    _check_local(path)
+    ds =xr.open_dataset(path, decode_times=True, engine="netcdf4")
     fv = next((v for v in ds.data_vars
                if v.lower() in ("streamflow", "flow", "discharge", "q")),
               next(v for v in ds.data_vars if "site" in ds[v].dims))
@@ -84,6 +92,7 @@ def open_obs_daily(path):
 def read_crosswalk(path, dedupe=False, **read_csv_kw):
     """Gauge metadata with merit_reach_id (flow_multi_agency_all_meta.csv).
     dedupe=True keeps the first row of any duplicated Station ID."""
+    _check_local(path)
     df = pd.read_csv(path, **read_csv_kw)
     if dedupe:
         dup = int(df["Station ID"].duplicated().sum())

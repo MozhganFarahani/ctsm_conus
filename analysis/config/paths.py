@@ -36,11 +36,20 @@ EVAL_START, EVAL_END = "1980-10-01", "2018-09-30"
 
 
 # --- observed streamflow (Naoki Mizukami) and gauge metadata -----------------
+# Observed streamflow and gauge metadata are not yet public (Zenodo resource TBA).
+# The real folders are set in analysis/config/paths_local.py (untracked), which
+# defines OBS_DIR and CALIB_CONUS; without it the placeholders below stay and
+# lib/io.py stops with a message when a script needs them.
 OBS_DIR = "<path_to_streamflow_tseries>"
+CALIB_CONUS = "<path_to_gauge_metadata>"
+try:
+    from paths_local import OBS_DIR, CALIB_CONUS   # noqa: F811
+except ImportError:
+    pass
+
 OBS_DAILY = f"{OBS_DIR}/flow_multi_agency_1965-10-01_2024-09-30.nc"
 OBS_MONTHLY = f"{OBS_DIR}/flow_multi_agency_1965-10_2024-09_month.nc"   # 29 sites only
 
-CALIB_CONUS = "<path_to_gauge_metadata>"
 CROSSWALK = f"{CALIB_CONUS}/route/extract_seg/ancillary_data/flow_multi_agency_all_meta.csv"
 HUC2_SITES = CALIB_CONUS + "/huc2/multi_agency_{region}_site.gpkg"    # .format(region="18")
 
