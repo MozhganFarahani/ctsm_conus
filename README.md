@@ -90,6 +90,7 @@ analysis/climatology/   monthly climatology maps
 analysis/diagnostics/   time-alignment check and input-data reference
 analysis/animation/     CONUS discharge animation
 dashboard/              multi-config streamflow dashboard: builder, template, PBS job, web/ landing page
+docs/                   technical note source (Jupyter Book 2 / MyST), served at the project page's note/
 tools/                  scripts that maintain and test this repository
 environment.yml         the Python packages the code imports, at the npl-2026a versions
 ```
@@ -194,6 +195,16 @@ source ../setup/ctsm.env && qsub -A "$PROJECT" -o "$OUTPUT_ROOT/dashboard/" run_
 ```
 
 The builder writes `<name>_dashboard.html` to `ctsm_conus_output/dashboard/` (`paths.DASHBOARD_OUT`; `--outdir` overrides it). To deploy, copy it as `dashboard.html`, together with `web/index.html` and `web/assets/`, with `scp` from `data-access.ucar.edu` to goldhill, `/project/webshare/projects/ctsm-conus`.
+
+### `docs/`
+
+Source of the technical note, published at <https://project.cgd.ucar.edu/projects/ctsm-conus/note/>. One Markdown page per section; `myst.yml` holds the table of contents and site settings, `figures/` the report figures, `data/` the HUC02 summary table. Build with Jupyter Book 2 (the `jbook` conda env; it is not in `environment.yml`):
+
+```bash
+cd docs
+jupyter book start                                               # local preview at localhost:3000
+BASE_URL=/projects/ctsm-conus/note jupyter book build --html     # deploy build in _build/html/
+```
 
 ### `tools/`
 
