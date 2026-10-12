@@ -9,12 +9,5 @@ __pycache__/
 *.pyc
 *.OU
 
-# --- optional: built dashboards (66 MB; rebuild with run_dashboard.pbs). Keeps the landing page ---
-# *.html
-# !index.html
-
-# --- optional: figures (~133 MB in climatology_maps) ---
-# climatology_maps/**/*.png
-
 # MyST build outputs
 _build
