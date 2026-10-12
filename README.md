@@ -11,8 +11,6 @@ Project page: <https://project.cgd.ucar.edu/projects/ctsm-conus/>
 Dashboard: <https://project.cgd.ucar.edu/projects/ctsm-conus/dashboard.html>
 
 
-> **Status:** the code is final: shared helpers in `analysis/lib/`, every path in `analysis/config/paths.py` (Python) or `setup/ctsm.env` (shell; four folders are set in both, see [`analysis/`](#analysis)), and a smoke test in `tools/smoke_test.sh`. Methods and results are unchanged from the original scripts. See the [pre-public checklist](#pre-public-checklist) before making the repository public.
-
 ## Model versions
 
 CTSM is used unmodified: no source changes, and every case's `SourceMods/` is empty.
